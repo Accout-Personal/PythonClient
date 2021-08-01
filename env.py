@@ -1,3 +1,5 @@
 host = "http://localhost"
 token =""
-impostazione = {"Accept": "application/json"}
+impostazione = "application/json"
+Url = "/progettolaurea/public/api/authed/"
+self = "self"
