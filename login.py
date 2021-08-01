@@ -1,18 +1,13 @@
 from typing import final
 import requests
+import env
 
-class login:
-    def __init__(self,username,password):
-        self._username = username
-        self._password = password
-        self.impostazioni = "application/json"
-        self.token = False
-    
-
-    def get_token(self):
-        return self.token
-
-    @staticmethod
-    def get_Host():
-        return "pippo"
+def login(username,password):
+    response = requests.post(env.host+"/progettolaurea/public/api/login",data={'username':username,'password':password},headers=env.impostazione)
+    response = response.json()
+    if('messagge' in response.keys()):
+        print(response['messagge'])
+        return response['messagge']
+    else:
+        env.token = response["token"]
 
