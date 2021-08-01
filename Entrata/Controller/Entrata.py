@@ -4,7 +4,7 @@ class Entrata:
 
     def __init__(self):
         self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazioni}
-        self.url = "gen/pro/resp/altra_spesa/"
+        self.url = "gen/pro/resp/entrata/"
     
     def GetAll(self):
         response = requests.get(env.host + env.Url+self.url,headers=self.credenziali)
