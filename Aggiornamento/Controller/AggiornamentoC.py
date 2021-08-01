@@ -1,13 +1,11 @@
 import requests
 import env
-import cenv
 class AggiornamentoC:
 
-    def __init__(self,token):
-        self.token =  token
+    def __init__(self):
         self.impostazioni = "application/json"
-        self.credenziali = {"Authorization": "Bearer "+self.token,"Accept": self.impostazioni}
-        self.url = "/gen/pro/resp/aggiornamento/"
+        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": self.impostazioni}
+        self.url = "gen/pro/resp/aggiornamento/"
     
     def GetAll(self):
         response = requests.get(env.host + env.Url+self.url,headers=self.credenziali)
