@@ -14,6 +14,9 @@ from RetribuzioneVariabile.Controller.RetribuzioneVariabileC import Retribuzione
 from Stipendio.Controller.StipendioC import StipendioC
 from Dipendente.Controller.DipendenteC import DipendenteC
 from Cliente.Controller.ClienteC import ClienteC
+from ListinoPrezzi.Controller.ListinoPrezziC import ListinoPrezziC
+from Commessa.Controller.CommessaC import CommessaC
+
 #log = login('user4','password')
 env.token ="bCrjUbnjZgVpVFsjw4DaLJ3l2nAAZYGVekduhbWJ"
 print(env.token)
@@ -30,3 +33,5 @@ print(env.token)
 #print(StipendioC().GetAll())
 #print(DipendenteC().GetAll())
 #print(ClienteC().GetAll())
+#print(ListinoPrezziC().GetAll())
+print(CommessaC().GetAll())
