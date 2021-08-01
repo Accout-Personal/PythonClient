@@ -6,6 +6,7 @@ class SuddivisioneLavoroC:
         self.token =  token
         self.credenziali = {"Authorization": "Bearer "+self.token,"Accept": env.impostazione}
         self.url = "gen/suddivisione_lavoro/all"
+        
     def GetAll(self):
         response = requests.get(env.host+env.Url+self.url,headers=self.credenziali)
         if response.ok:
