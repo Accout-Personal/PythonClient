@@ -1,4 +1,5 @@
 from _typeshed import Self
+from typing import final
 import requests
 
 class login:
@@ -7,11 +8,12 @@ class login:
         self._password = password
         self.impostazioni = "application/json"
         self.token = False
+    
 
     def get_token(self):
         return self.token
-"""
+
     @staticmethod
-    def prova_static():
-        return """
+    def get_Host():
+        return "pippo"
 
