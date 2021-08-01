@@ -3,8 +3,7 @@ import env
 class AltraSpesa:
 
     def __init__(self):
-        self.impostazioni = "application/json"
-        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": self.impostazioni}
+        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazioni}
         self.url = "gen/pro/resp/altra_spesa/"
     
     def GetAll(self):

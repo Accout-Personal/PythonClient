@@ -1,23 +1,23 @@
 import requests
 import env
+class Entrata:
 
-class EntrataC:
-    def __init__(self,token):
-        self.token =  token
-        self.credenziali = {"Authorization": "Bearer "+self.token,"Accept": env.impostazione}
-
-    def get_all(self):
-        response = requests.get(env.host+env.Url+"gen/pro/resp/entrata/",headers=self.credenziali)
+    def __init__(self):
+        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazioni}
+        self.url = "gen/pro/resp/altra_spesa/"
+    
+    def GetAll(self):
+        response = requests.get(env.host + env.Url+self.url,headers=self.credenziali)
         if response.ok:
-            print(response.json())
+            print("va bene")
+            return response.json()
         else:
             raise Exception("Errore. ",response.status_code)
 
-    def get_key(self,id):
-        response = requests.get(env.host+env.Url+"gen/pro/entrata/key/"+env.self,headers=self.credenziali)
+    def GetSelf(self):
+        response = requests.get(env.host + env.Url+self.url+'self',headers=self.credenziali)
         if response.ok:
-            print(response.json())
+            print("va bene")
+            return response.json()
         else:
             raise Exception("Errore. ",response.status_code)
-        
-             

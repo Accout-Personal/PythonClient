@@ -3,8 +3,7 @@ import env
 class AggiornamentoC:
 
     def __init__(self):
-        self.impostazioni = "application/json"
-        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": self.impostazioni}
+        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": emv.impostazioni}
         self.url = "gen/pro/resp/aggiornamento/"
     
     def GetAll(self):
