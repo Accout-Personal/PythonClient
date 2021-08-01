@@ -1,3 +1,3 @@
 host = "http://localhost"
 token =""
-impostazione = "application/json"
+impostazione = {"Accept": "application/json"}
