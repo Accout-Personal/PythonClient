@@ -1,9 +1,9 @@
 import requests
 import env
-class Entrata:
+class EntrataC:
 
     def __init__(self):
-        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazioni}
+        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazione}
         self.url = "gen/pro/resp/entrata/"
     
     def GetAll(self):

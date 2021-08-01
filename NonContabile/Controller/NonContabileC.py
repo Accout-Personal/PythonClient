@@ -3,7 +3,7 @@ import env
 class NonContabile:
 
     def __init__(self):
-        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazioni}
+        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazione}
         self.url = "gen/pro/resp/non_contabile/"
     
     def GetAll(self):
