@@ -1,10 +1,10 @@
 import requests
 import env
-class Contabile:
+class UscitaEffettuataC:
 
     def __init__(self):
         self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazione}
-        self.url = "gen/pro/resp/contabile/"
+        self.url = "gen/pro/resp/uscita_effettuata/"
     
     def GetAll(self):
         response = requests.get(env.host + env.Url+self.url,headers=self.credenziali)

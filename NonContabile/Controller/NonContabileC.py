@@ -1,6 +1,6 @@
 import requests
 import env
-class NonContabile:
+class NonContabileC:
 
     def __init__(self):
         self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazione}
