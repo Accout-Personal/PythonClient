@@ -14,8 +14,8 @@ class Entrata:
         else:
             raise Exception("Errore. ",response.status_code)
 
-    def GetSelf(self):
-        response = requests.get(env.host + env.Url+self.url+'self',headers=self.credenziali)
+    def GetKey(self,key):
+        response = requests.get(env.host + env.Url+self.url+'keu/'+key,headers=self.credenziali)
         if response.ok:
             print("va bene")
             return response.json()
