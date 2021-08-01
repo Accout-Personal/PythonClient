@@ -5,6 +5,7 @@ class UtilizzazioneC:
     def __init__(self,token):
         self.token =  token
         self.credenziali = {"Authorization": "Bearer "+self.token,"Accept": env.impostazione}
+        self.rotta = env.host+env.Url
 
     def get_all(self):
         response = requests.get(env.host+env.Url,headers=self.credenziali)
