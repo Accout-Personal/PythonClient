@@ -1,5 +1,3 @@
-
-from login import login
 from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
@@ -13,6 +11,12 @@ print(val)
 Agg = AggiornamentoC("token")
 print(Agg.GetHost())
 #aggiornamento.get_host()
+import env
+##from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
+
+print(env.host)
+print(env.host)
+
 #prova = UtilizzazioneC(login.get_Host())
 #prova.get_all()
 #provaLog = login("user6","password")
