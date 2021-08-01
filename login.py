@@ -1,5 +1,3 @@
-from _typeshed import Self
-from typing import final
 import requests
 
 class login:
