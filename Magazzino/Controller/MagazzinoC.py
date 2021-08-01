@@ -12,8 +12,3 @@ class MagazzinoC:
             print(response.json())
         else:
             raise Exception("Errore. ",response.status_code)
-            
-            
-        
-             
-
