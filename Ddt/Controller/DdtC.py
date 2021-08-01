@@ -1,11 +1,11 @@
 import requests
 import env
 
-class TrasferimentoLavoroC:
+class DdtC:
 
     def __init__(self):
         self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazione}
-        self.url = "gen/pro/resp/trasferimento_lavoro/"
+        self.url = "gen/pro/resp/ddt/"
     
     def GetAll(self):
         response = requests.get(env.host + env.Url+self.url,headers=self.credenziali)

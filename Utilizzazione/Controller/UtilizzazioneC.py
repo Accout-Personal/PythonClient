@@ -2,26 +2,33 @@ import requests
 import env
 
 class UtilizzazioneC:
-    def __init__(self,token):
-        self.token =  token
-        self.credenziali = {"Authorization": "Bearer "+self.token,"Accept": env.impostazione}
+
+    def __init__(self):
+        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazione}
         self.url = "gen/pro/resp/utilizzazione/"
-        self.url2 = "gen/pro/utilizzazione/self"
+        self.url1 = "gen/pro/utilizzazione/"
+    
     def GetAll(self):
-        response = requests.get(env.host+env.Url+self.url,headers=self.credenziali)
+        response = requests.get(env.host + env.Url+self.url,headers=self.credenziali)
         if response.ok:
-            print(response.json())
+            print("va bene")
+            return response.json()
+        else:
+            return response.json()
+            raise Exception("Errore. ",response.status_code)
+            
+    def GetKey(self,key):
+        response = requests.get(env.host + env.Url+self.url+'key/'+key,headers=self.credenziali)
+        if response.ok:
+            print("va bene")
+            return response.json()
         else:
             raise Exception("Errore. ",response.status_code)
-
+    
     def GetSelf(self):
-        response = requests.get(env.host+env.Url+self.url2,headers=self.credenziali)
+        response = requests.get(env.host + env.Url+self.url1+'self/',headers=self.credenziali)
         if response.ok:
-            print(response.json())
+            print("va bene")
+            return response.json()
         else:
             raise Exception("Errore. ",response.status_code)
-            
-            
-        
-             
-
