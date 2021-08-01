@@ -1,7 +1,7 @@
 import requests
 import env
 
-class TrasazioneAltraSpesa:
+class TransazioneAltraSpesaC:
 
     def __init__(self):
         self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazione}
