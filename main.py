@@ -1,4 +1,10 @@
+
 from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 
-prova = UtilizzazioneC("BVWNPjcTDjkkBXeU3LTphxyj28RfA8JWfspmimEf")
+val = "ciccio"
+print(val)
+"""
+prova = UtilizzazioneC()
 prova.get_all()
+#provaLog = login("user6","password")
+"""
