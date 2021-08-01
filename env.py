@@ -1,5 +1,7 @@
 host = "http://localhost"
 token =""
 impostazione = "application/json"
-Url = "/progettolaurea/public/api/authed/"
+Url1 = "/progettolaurea/public/api/authed/gen/pro/resp/"
+Url2 = "/progettolaurea/public/api/authed/gen/pro/"
 self = "self"
+key = "key"
