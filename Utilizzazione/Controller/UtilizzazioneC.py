@@ -5,10 +5,10 @@ class UtilizzazioneC:
     def __init__(self,token):
         self.token =  token
         self.credenziali = {"Authorization": "Bearer "+self.token,"Accept": env.impostazione}
-        self.rotta = env.host+env.Url
+        self.url = "gen/pro/res/utilizzazione/"
 
-    def get_all(self):
-        response = requests.get(env.host+env.Url,headers=self.credenziali)
+    def GetAll(self):
+        response = requests.get(env.host+env.Url+self.url,headers=self.credenziali)
         if response.ok:
             print(response.json())
         else:
