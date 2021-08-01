@@ -6,12 +6,9 @@ import env
 print(env.host)
 env.host = "new host"
 print(env.host)
-val = "ciccio"
-print(val)
 Agg = AggiornamentoC("token")
 print(Agg.GetHost())
 #aggiornamento.get_host()
-import env
 ##from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 
 print(env.host)
