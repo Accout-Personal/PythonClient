@@ -19,6 +19,7 @@ from Commessa.Controller.CommessaC import CommessaC
 from TrasferimentoLavoro.Controller.TrasferimentoLavoroC import TrasferimentoLavoroC
 from Ddt.Controller.DdtC import DdtC
 from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
+from Code.Controller.CodeC import CodeC
 #log = login('user4','password')
 env.token ="bCrjUbnjZgVpVFsjw4DaLJ3l2nAAZYGVekduhbWJ"
 print(env.token)
@@ -39,4 +40,6 @@ print(env.token)
 """ print(CommessaC().GetAll()) """
 """ print(TrasferimentoLavoroC().GetAll()) """
 """ print(DdtC().GetAll()) """
-print(UtilizzazioneC().GetSelf())
+""" print(UtilizzazioneC().GetSelf()) """
+#print(CodeC().GetSelf())
+""" print(CodeC().GetAll()) """
