@@ -11,4 +11,4 @@ from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 prova = CommessaC()
 dizionario = {'tessuto': 'SIMO33','numero_commessa': '27','Qta': '500','listino_prezzi_modello': '11200','nddt_cliente': '555','data': '2021/08/06','cliente': '10203044557'}
-print(prova.Insert(dizionario))
+print(prova.GetAll())
