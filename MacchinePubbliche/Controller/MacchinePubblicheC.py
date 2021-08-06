@@ -2,9 +2,8 @@ import requests
 import env
 
 class MacchinePubblicheC:
-    def __init__(self,token):
-        self.token =  token
-        self.credenziali = {"Authorization": "Bearer "+self.token,"Accept": env.impostazione}
+    def __init__(self):
+        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazione}
         self.url = "gen/pro/macchine_pubbliche/"
 
     def GetAll(self):
@@ -21,3 +20,10 @@ class MacchinePubblicheC:
         else:
             print(response.json())
             raise Exception("Errore. ",response.status_code)
+
+    def Insert(self,request):
+        response = requests.post(env.host+env.Url + self.url+"insert",headers=self.credenziali,data=request)
+        if response.ok:
+            return response.json()
+        else:
+            return response.json()
