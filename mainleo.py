@@ -44,3 +44,42 @@ print(env.token)
 """ print(UtilizzazioneC().GetSelf()) """
 #print(CodeC().GetSelf())
 """ print(CodeC().GetAll()) """
+
+#ins_entrata = {'numero_fattura':3,
+#'data':'2021-08-06',
+#'importo_entrata':0
+#}
+#print(EntrataC().Insert(ins_entrata))
+#delete_entrata = {'numero_fattura':3}
+#upd_entrata = {
+#    'numero_fattura':3,
+#    'data':'2021-08-08',
+#    'importo_entrata':0
+#}
+#print(EntrataC().Update(upd_entrata))
+
+ins_noncontabile = {'ddt':7,
+'data':'2021-08-06',
+'luogo_destinazione':'idem',}
+#print(NonContabileC().Insert(ins_noncontabile))
+
+ins_contabili ={'ddt':8,
+'data':'07-08-2021',
+'luogo_destinazione':'idem',
+}
+#print(ContabileC().Insert(ins_contabili))
+ins_utilizzazione ={
+'tipo_pezzo':'pezzo test',
+'data_e_ora':'06-08-2021',
+'quantita':'100',
+'durata':'3',
+'dipendente':'CRVLTT84M49H446V',
+'codice_macchina':'1B',
+'tipo_macchina':'braccio',
+}
+#print(UtilizzazioneC().Insert(ins_utilizzazione))
+ins_uscita ={
+    'data_esecuzione':'06-08-2021',
+'importo_effettuato':'300'
+}
+print(UscitaEffettuataC().Insert(ins_uscita))
