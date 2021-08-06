@@ -21,3 +21,11 @@ class NonContabileC:
             return response.json()
         else:
             raise Exception("Errore. ",response.status_code)
+            
+    def Insert(self,body):
+        response = requests.post(env.host + env.Url+self.url1+'insert',data=body,headers=self.credenziali)
+        if response.ok:
+            print("va bene")
+            return response.json()
+        else:
+            raise Exception("Errore. ",response.status_code)
