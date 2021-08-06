@@ -82,4 +82,16 @@ ins_uscita ={
     'data_esecuzione':'06-08-2021',
     'importo_effettuato':'300'
 }
-print(UscitaEffettuataC().Insert(ins_uscita))
+#print(UscitaEffettuataC().Insert(ins_uscita))
+
+ins_tran_stip={
+'uscita_effettuata':24,
+'data_stipendio':'2020-12-01',
+'stipendio_dipendente':'TZIBRN90B03A794N',
+}
+#print(TrasazioneStipendioC().Insert(ins_tran_stip))
+
+ins_tran_spesa ={'uscita_effettuata':23,
+'altra_spesa':4,}
+
+print(TransazioneAltraSpesaC().Insert(ins_tran_spesa))
