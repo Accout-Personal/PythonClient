@@ -2,9 +2,8 @@ import requests
 import env
 
 class SuddivisioneLavoroC:
-    def __init__(self,token):
-        self.token =  token
-        self.credenziali = {"Authorization": "Bearer "+self.token,"Accept": env.impostazione}
+    def __init__(self):
+        self.credenziali = {"Authorization": "Bearer "+env.token,"Accept": env.impostazione}
         self.url = "gen/suddivisione_lavoro/all"
         
     def GetAll(self):
@@ -13,3 +12,10 @@ class SuddivisioneLavoroC:
             print(response.json())
         else:
             raise Exception("Errore. ",response.status_code)
+
+    def Insert(self,request):
+        response = requests.post(env.host+env.Url + "gen/suddivisione_lavoro/insert",headers=self.credenziali,data=request)
+        if response.ok:
+            return response.json()
+        else:
+            return response.json()

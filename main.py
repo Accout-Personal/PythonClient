@@ -5,6 +5,6 @@ from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
-prova = AggiornamentoC()
-dizionario = {'dipendente': 'GNTSNG02C51I209D','data': '2021/08/06','quantita': '3','magazzino': 'panino'}
+prova = SuddivisioneLavoroC()
+dizionario = {'commessa': '11','dipendente': 'GNTSNG02C51I209D','quantita_assegnata': '3',}
 print(prova.Insert(dizionario))
