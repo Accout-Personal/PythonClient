@@ -9,15 +9,15 @@ class AggiornamentoC:
     def GetAll(self):
         response = requests.get(env.host + env.Url+self.url,headers=self.credenziali)
         if response.ok:
-            print("va bene")
             return response.json()
         else:
-            raise Exception("Errore. ",response.status_code)
+            #raise Exception("Errore. ",response.status_code)
+            return response.json()
 
     def Insert(self,request):
         response = requests.post(env.host + env.Url+"aggiornamento/insert",headers=self.credenziali,data=request)
         if response.ok:
-            print("va bene")
             return response.json()
         else:
-            raise Exception("Errore. ",response.status_code)
+            #raise Exception("Errore. ",response.status_code)
+            return response.json()
