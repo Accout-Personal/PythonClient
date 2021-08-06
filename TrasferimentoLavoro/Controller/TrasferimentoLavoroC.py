@@ -31,3 +31,11 @@ class TrasferimentoLavoroC:
             return response.json()
         else:
             raise Exception("Errore. ",response.status_code)
+
+
+    def Insert(self,request):
+        response = requests.post(env.host+env.Url + "gen/pro/trasferimento_lavoro/insert",headers=self.credenziali,data=request)
+        if response.ok:
+            return response.json()
+        else:
+            return response.json()
