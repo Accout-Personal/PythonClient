@@ -13,3 +13,11 @@ class AggiornamentoC:
             return response.json()
         else:
             raise Exception("Errore. ",response.status_code)
+
+    def Insert(self,request):
+        response = requests.post(env.host + env.Url+self.url+"insert",headers=self.credenziali,data=request)
+        if response.ok:
+            print("va bene")
+            return response.json()
+        else:
+            raise Exception("Errore. ",response.status_code)

@@ -5,5 +5,6 @@ from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
-prova = MacchinePubblicheC("1d1l4BD7uXGnHCsNXwAnC951kWWsGJICF5A7hz08")
-prova.GetKey("1T")
+prova = AggiornamentoC("sprOUgGMlDpS9dWrgISZchpS6N7XgIJjfSwc44w7")
+dizionario = {'dipendente': 'GNTSNG02C51I209D','data': '2021/06/08','quantita': '2','magazzino': 'forbici'}
+prova.Insert(dizionario)
