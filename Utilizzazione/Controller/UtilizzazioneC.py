@@ -40,9 +40,10 @@ class UtilizzazioneC:
 
     def Insert(self, body):
         response = requests.post(
-            env.host + env.Url+self.url1+'insert', data=body, headers=self.credenziali)
+            env.host + env.Url+self.url+'insert', data=body, headers=self.credenziali)
         if response.ok:
             print("va bene")
             return response.json()
         else:
+            return response.json()
             raise Exception("Errore. ", response.status_code)
