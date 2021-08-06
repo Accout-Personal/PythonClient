@@ -5,6 +5,6 @@ from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
-prova = MagazzinoC()
-dizionario = {'tipo_scorta': 'panino'}
-prova.Insert(dizionario)
+prova = AggiornamentoC()
+dizionario = {'dipendente': 'GNTSNG02C51I209D','data': '2021/08/06','quantita': '3','magazzino': 'panino'}
+print(prova.Insert(dizionario))
