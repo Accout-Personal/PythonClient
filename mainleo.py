@@ -80,6 +80,6 @@ ins_utilizzazione ={
 #print(UtilizzazioneC().Insert(ins_utilizzazione))
 ins_uscita ={
     'data_esecuzione':'06-08-2021',
-'importo_effettuato':'300'
+    'importo_effettuato':'300'
 }
 print(UscitaEffettuataC().Insert(ins_uscita))
