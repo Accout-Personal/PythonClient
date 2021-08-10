@@ -11,6 +11,6 @@ from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
-prova = ClienteC()
-dizionario = {'PIVA': '91482670321','nome_azienda': 'pippoPasticcio','CAP': '10995','citta':'isernia','via':'cicci','nc':'100'}
-print(prova.Insert(dizionario))
+prova = AggiornamentoC()
+dizionario = {'id': '100'}
+print(prova.Delete(dizionario))
