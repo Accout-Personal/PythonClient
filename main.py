@@ -11,5 +11,5 @@ from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
 prova = ListinoPrezziC()
-dizionario = {'modello': '456pippo','valore_cliente': '11','valore_dipendente': '7'}
+dizionario = {'modello': 'simo222','valore_cliente': '11','valore_dipendente': '7'}
 print(prova.Insert(dizionario))
