@@ -74,6 +74,7 @@ upd_contabili ={
 }
 #print(ContabileC().Update(upd_contabili))
 
+
 upd_utilizzazione ={
     'tipo_pezzo':'pezzo test',
     'data_e_ora':'06-08-2021',
