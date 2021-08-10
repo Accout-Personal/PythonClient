@@ -70,7 +70,8 @@ del_contabili ={'ddt':8}
 del_aggiornamento = {'id':1}
 #print(AggiornamentoC().Delete(del_aggiornamento))
 
-ins_utilizzazione ={
+#TODO add id
+del_utilizzazione ={
     'tipo_pezzo':'pezzo test',
     'data_e_ora':'06-08-2021',
     'quantita':'100',
@@ -79,12 +80,12 @@ ins_utilizzazione ={
     'codice_macchina':'1B',
     'tipo_macchina':'braccio',
 }
-#print(UtilizzazioneC().Insert(ins_utilizzazione))
-ins_uscita ={
-    'data_esecuzione':'06-08-2021',
-    'importo_effettuato':'300'
+#print(UtilizzazioneC().Delete(ins_utilizzazione))
+
+del_uscita ={
+'id_transazione':23,
 }
-#print(UscitaEffettuataC().Insert(ins_uscita))
+print(UscitaEffettuataC().Delete(del_uscita))
 
 ins_tran_stip={
     'uscita_effettuata':24,

@@ -74,24 +74,25 @@ upd_contabili ={
 }
 #print(ContabileC().Update(upd_contabili))
 
-
+#da rivedere!
 upd_utilizzazione ={
     'tipo_pezzo':'pezzo test',
-    'data_e_ora':'06-08-2021',
+    'data_e_ora':'2021-08-06 00:00:00',
     'quantita':'100',
     'durata':'3',
     'dipendente':'CRVLTT84M49H446V',
     'codice_macchina':'1B',
     'tipo_macchina':'braccio',
 }
-print(UtilizzazioneC().Update(upd_utilizzazione))
+#print(UtilizzazioneC().Update(upd_utilizzazione))
 
 
-ins_uscita ={
+upd_uscita ={
+    'id_transazione':23,
     'data_esecuzione':'06-08-2021',
     'importo_effettuato':'300'
 }
-#print(UscitaEffettuataC().Insert(ins_uscita))
+print(UscitaEffettuataC().Update(upd_uscita))
 
 ins_tran_stip={
     'uscita_effettuata':24,
