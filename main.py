@@ -12,5 +12,5 @@ from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
 prova = MagazzinoC()
-dizionario = {'tipo_scorta': 'filo1','tipo_scorta_new': 'filo100'}
-print(prova.Update(dizionario))
+dizionario = {'tipo_scorta': 'filo2'}
+print(prova.Delete(dizionario))

@@ -22,8 +22,8 @@ class MagazzinoC:
             #raise Exception("Errore. ",response.status_code)
             return response.json()
 
-    def Update(self,body):
-        response = requests.post(env.host + env.Url+self.url+'update',data=body,headers=self.credenziali)
+    def Delete(self,body):
+        response = requests.post(env.host + env.Url+self.url+'delete',data=body,headers=self.credenziali)
         if response.ok:
             print("va bene")
             return response.json()
