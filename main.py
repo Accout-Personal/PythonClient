@@ -12,5 +12,5 @@ from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
 prova = SuddivisioneLavoroC()
-dizionario = {'commessa': '1','dipendente': 'GNTSNG02C51I209D','data_conclusione': '2021/08/10'}
-print(prova.Update(dizionario))
+dizionario = {'commessa': '1','dipendente': 'GNTSNG02C51I209D'}
+print(prova.Delete(dizionario))
