@@ -12,5 +12,5 @@ from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
 prova = AggiornamentoC()
-dizionario = {'id': '200'}
+dizionario = {'id': '100'}
 print(prova.Delete(dizionario))
