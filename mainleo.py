@@ -104,5 +104,12 @@ ins_tran_retr ={
     'dipendente_tran':'PPRRCN88C02H501O'
 }
 
-print(TransazioneRetribuzioneC().Insert(ins_tran_retr))
+#print(TransazioneRetribuzioneC().Insert(ins_tran_retr))
 
+ins_altra_spesa ={
+    'importo':200,
+    'data':'2021-10-08',
+    'causale':'test causale'
+}
+
+print(AltraSpesaC().Insert(ins_altra_spesa))
