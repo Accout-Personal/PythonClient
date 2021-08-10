@@ -92,29 +92,7 @@ upd_uscita ={
     'data_esecuzione':'06-08-2021',
     'importo_effettuato':'300'
 }
-print(UscitaEffettuataC().Update(upd_uscita))
-
-ins_tran_stip={
-    'uscita_effettuata':24,
-    'data_stipendio':'2020-12-01',
-    'stipendio_dipendente':'TZIBRN90B03A794N',
-}
-#print(TrasazioneStipendioC().Insert(ins_tran_stip))
-
-ins_tran_spesa ={
-    'uscita_effettuata':23,
-    'altra_spesa':4,
-}
-
-#print(TransazioneAltraSpesaC().Insert(ins_tran_spesa))
-
-ins_tran_retr ={
-    'uscita_effettuata':25,
-    'data_retribuzione':'2020-12-31',
-    'dipendente_tran':'PPRRCN88C02H501O'
-}
-
-#print(TransazioneRetribuzioneC().Insert(ins_tran_retr))
+#print(UscitaEffettuataC().Update(upd_uscita))
 
 ins_altra_spesa ={
     'importo':200,

@@ -85,14 +85,14 @@ del_utilizzazione ={
 del_uscita ={
 'id_transazione':23,
 }
-print(UscitaEffettuataC().Delete(del_uscita))
+#print(UscitaEffettuataC().Delete(del_uscita))
 
-ins_tran_stip={
+del_tran_stip={
     'uscita_effettuata':24,
     'data_stipendio':'2020-12-01',
     'stipendio_dipendente':'TZIBRN90B03A794N',
 }
-#print(TrasazioneStipendioC().Insert(ins_tran_stip))
+print(TrasazioneStipendioC().Delete(del_tran_stip))
 
 ins_tran_spesa ={
     'uscita_effettuata':23,

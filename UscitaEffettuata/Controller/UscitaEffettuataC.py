@@ -30,7 +30,7 @@ class UscitaEffettuataC:
             return response.json()
         else:
             return response.json()
-            raise Exception("Errore. ", response.status_code)
+            
 
     def Delete(self,body):
         response = requests.post(env.host + env.Url+self.url+'delete',data=body,headers=self.credenziali)
