@@ -38,7 +38,6 @@ class EntrataC:
             return response.json()
         else:
             return response.json()
-            raise Exception("Errore. ",response.status_code)
     
     def Update(self,body):
         response = requests.post(env.host + env.Url+self.url+'update',data=body,headers=self.credenziali)
@@ -47,4 +46,3 @@ class EntrataC:
             return response.json()
         else:
             return response.json()
-            raise Exception("Errore. ",response.status_code)
