@@ -112,4 +112,22 @@ ins_altra_spesa ={
     'causale':'test causale'
 }
 
-print(AltraSpesaC().Insert(ins_altra_spesa))
+#print(AltraSpesaC().Insert(ins_altra_spesa))
+
+retribuzione_insert ={
+    'data':'2021-08-10',
+    'dipendente_retr':'PPRRCN88C02H501O'
+}
+
+#print(RetribuzioneVariabileC().Insert(retribuzione_insert))
+
+
+stipendio_insert ={
+    'data':'2021-08-10',
+    'dipendente_stip':'PPRRCN88C02H501O',
+    'giorni_ferie':1,
+    'ore_straordinario':20,
+    'ore_lavoro':50
+}
+
+#print(StipendioC().Insert(stipendio_insert))
