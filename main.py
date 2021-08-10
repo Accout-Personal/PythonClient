@@ -11,6 +11,6 @@ from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
-prova = AggiornamentoC()
-dizionario = {'id': '100'}
-print(prova.Delete(dizionario))
+prova = MagazzinoC()
+dizionario = {'tipo_scorta': 'filo1','tipo_scorta_new': 'filo100'}
+print(prova.Update(dizionario))
