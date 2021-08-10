@@ -58,23 +58,16 @@ print(env.token)
 #}
 #print(EntrataC().Update(upd_entrata))
 
-upd_noncontabile = {
+del_noncontabile = {
     'ddt':7,
-    'data':'2021-08-06',
-    'luogo_destinazione':'idem',
 }
 
-#print(NonContabileC().Update(upd_noncontabile))
+#print(NonContabileC().Delete(del_noncontabile))
 
+del_contabili ={'ddt':8}
+print(ContabileC().Delete(del_contabili))
 
-upd_contabili ={
-    'ddt':5,
-    'data':'09-08-2021',
-    'luogo_destinazione':'idem',
-}
-#print(ContabileC().Update(upd_contabili))
-
-upd_utilizzazione ={
+ins_utilizzazione ={
     'tipo_pezzo':'pezzo test',
     'data_e_ora':'06-08-2021',
     'quantita':'100',
