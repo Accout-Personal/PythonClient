@@ -21,7 +21,7 @@ class SuddivisioneLavoroC:
             return response.json()
 
     def Delete(self,body):
-        response = requests.post(env.host + env.Url+self.url+'gen/suddivisione_lavoro/delete',data=body,headers=self.credenziali)
+        response = requests.post(env.host + env.Url+'gen/suddivisione_lavoro/delete',data=body,headers=self.credenziali)
         if response.ok:
             print("va bene")
             return response.json()
@@ -29,7 +29,7 @@ class SuddivisioneLavoroC:
             return response.json()
     
     def Update(self,body):
-        response = requests.post(env.host + env.Url+self.url+'gen/suddivisione_lavoro/update',data=body,headers=self.credenziali)
+        response = requests.post(env.host + env.Url+'gen/suddivisione_lavoro/update',data=body,headers=self.credenziali)
         if response.ok:
             print("va bene")
             return response.json()

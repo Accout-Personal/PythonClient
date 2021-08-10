@@ -11,6 +11,6 @@ from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
-prova = SuddivisioneLavoroC()
-dizionario = {'commessa': '1','dipendente': 'GNTSNG02C51I209D'}
+prova = MacchinePubblicheC()
+dizionario = {'codice_macchina': '1B','tipo_macchina': 'braccio'}
 print(prova.Delete(dizionario))
