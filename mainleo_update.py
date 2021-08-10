@@ -94,13 +94,14 @@ upd_uscita ={
 }
 #print(UscitaEffettuataC().Update(upd_uscita))
 
-ins_altra_spesa ={
+upd_altra_spesa ={
+    'codice':1,
     'importo':200,
     'data':'2021-10-08',
     'causale':'test causale'
 }
 
-#print(AltraSpesaC().Insert(ins_altra_spesa))
+#print(AltraSpesaC().Update(upd_altra_spesa))
 
 retribuzione_insert ={
     'data':'2021-08-10',

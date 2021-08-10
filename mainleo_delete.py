@@ -87,35 +87,11 @@ del_uscita ={
 }
 #print(UscitaEffettuataC().Delete(del_uscita))
 
-del_tran_stip={
-    'uscita_effettuata':24,
-    'data_stipendio':'2020-12-01',
-    'stipendio_dipendente':'TZIBRN90B03A794N',
-}
-print(TrasazioneStipendioC().Delete(del_tran_stip))
-
-ins_tran_spesa ={
-    'uscita_effettuata':23,
-    'altra_spesa':4,
+del_altra_spesa ={
+    'codice':1,
 }
 
-#print(TransazioneAltraSpesaC().Insert(ins_tran_spesa))
-
-ins_tran_retr ={
-    'uscita_effettuata':25,
-    'data_retribuzione':'2020-12-31',
-    'dipendente_tran':'PPRRCN88C02H501O'
-}
-
-#print(TransazioneRetribuzioneC().Insert(ins_tran_retr))
-
-ins_altra_spesa ={
-    'importo':200,
-    'data':'2021-10-08',
-    'causale':'test causale'
-}
-
-#print(AltraSpesaC().Insert(ins_altra_spesa))
+print(AltraSpesaC().Delete(del_altra_spesa))
 
 retribuzione_insert ={
     'data':'2021-08-10',
