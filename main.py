@@ -1,3 +1,4 @@
+from Cliente.Controller.ClienteC import ClienteC
 from ListinoPrezzi.Controller.ListinoPrezziC import ListinoPrezziC
 from Commessa.Controller.CommessaC import CommessaC
 from Ddt.Controller.DdtC import DdtC
@@ -10,6 +11,6 @@ from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
-prova = ListinoPrezziC()
-dizionario = {'modello': 'simo222','valore_cliente': '11','valore_dipendente': '7'}
+prova = ClienteC()
+dizionario = {'PIVA': '01492570627','nome_azienda': 'pippoFranco','CAP': '86034','citta':'campobasso','via':'cicci','nc':'100'}
 print(prova.Insert(dizionario))
