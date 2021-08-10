@@ -11,6 +11,6 @@ from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
-prova = MagazzinoC()
-dizionario = {'tipo_scorta': 'filo2'}
-print(prova.Delete(dizionario))
+prova = SuddivisioneLavoroC()
+dizionario = {'commessa': '1','dipendente': 'GNTSNG02C51I209D','data_conclusione': '2021/08/10'}
+print(prova.Update(dizionario))
