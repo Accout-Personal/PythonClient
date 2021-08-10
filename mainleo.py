@@ -69,17 +69,47 @@ ins_contabili ={'ddt':8,
 }
 #print(ContabileC().Insert(ins_contabili))
 ins_utilizzazione ={
-'tipo_pezzo':'pezzo test',
-'data_e_ora':'06-08-2021',
-'quantita':'100',
-'durata':'3',
-'dipendente':'CRVLTT84M49H446V',
-'codice_macchina':'1B',
-'tipo_macchina':'braccio',
+    'tipo_pezzo':'pezzo test',
+    'data_e_ora':'06-08-2021',
+    'quantita':'100',
+    'durata':'3',
+    'dipendente':'CRVLTT84M49H446V',
+    'codice_macchina':'1B',
+    'tipo_macchina':'braccio',
 }
 #print(UtilizzazioneC().Insert(ins_utilizzazione))
 ins_uscita ={
     'data_esecuzione':'06-08-2021',
     'importo_effettuato':'300'
 }
-print(UscitaEffettuataC().Insert(ins_uscita))
+#print(UscitaEffettuataC().Insert(ins_uscita))
+
+ins_tran_stip={
+    'uscita_effettuata':24,
+    'data_stipendio':'2020-12-01',
+    'stipendio_dipendente':'TZIBRN90B03A794N',
+}
+#print(TrasazioneStipendioC().Insert(ins_tran_stip))
+
+ins_tran_spesa ={
+    'uscita_effettuata':23,
+    'altra_spesa':4,
+}
+
+#print(TransazioneAltraSpesaC().Insert(ins_tran_spesa))
+
+ins_tran_retr ={
+    'uscita_effettuata':25,
+    'data_retribuzione':'2020-12-31',
+    'dipendente_tran':'PPRRCN88C02H501O'
+}
+
+#print(TransazioneRetribuzioneC().Insert(ins_tran_retr))
+
+ins_altra_spesa ={
+    'importo':200,
+    'data':'2021-10-08',
+    'causale':'test causale'
+}
+
+print(AltraSpesaC().Insert(ins_altra_spesa))
