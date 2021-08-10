@@ -58,50 +58,40 @@ print(env.token)
 #}
 #print(EntrataC().Update(upd_entrata))
 
-upd_noncontabile = {
+del_noncontabile = {
     'ddt':7,
-    'data':'2021-08-06',
-    'luogo_destinazione':'idem',
 }
 
-#print(NonContabileC().Update(upd_noncontabile))
+#print(NonContabileC().Delete(del_noncontabile))
 
+del_contabili ={'ddt':8}
+#print(ContabileC().Delete(del_contabili))
 
-upd_contabili ={
-    'ddt':5,
-    'data':'09-08-2021',
-    'luogo_destinazione':'idem',
-}
-#print(ContabileC().Update(upd_contabili))
+del_aggiornamento = {'id':1}
+#print(AggiornamentoC().Delete(del_aggiornamento))
 
-#da rivedere!
-upd_utilizzazione ={
+#TODO add id
+del_utilizzazione ={
     'tipo_pezzo':'pezzo test',
-    'data_e_ora':'2021-08-06 00:00:00',
+    'data_e_ora':'06-08-2021',
     'quantita':'100',
     'durata':'3',
     'dipendente':'CRVLTT84M49H446V',
     'codice_macchina':'1B',
     'tipo_macchina':'braccio',
 }
-#print(UtilizzazioneC().Update(upd_utilizzazione))
+#print(UtilizzazioneC().Delete(ins_utilizzazione))
 
-
-upd_uscita ={
-    'id_transazione':23,
-    'data_esecuzione':'06-08-2021',
-    'importo_effettuato':'300'
+del_uscita ={
+'id_transazione':23,
 }
-#print(UscitaEffettuataC().Update(upd_uscita))
+#print(UscitaEffettuataC().Delete(del_uscita))
 
-upd_altra_spesa ={
+del_altra_spesa ={
     'codice':1,
-    'importo':200,
-    'data':'2021-10-08',
-    'causale':'test causale'
 }
 
-#print(AltraSpesaC().Update(upd_altra_spesa))
+print(AltraSpesaC().Delete(del_altra_spesa))
 
 retribuzione_insert ={
     'data':'2021-08-10',
