@@ -1,3 +1,4 @@
+from Commessa.Controller.CommessaC import CommessaC
 from Ddt.Controller.DdtC import DdtC
 from TrasferimentoLavoro.Controller.TrasferimentoLavoroC import TrasferimentoLavoroC
 from Code.Controller.CodeC import CodeC
@@ -8,6 +9,6 @@ from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
-prova = DdtC()
-dizionario = {'commessa': '11','dipendente': 'GNTSNG02C51I209D','data_trasferimento': '2021/08/06','valore_trasferito': '9','quantita_trasferita': '2','destinatario': 'PCSGVS83M23M251S'}
-print(prova.Insert(dizionario))
+prova = CommessaC()
+dizionario = {'tessuto': 'SIMO33','numero_commessa': '27','Qta': '500','listino_prezzi_modello': '11200','nddt_cliente': '555','data': '2021/08/06','cliente': '10203044557'}
+print(prova.GetAll())
