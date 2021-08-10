@@ -112,4 +112,11 @@ ins_altra_spesa ={
     'causale':'test causale'
 }
 
-print(AltraSpesaC().Insert(ins_altra_spesa))
+#print(AltraSpesaC().Insert(ins_altra_spesa))
+
+retribuzione_insert ={
+    'data':'2021-08-10',
+    'dipendente_retr':'PPRRCN88C02H501O'
+}
+
+print(RetribuzioneVariabileC().Insert(retribuzione_insert))
