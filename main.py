@@ -12,5 +12,5 @@ from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
 prova = ClienteC()
-dizionario = {'PIVA': '01492570627','nome_azienda': 'pippoFranco','CAP': '86034','citta':'campobasso','via':'cicci','nc':'100'}
+dizionario = {'PIVA': '91482670321','nome_azienda': 'pippoPasticcio','CAP': '10995','citta':'isernia','via':'cicci','nc':'100'}
 print(prova.Insert(dizionario))
