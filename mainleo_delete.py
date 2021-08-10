@@ -65,7 +65,10 @@ del_noncontabile = {
 #print(NonContabileC().Delete(del_noncontabile))
 
 del_contabili ={'ddt':8}
-print(ContabileC().Delete(del_contabili))
+#print(ContabileC().Delete(del_contabili))
+
+del_aggiornamento = {'id':1}
+#print(AggiornamentoC().Delete(del_aggiornamento))
 
 ins_utilizzazione ={
     'tipo_pezzo':'pezzo test',

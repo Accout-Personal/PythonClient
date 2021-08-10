@@ -84,7 +84,9 @@ upd_utilizzazione ={
     'codice_macchina':'1B',
     'tipo_macchina':'braccio',
 }
-#print(UtilizzazioneC().Insert(ins_utilizzazione))
+print(UtilizzazioneC().Update(upd_utilizzazione))
+
+
 ins_uscita ={
     'data_esecuzione':'06-08-2021',
     'importo_effettuato':'300'
