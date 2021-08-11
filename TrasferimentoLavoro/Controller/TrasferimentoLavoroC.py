@@ -48,11 +48,10 @@ class TrasferimentoLavoroC:
         else:
             return response.json()
     
-    def Update(self,body,body2):
+    def Update(self,body):
         response = requests.post(env.host + env.Url+self.url+'update',data=body,headers=self.credenziali)
         if response.ok:
             print("va bene")
-            response2 = requests.post(env.host + env.Url+self.url+'update',data=body2,headers=self.credenziali)
             return response.json()
         else:
             return response.json()

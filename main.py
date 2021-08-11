@@ -11,7 +11,6 @@ from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
-prova = TrasferimentoLavoroC()
-dizionario = {'id': '3','codice_trasf': '2','commessa': '9','dipendente': 'GNTSNG02C51I209D','data_trasferimento': '2021/10/08','valore_trasferito': '-14','quantita_trasferita': '2','confermato': '1'}
-dizionario2 = {'id': int(dizionario['id'])+1,'codice_trasf': dizionario['codice_trasf'], 'commessa': dizionario['commessa'], 'data_trasferimento': dizionario['data_trasferimento'],'valore_trasferito': int(dizionario['valore_trasferito'])*(-1),'quantita_trasferita': dizionario['quantita_trasferita'], 'confermato': dizionario['confermato']}
-print(prova.Update(dizionario,dizionario2))
+prova = CommessaC()
+#dizionarioCommessaDelete = {'codice_merce': '4'}
+print(prova.Delete(dizionario))
