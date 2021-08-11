@@ -91,14 +91,14 @@ del_altra_spesa ={
     'codice':1,
 }
 
-print(AltraSpesaC().Delete(del_altra_spesa))
+#print(AltraSpesaC().Delete(del_altra_spesa))
 
-retribuzione_insert ={
+del_retribuzione ={
     'data':'2021-08-10',
     'dipendente_retr':'PPRRCN88C02H501O'
 }
 
-#print(RetribuzioneVariabileC().Insert(retribuzione_insert))
+print(RetribuzioneVariabileC().Delete(del_retribuzione))
 
 
 stipendio_insert ={
