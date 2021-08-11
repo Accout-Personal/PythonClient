@@ -11,6 +11,7 @@ from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 
 
-prova = CommessaC()
+prova = ListinoPrezziC()
 #dizionarioCommessaDelete = {'codice_merce': '4'}
-print(prova.Delete(dizionario))
+#dizionarioListinoPrezzi = {'modello': '11200','valore_cliente': '15.50','valore_dipendente': '7.80'}
+print(prova.Delete(dizionarioListinoPrezzi))
