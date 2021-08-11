@@ -113,3 +113,9 @@ dipendente_delete ={
 }
 
 #print(DipendenteC().Delete(dipendente_delete))
+
+cliente_delete ={
+    'PIVA':'23568472720'
+}
+
+#print(ClienteC().Delete(cliente_delete))

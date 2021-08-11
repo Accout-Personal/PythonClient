@@ -128,3 +128,16 @@ dipendente_update ={
 }
 
 #print(DipendenteC().Update(dipendente_update))
+
+cliente_update ={
+    'PIVA':'23568472720',
+    'nome_azienda':'Moda meraviglia123',
+    'CAP':'64010',
+    'email':'Modameraviglia@outlook.com',
+    #'sito_web':'www.meraviglia.com',
+    'citta':'Colonnella',
+    'via':'Via delle arti',
+    'nc':120
+}
+
+#print(ClienteC().Update(cliente_update))
