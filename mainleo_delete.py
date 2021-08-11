@@ -22,7 +22,7 @@ from Utilizzazione.Controller.UtilizzazioneC import UtilizzazioneC
 from Code.Controller.CodeC import CodeC
 
 #log = login('user4','password')
-env.token ="bCrjUbnjZgVpVFsjw4DaLJ3l2nAAZYGVekduhbWJ"
+env.token ="n5duaBYWapj7jYwDx2GTv56equHrDsaCmcUqUeQ0"
 print(env.token)
 #print(AggiornamentoC().GetAll())
 #print(EntrataC().GetAll())
@@ -106,20 +106,10 @@ stipendio_delete ={
     'dipendente_stip':'PPRRCN88C02H501O',
 }
 
-print(StipendioC().Delete(stipendio_delete))
+#print(StipendioC().Delete(stipendio_delete))
 
-dipendente_insert ={
+dipendente_delete ={
     'CF':'cftest',
-    'password':'password',
-    'password_confirmation':'password',
-    'tipo_dipendente':'gen',
-    'importo_orario_feriale':8,
-    'importo_orario_straordinario':15,
-    'importo_orario_regolare':10,
-    'IBAN':'IBANtest',
-    'username':'user9',
-    'data_di_nascita':'1990-01-01',
-    'nome_cognome':'pippo paperino',
 }
 
-#print(DipendenteC().Insert(dipendente_insert))
+#print(DipendenteC().Delete(dipendente_delete))
