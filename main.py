@@ -14,4 +14,4 @@ from Aggiornamento.Controller.AggiornamentoC import AggiornamentoC
 prova = ListinoPrezziC()
 #dizionarioCommessaDelete = {'codice_merce': '4'}
 #dizionarioListinoPrezzi = {'modello': '11200','valore_cliente': '15.50','valore_dipendente': '7.80'}
-print(prova.Delete())
+print(prova.GetKey("11200"))

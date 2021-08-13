@@ -1,4 +1,4 @@
 host = "http://localhost"
-token ="tDkonlDYTa32TaYG3xCX6Ct3hLonJxGWVhSgW7Cy"
+token ="ibeUEXYLjsb1BSWW97SZGOJNcfeUmvHhRP3FcH5A"
 impostazione = "application/json"
 Url = "/progettolaurea/public/api/authed/"
