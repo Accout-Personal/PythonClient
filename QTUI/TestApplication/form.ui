@@ -16,24 +16,55 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>120</y>
-     <width>151</width>
-     <height>41</height>
+     <x>70</x>
+     <y>60</y>
+     <width>231</width>
+     <height>121</height>
     </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 10, 14);
+background-image: url(:/img/img.jpg);
+color: rgb(7, 255, 44);</string>
+   </property>
+   <property name="locale">
+    <locale language="Italian" country="Italy"/>
    </property>
    <property name="text">
     <string>PushButton</string>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>110</y>
+     <x>380</x>
+     <y>20</y>
      <width>171</width>
      <height>51</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>200</y>
+     <width>251</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(11, 27, 255);
+color: rgb(255, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
    </property>
   </widget>
  </widget>
