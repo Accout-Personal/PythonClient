@@ -35,8 +35,11 @@ class ui_test03(QWidget):
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         self.pushButton_2.setGeometry(QtCore.QRect(110, 150, 75, 23))
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 669, 399))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         #lista di prova
-        self.pushButton_2.setObjectName("pushButton_2")
+    
         self.lista = self.crealista()
         print(self.lista)
         self.listWidget = QtWidgets.QListWidget(self.scrollAreaWidgetContents)
@@ -52,6 +55,11 @@ class ui_test03(QWidget):
         #self.listWidget.addScrollBarWidget(Qt.ScrollBarAlwaysOn)
         self.retranslateUi(prova03)
         QtCore.QMetaObject.connectSlotsByName(prova03)
+        self.verticalScrollBar = QtWidgets.QScrollBar(self.scrollAreaWidgetContents)
+        self.verticalScrollBar.setGeometry(QtCore.QRect(610, 20, 20, 271))
+        self.verticalScrollBar.setOrientation(QtCore.Qt.Vertical)
+        self.verticalScrollBar.setObjectName("verticalScrollBar")
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
     def retranslateUi(self, prova03):
         _translate = QtCore.QCoreApplication.translate
