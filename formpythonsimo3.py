@@ -91,7 +91,7 @@ class Ui_UIwindow(QWidget):
         a = 10
         b = []
         _translate = QtCore.QCoreApplication.translate
-        for a in range(100):
+        for a in range(10,100):
             b.append(str(a))
             self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
             self.pushButton.setObjectName("pushButton"+str(a))
