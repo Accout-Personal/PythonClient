@@ -9,67 +9,92 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import  QAbstractItemView, QWidget
+from PyQt5.QtWidgets import QWidget
 
-
-class ui_test03(QWidget):
+class Ui_UIwindow(QWidget):
     def __init__(self, parent=None):
-        super(ui_test03, self).__init__(parent)
-        prova03 = self
-        prova03.setObjectName("prova03")
-        prova03.setEnabled(False)
-        prova03.resize(800, 600)
-        prova03.setStyleSheet("background-color: rgb(255, 255, 0);")
-        self.scrollArea = QtWidgets.QScrollArea(prova03)
-        self.scrollArea.setGeometry(QtCore.QRect(20, 10, 671, 401))
-        self.scrollArea.setWidgetResizable(True) #prova
+        super(Ui_UIwindow, self).__init__(parent)
+        UIwindow = self
+        UIwindow.setObjectName("UIwindow")
+        UIwindow.resize(312, 362)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(UIwindow.sizePolicy().hasHeightForWidth())
+        UIwindow.setSizePolicy(sizePolicy)
+        self.formLayout = QtWidgets.QFormLayout(UIwindow)
+        self.formLayout.setObjectName("formLayout")
+        self.scrollArea = QtWidgets.QScrollArea(UIwindow)
+        self.scrollArea.setAcceptDrops(False)
+        self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 669, 399))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 102, 303))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.scrollAreaWidgetContents.sizePolicy().hasHeightForWidth())
+        self.scrollAreaWidgetContents.setSizePolicy(sizePolicy)
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-        self.pushButton.setEnabled(False)
-        self.pushButton.setGeometry(QtCore.QRect(70, 20, 181, 101))
-        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-        self.pushButton.setStyleSheet("background-color: rgb(255, 0, 0);")
-        self.pushButton.setObjectName("pushButton")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.pushButton_8 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_8.setObjectName("pushButton_8")
+        self.gridLayout_2.addWidget(self.pushButton_8, 3, 0, 1, 1)
+        self.pushButton_6 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.gridLayout_2.addWidget(self.pushButton_6, 6, 0, 1, 1)
         self.pushButton_2 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-        self.pushButton_2.setGeometry(QtCore.QRect(110, 150, 75, 23))
-        self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 669, 399))
-        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        #lista di prova
-    
-        self.lista = self.crealista()
-        print(self.lista)
-        self.listWidget = QtWidgets.QListWidget(self.scrollAreaWidgetContents)
-        self.listWidget.setGeometry(QtCore.QRect(380, 20, 251, 271))
-        self.listWidget.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)#prova simo
-        self.listWidget.verticalScrollBar().setSingleStep(10)# altra prova
-        self.listWidget.verticalScrollBar().setSingleStep(10)#altra prova
-        #self.listWidget.setResizeMode()
-        self.listWidget.setStyleSheet("font: 19pt \"MS Sans Serif\";")
-        self.listWidget.setObjectName("listWidget")
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.gridLayout_2.addWidget(self.pushButton_2, 2, 0, 1, 1)
+        self.pushButton_4 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.gridLayout_2.addWidget(self.pushButton_4, 7, 0, 1, 1)
+        self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton.setObjectName("pushButton")
+        self.gridLayout_2.addWidget(self.pushButton, 0, 0, 1, 1)
+        self.pushButton_3 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.gridLayout_2.addWidget(self.pushButton_3, 1, 0, 1, 1)
+        self.pushButton_7 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_7.setObjectName("pushButton_7")
+        self.gridLayout_2.addWidget(self.pushButton_7, 4, 0, 1, 1)
+        self.pushButton_9 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_9.setObjectName("pushButton_9")
+        self.gridLayout_2.addWidget(self.pushButton_9, 5, 0, 1, 1)
+        self.pushButton_5 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.gridLayout_2.addWidget(self.pushButton_5, 8, 0, 1, 1)
+        c = self.crealista()
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        self.listWidget.addItems(self.lista)
-        #self.listWidget.addScrollBarWidget(Qt.ScrollBarAlwaysOn)
-        self.retranslateUi(prova03)
-        QtCore.QMetaObject.connectSlotsByName(prova03)
-        self.verticalScrollBar = QtWidgets.QScrollBar(self.scrollAreaWidgetContents)
-        self.verticalScrollBar.setGeometry(QtCore.QRect(610, 20, 20, 271))
-        self.verticalScrollBar.setOrientation(QtCore.Qt.Vertical)
-        self.verticalScrollBar.setObjectName("verticalScrollBar")
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.scrollArea)
 
-    def retranslateUi(self, prova03):
+        self.retranslateUi(UIwindow)
+        QtCore.QMetaObject.connectSlotsByName(UIwindow)
+
+    def retranslateUi(self, UIwindow):
         _translate = QtCore.QCoreApplication.translate
-        prova03.setWindowTitle(_translate("prova03", "prova03"))
-        self.pushButton.setText(_translate("prova03", "PushButton"))
-        self.pushButton_2.setText(_translate("prova03", "PushButton"))
+        UIwindow.setWindowTitle(_translate("UIwindow", "UIwindow"))
+        self.pushButton_8.setText(_translate("UIwindow", "PushButton"))
+        self.pushButton_6.setText(_translate("UIwindow", "PushButton"))
+        self.pushButton_2.setText(_translate("UIwindow", "PushButton"))
+        self.pushButton_4.setText(_translate("UIwindow", "PushButton"))
+        self.pushButton.setText(_translate("UIwindow", "PushButton"))
+        self.pushButton_3.setText(_translate("UIwindow", "PushButton"))
+        self.pushButton_7.setText(_translate("UIwindow", "PushButton"))
+        self.pushButton_9.setText(_translate("UIwindow", "PushButton"))
+        self.pushButton_5.setText(_translate("UIwindow", "PushButton"))
+
+
 
     def crealista(self):
-        a = 0
+        a = 10
         b = []
+        _translate = QtCore.QCoreApplication.translate
         for a in range(100):
             b.append(str(a))
+            self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+            self.pushButton.setObjectName("pushButton"+str(a))
+            self.gridLayout_2.addWidget(self.pushButton, a, 0, 1, 1)
+            self.pushButton.setText(_translate("UIwindow", "PushButton"+str(a)))
         return b
