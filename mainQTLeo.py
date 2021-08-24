@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import QApplication
 
 #from formleo import Ui_UIwindow
-from formpython import Ui_UIwindow
+from formleo import Ui_UIwindow
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
