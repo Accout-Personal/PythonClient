@@ -9,13 +9,10 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QWidget
 
 
-class Ui_VistaLog(QWidget):
-    def __init__(self, parent=None):
-        super(Ui_VistaLog, self).__init__(parent)
-        VistaLog = self
+class Ui_VistaLog(object):
+    def setupUi(self, VistaLog):
         VistaLog.setObjectName("VistaLog")
         VistaLog.resize(755, 463)
         VistaLog.setStyleSheet("")
@@ -102,7 +99,6 @@ class Ui_VistaLog(QWidget):
         self.pushButton.setStyleSheet("background-color: rgb(85, 255, 255);\n"
 "color: rgb(247, 247, 247);")
         self.pushButton.setObjectName("pushButton")
-        self.pushButton.clicked.connect(self.stampa)
         self.verticalLayout.addWidget(self.pushButton, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.gridLayout.addWidget(self.scrollArea, 0, 0, 1, 1)
@@ -112,12 +108,8 @@ class Ui_VistaLog(QWidget):
 
     def retranslateUi(self, VistaLog):
         _translate = QtCore.QCoreApplication.translate
-        VistaLog.setWindowTitle(_translate("VistaLog", "Tesi"))
+        VistaLog.setWindowTitle(_translate("VistaLog", "VistaLog"))
         self.label.setText(_translate("VistaLog", "Login"))
         self.label_2.setText(_translate("VistaLog", "UserName"))
         self.label_3.setText(_translate("VistaLog", "Password"))
         self.pushButton.setText(_translate("VistaLog", "Invio"))
-
-    def stampa(self):
-        print(self.lineEdit.text())
-        print(self.lineEdit_2.text())
