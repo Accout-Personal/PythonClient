@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget
+import requests,env
 
 
 class Ui_VistaLog(QWidget):
@@ -119,5 +120,13 @@ class Ui_VistaLog(QWidget):
         self.pushButton.setText(_translate("VistaLog", "Invio"))
 
     def stampa(self):
-        print(self.lineEdit.text())
-        print(self.lineEdit_2.text())
+        auth = {"username": self.lineEdit.text(),"password": self.lineEdit_2.text()}
+        self.credenziali = {"Accept": env.impostazione}
+        response = requests.post(env.host + "/progettolaurea/public/api/login", data=auth, headers=self.credenziali)
+        if response.ok:
+            print("va bene")
+            print(response.json())
+        else:
+            print(response.json())
+
+        
