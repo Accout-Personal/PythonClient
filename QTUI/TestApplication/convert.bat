@@ -1,9 +1,13 @@
+echo off
+set mypath=%cd%
 
+@echo "path is: "
+@echo %mypath%
 for %%f in (*.ui) do (
 
-    if "%%~xf"==".ui" pyuic5 form.ui > formpython.py
-	set mypath=%cd%
-@echo %mypath%
-Pause
-    echo %%f
+    if "%%~xf"==".ui" (	
+		call pyuic5 %%f > %%~nf.py
+		@echo %%f converted
+	)
 )
+Pause
