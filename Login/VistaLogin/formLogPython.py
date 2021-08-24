@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QMessageBox, QWidget
 import requests,env
 
 
@@ -128,5 +128,4 @@ class Ui_VistaLog(QWidget):
             print(response.json())
         else:
             print(response.json())
-
-        
+            QMessageBox.about(self, "Credenziali errate", "Hai inserito delle credenziali sbagliate, controlla i campi e ripeti l'operazione")
