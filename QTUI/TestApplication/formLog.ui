@@ -14,11 +14,14 @@
    <string>VistaLog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 0, 0);</string>
+   <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QScrollArea" name="scrollArea">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(109, 109, 109);</string>
+     </property>
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
@@ -44,33 +47,7 @@
         <string notr="true">background-color: rgb(85, 255, 255);</string>
        </property>
        <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
-      <widget class="QTextEdit" name="textEdit">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>110</y>
-         <width>741</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-      </widget>
-      <widget class="QTextEdit" name="textEdit_2">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>230</y>
-         <width>741</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string>Invio</string>
        </property>
       </widget>
       <widget class="QLabel" name="label">
@@ -83,11 +60,92 @@
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);
-font: 20pt &quot;Segoe MDL2 Assets&quot;;</string>
+        <string notr="true">font: 20pt &quot;Segoe MDL2 Assets&quot;;</string>
        </property>
        <property name="text">
-        <string>                Login page</string>
+        <string>Login</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>150</y>
+         <width>491</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+         <italic>true</italic>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit_2">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>240</y>
+         <width>491</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+         <italic>true</italic>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>100</y>
+         <width>391</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 20pt &quot;Segoe MDL2 Assets&quot;;</string>
+       </property>
+       <property name="text">
+        <string>UserName</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>200</y>
+         <width>391</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 20pt &quot;Segoe MDL2 Assets&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Password</string>
        </property>
       </widget>
      </widget>
