@@ -1,4 +1,4 @@
-from Login.VistaLogin import Ui_VistaLog
+from Login.VistaLogin.formLogPython import Ui_VistaLog
 from formpythonsimo3 import Ui_UIwindow
 import sys
 from PyQt5.QtWidgets import QApplication
