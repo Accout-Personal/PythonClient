@@ -8,9 +8,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_HomeClass(object):
+class VistaAnagrafica(object):
     def setupUi(self, HomeClass):
-        HomeClass.setObjectName("HomeClass")
+        HomeClass.setObjectName("VistaAnagrafica")
         HomeClass.resize(756, 585)
         self.verticalLayout = QtWidgets.QVBoxLayout(HomeClass)
         self.verticalLayout.setObjectName("verticalLayout")
