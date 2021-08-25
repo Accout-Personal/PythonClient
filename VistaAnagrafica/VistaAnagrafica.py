@@ -8,9 +8,12 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_HomeClass(object):
-    def setupUi(self, HomeClass):
-        HomeClass.setObjectName("HomeClass")
+from Dipendente.View.VistaListaDipendenti import Ui_ListaDipendenti
+
+class VistaAnagrafica(object):
+    def __init__(self, parent=None):
+        HomeClass=self
+        HomeClass.setObjectName("VistaAnagrafica")
         HomeClass.resize(756, 585)
         self.verticalLayout = QtWidgets.QVBoxLayout(HomeClass)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -77,8 +80,7 @@ class Ui_HomeClass(object):
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
         self.label.setMinimumSize(QtCore.QSize(0, 50))
-        self.label.setStyleSheet("font: 75 18pt \"MS Shell Dlg 2\";\n"
-"color: rgb(255, 255, 255);")
+        self.label.setStyleSheet("font: 75 18pt \"MS Shell Dlg 2\";\n""color: rgb(255, 255, 255);")
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1, QtCore.Qt.AlignHCenter)
         self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
@@ -186,3 +188,6 @@ class Ui_HomeClass(object):
         self.pushButton_8.setText(_translate("HomeClass", "Aggiunge un macchinario"))
         self.label_5.setText(_translate("HomeClass", "Macchinari"))
 
+    def go_ListaDipendenti(self):
+        self.ListaDipendeti = Ui_ListaDipendenti()
+        self.ListaDipendeti.show()
