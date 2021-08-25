@@ -83,6 +83,6 @@ class Ui_HomeClass(QWidget):
         self.pushButton_3.setText(_translate("HomeClass", "Vista Strategiche"))
 
     def azione(self):
-        self.prova_vista = Ui_ListaDipendenti(self.credenziali)
+        self.prova_vista = Ui_ListaDipendenti()
         self.prova_vista.show()
         self.close()

@@ -129,6 +129,8 @@ class Ui_VistaLog(QWidget):
             print("va bene")
             print(response.json())
             self.prova_vista = Ui_HomeClass(response.json())
+            print(response.json()['token'])
+            env.token = response.json()['token']
             self.prova_vista.show()
             self.close()
         else:
