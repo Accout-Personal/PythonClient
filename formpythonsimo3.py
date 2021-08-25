@@ -12,8 +12,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget
 
 class Ui_UIwindow(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self,provaCredenziali, parent=None):
         super(Ui_UIwindow, self).__init__(parent)
+        self.credenziali = provaCredenziali
+        print(self.credenziali)
         UIwindow = self
         UIwindow.setObjectName("UIwindow")
         UIwindow.resize(312, 362)
@@ -54,8 +56,7 @@ class Ui_UIwindow(QWidget):
     def crealista(self):
         b = []
         _translate = QtCore.QCoreApplication.translate
-        for a in range(10,100):
-            print(str(a))
+        for a in range(10,12):
             b.append(str(a))
             self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
             self.pushButton.setObjectName("pushButton"+str(a))
