@@ -9,10 +9,13 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox, QWidget
 
 
-class Ui_HomeClass(object):
-    def setupUi(self, HomeClass):
+class Ui_HomeClass(QWidget):
+    def __init__(self, parent=None):
+        super(Ui_HomeClass, self).__init__(parent)
+        HomeClass = self
         HomeClass.setObjectName("HomeClass")
         HomeClass.resize(800, 600)
         self.verticalLayout = QtWidgets.QVBoxLayout(HomeClass)
