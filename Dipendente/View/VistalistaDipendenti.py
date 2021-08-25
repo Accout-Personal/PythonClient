@@ -9,10 +9,15 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox, QWidget
 
 
-class Ui_ListaDipendenti(object):
-    def setupUi(self, ListaDipendenti):
+class Ui_ListaDipendenti(QWidget):
+    def __init__(self,credenziali, parent=None):
+        super(Ui_ListaDipendenti, self).__init__(parent)
+        ListaDipendenti = self
+        self.credenziali = credenziali
+        print(credenziali['token'])
         ListaDipendenti.setObjectName("ListaDipendenti")
         ListaDipendenti.resize(800, 600)
         self.verticalLayout = QtWidgets.QVBoxLayout(ListaDipendenti)
