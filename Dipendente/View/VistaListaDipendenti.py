@@ -18,7 +18,7 @@ class Ui_ListaDipendenti(QWidget):
         ListaDipendenti = self
         self.controller = DipendenteC()
         self.chiamata = self.controller.GetAll()
-        print(str(len(self.chiamata)))
+        print(str(self.chiamata))
         ListaDipendenti.setObjectName("ListaDipendenti")
         ListaDipendenti.resize(800, 600)
         self.verticalLayout = QtWidgets.QVBoxLayout(ListaDipendenti)
@@ -45,7 +45,7 @@ class Ui_ListaDipendenti(QWidget):
         sizePolicy.setVerticalStretch(0)
         
         _translate = QtCore.QCoreApplication.translate
-        for a in range(0,2):
+        for a in range(0,len(self.chiamata)):
             self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
             self.label_3.setSizePolicy(sizePolicy)
