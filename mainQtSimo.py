@@ -1,4 +1,3 @@
-from Dipendente.View.VistalistaDipendenti import Ui_ListaDipendenti
 from Login.VistaLogin.formLogPython import Ui_VistaLog
 from formpythonsimo3 import Ui_UIwindow
 import sys
