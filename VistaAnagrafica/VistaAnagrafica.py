@@ -133,14 +133,14 @@ class VistaAnagrafica(QWidget):
         self.AddDipendenteButton.setFont(font)
         self.AddDipendenteButton.setObjectName("AddDipendenteButton")
         self.gridLayout_2.addWidget(self.AddDipendenteButton, 1, 2, 1, 1)
-        self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-        self.pushButton.setMinimumSize(QtCore.QSize(300, 50))
-        self.pushButton.setMaximumSize(QtCore.QSize(16777215, 50))
+        self.ListaDipendenti = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        self.ListaDipendenti.setMinimumSize(QtCore.QSize(300, 50))
+        self.ListaDipendenti.setMaximumSize(QtCore.QSize(16777215, 50))
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.pushButton.setFont(font)
-        self.pushButton.setObjectName("pushButton")
-        self.gridLayout_2.addWidget(self.pushButton, 1, 1, 1, 1)
+        self.ListaDipendenti.setFont(font)
+        self.ListaDipendenti.setObjectName("pushButton")
+        self.gridLayout_2.addWidget(self.ListaDipendenti, 1, 1, 1, 1)
         self.gridLayout.addLayout(self.gridLayout_2, 2, 0, 1, 1)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setContentsMargins(20, -1, 20, -1)
@@ -177,8 +177,9 @@ class VistaAnagrafica(QWidget):
         self.label.setText(_translate("HomeClass", "Vista Anagrafica"))
 
         self.label_2.setText(_translate("HomeClass", "Dipendente"))
-        self.pushButton.setText(_translate("HomeClass", "Lista dipendenti"))
+        self.ListaDipendenti.setText(_translate("HomeClass", "Lista dipendenti"))
         self.AddDipendenteButton.setText(_translate("HomeClass", "Aggiunge un dipendente"))
+        self.ListaDipendenti.clicked.connect(self.Go_ListaDipendenti)
         
         self.label_3.setText(_translate("HomeClass", "Clienti"))
         self.ListaClienteButton.setText(_translate("HomeClass", "Lista cliente"))
@@ -193,6 +194,6 @@ class VistaAnagrafica(QWidget):
         self.AddMacchina.setText(_translate("HomeClass", "Aggiunge un macchinario"))
         
 
-    def go_ListaDipendenti(self):
+    def Go_ListaDipendenti(self):
         self.ListaDipendeti = Ui_ListaDipendenti()
         self.ListaDipendeti.show()
