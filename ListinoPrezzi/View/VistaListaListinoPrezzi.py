@@ -68,7 +68,6 @@ class Ui_ListaListinoPrezzi(QWidget):
         self.gridLayout.addWidget(self.label_head1, 0, 3, 1, 1)
 
 
-
         
         for a in range(0,len(self.ListaElementi)):
 
