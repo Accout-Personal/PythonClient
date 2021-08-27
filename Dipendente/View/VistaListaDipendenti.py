@@ -18,7 +18,6 @@ class Ui_ListaDipendenti(QWidget):
         ListaDipendenti = self
         self.controller = DipendenteC()
         self.chiamata = self.controller.GetAll()
-        print(str(self.chiamata))
         ListaDipendenti.setObjectName("ListaDipendenti")
         ListaDipendenti.resize(800, 600)
         self.verticalLayout = QtWidgets.QVBoxLayout(ListaDipendenti)
@@ -39,7 +38,6 @@ class Ui_ListaDipendenti(QWidget):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName("gridLayout")
-        
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -49,23 +47,41 @@ class Ui_ListaDipendenti(QWidget):
             self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
             self.label_3.setSizePolicy(sizePolicy)
-            self.label_3.setMinimumSize(QtCore.QSize(350, 30))
+            self.label_3.setMinimumSize(QtCore.QSize(250, 30))
             self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
             self.label_3.setObjectName("label_3")
             self.gridLayout.addWidget(self.label_3, a, 0, 1, 1)
+
+            self.label_4 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+            sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+            self.label_4.setSizePolicy(sizePolicy)
+            self.label_4.setMinimumSize(QtCore.QSize(150, 30))
+            self.label_4.setStyleSheet("background-color: rgb(255, 255, 255);")
+            self.label_4.setObjectName("label_4")
+            self.gridLayout.addWidget(self.label_4, a, 1, 1, 1)
+
             self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
             self.pushButton.setStyleSheet("background-color: rgb(255, 0, 0);\n"
                                                 "color: rgb(255, 255, 255);")
             self.pushButton.setObjectName("pushButton")
-            self.gridLayout.addWidget(self.pushButton, a, 2, 1, 1)
+            self.gridLayout.addWidget(self.pushButton, a, 3, 1, 1)
             self.pushButton_2 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
             self.pushButton_2.setStyleSheet("background-color: rgb(0, 0, 255);\n"
                                             "color: rgb(255, 255, 255);")
             self.pushButton_2.setObjectName("pushButton_2")
-            self.gridLayout.addWidget(self.pushButton_2, a, 1, 1, 1)
+            self.gridLayout.addWidget(self.pushButton_2, a, 4, 1, 1)
+            self.pushButton_3 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+            self.pushButton_3.setStyleSheet("background-color: rgb(0, 255, 0);\n"
+                                            "color: rgb(255, 255, 255);")
+            self.pushButton_3.setObjectName("pushButton_3")
+            self.gridLayout.addWidget(self.pushButton_3, a, 2, 1, 1)
             self.scrollArea.setWidget(self.scrollAreaWidgetContents)
             self.verticalLayout.addWidget(self.scrollArea)
-            self.label_3.setText(_translate("ListaDipendenti", "TextLabel"))
+            self.label_3.setText(_translate("ListaDipendenti","   "+ self.chiamata[a]['nome_cognome']))
+            self.label_4.setText(_translate("ListaDipendenti","  Tipo: "+self.chiamata[a]['tipo_dipendente']))
+            self.pushButton.setText(_translate("ListaDipendenti", "Cancella Elemento"))
+            self.pushButton_2.setText(_translate("ListaDipendenti", "Modifica Elemento"))
+            self.pushButton_3.setText(_translate("ListaDipendenti", "Visualizza Elemento"))
 
         self.retranslateUi(ListaDipendenti)
         QtCore.QMetaObject.connectSlotsByName(ListaDipendenti)
@@ -74,5 +90,4 @@ class Ui_ListaDipendenti(QWidget):
         _translate = QtCore.QCoreApplication.translate
         ListaDipendenti.setWindowTitle(_translate("ListaDipendenti", "ListaDipendenti"))
         self.label.setText(_translate("ListaDipendenti", "Lista dei Dipendenti"))
-        self.pushButton.setText(_translate("ListaDipendenti", "Cancella Elemento"))
-        self.pushButton_2.setText(_translate("ListaDipendenti", "Modifica Elemento"))
+        
