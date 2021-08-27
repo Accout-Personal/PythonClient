@@ -11,6 +11,8 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 
 from Dipendente.View.VistaListaDipendenti import Ui_ListaDipendenti
 from ListinoPrezzi.View.VistaListaListinoPrezzi import Ui_ListaListinoPrezzi
+from Cliente.View.VistaListaCliente import Ui_ListaCliente
+
 
 class VistaAnagrafica(QWidget):
     def __init__(self, parent=None):
@@ -187,6 +189,7 @@ class VistaAnagrafica(QWidget):
 
         self.label_3.setText(_translate("HomeClass", "Clienti"))
         self.ListaClienteButton.setText(_translate("HomeClass", "Lista cliente"))
+        self.ListaClienteButton.clicked.connect(self.Go_ListinaClienti)
         self.AddClienteButton.setText(_translate("HomeClass", "Aggiunge un cliente"))
         self.ListaClienteButton.setStyleSheet("background-color: rgb(85, 255, 255);")
         self.AddClienteButton.setStyleSheet("background-color: rgb(85, 255, 255);")
@@ -213,3 +216,7 @@ class VistaAnagrafica(QWidget):
     def Go_ListinoPrezzi(self):
         self.ListinoPrezzi = Ui_ListaListinoPrezzi()
         self.ListinoPrezzi.show()
+
+    def Go_ListinaClienti(self):
+        self.ListaClienti = Ui_ListaCliente()
+        self.ListaClienti.show()
