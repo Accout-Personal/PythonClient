@@ -180,18 +180,28 @@ class VistaAnagrafica(QWidget):
         self.ListaDipendenti.setText(_translate("HomeClass", "Lista dipendenti"))
         self.AddDipendenteButton.setText(_translate("HomeClass", "Aggiunge un dipendente"))
         self.ListaDipendenti.clicked.connect(self.Go_ListaDipendenti)
-        
+        self.ListaDipendenti.setStyleSheet("background-color: rgb(85, 255, 255);")
+        self.AddDipendenteButton.setStyleSheet("background-color: rgb(85, 255, 255);")
+
+
         self.label_3.setText(_translate("HomeClass", "Clienti"))
         self.ListaClienteButton.setText(_translate("HomeClass", "Lista cliente"))
         self.AddClienteButton.setText(_translate("HomeClass", "Aggiunge un cliente"))
+        self.ListaClienteButton.setStyleSheet("background-color: rgb(85, 255, 255);")
+        self.AddClienteButton.setStyleSheet("background-color: rgb(85, 255, 255);")
 
         self.label_4.setText(_translate("HomeClass", "Listino Prezzi"))
         self.ListaPrezzo.setText(_translate("HomeClass", "Lista listino prezzi"))
         self.AddListaPrezzo.setText(_translate("HomeClass", "Aggiunge un listono prezzi"))
+        self.ListaPrezzo.setStyleSheet("background-color: rgb(85, 255, 255);")
+        self.AddListaPrezzo.setStyleSheet("background-color: rgb(85, 255, 255);")
+
 
         self.label_5.setText(_translate("HomeClass", "Macchinari"))  
         self.ListaMacchine.setText(_translate("HomeClass", "Lista macchinari"))
         self.AddMacchina.setText(_translate("HomeClass", "Aggiunge un macchinario"))
+        self.ListaMacchine.setStyleSheet("background-color: rgb(85, 255, 255);")
+        self.AddMacchina.setStyleSheet("background-color: rgb(85, 255, 255);")
         
 
     def Go_ListaDipendenti(self):
