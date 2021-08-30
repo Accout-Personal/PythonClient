@@ -80,26 +80,27 @@ class Ui_ListaCliente(QWidget):
             self.label_4.setText(_translate("ListaCliente"," "+self.chiamata[a]['citta']))
             self.gridLayout.addWidget(self.label_4, a+1, 1, 1, 1)
 
-            self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-            self.pushButton.setStyleSheet("background-color: rgb(255, 0, 0);\n"
+            self.DeleteButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+            self.DeleteButton.setStyleSheet("background-color: rgb(255, 0, 0);\n"
                                                 "color: rgb(255, 255, 255);")
-            self.pushButton.setObjectName("pushButton")
-            self.pushButton.setText(_translate("ListaCliente", "Cancella Elemento"))
-            self.gridLayout.addWidget(self.pushButton, a+1, 3, 1, 1)
+            self.DeleteButton.setObjectName("DeleteButton")
+            self.DeleteButton.setText(_translate("ListaCliente", "Cancella Elemento"))
+            self.DeleteButton.clicked.connect(lambda state,b=a: self.deleteConfirm(self.chiamata[b]))
+            self.gridLayout.addWidget(self.DeleteButton, a+1, 3, 1, 1)
 
-            self.pushButton_2 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-            self.pushButton_2.setStyleSheet("background-color: rgb(0, 0, 255);\n"
+            self.ModifyButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+            self.ModifyButton.setStyleSheet("background-color: rgb(0, 0, 255);\n"
                                             "color: rgb(255, 255, 255);")
-            self.pushButton_2.setObjectName("pushButton_2")
-            self.pushButton_2.setText(_translate("ListaCliente", "Modifica Elemento"))
-            self.gridLayout.addWidget(self.pushButton_2, a+1, 4, 1, 1)
+            self.ModifyButton.setObjectName("ModifyButton")
+            self.ModifyButton.setText(_translate("ListaCliente", "Modifica Elemento"))
+            self.gridLayout.addWidget(self.ModifyButton, a+1, 4, 1, 1)
 
-            self.pushButton_3 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-            self.pushButton_3.setStyleSheet("background-color: rgb(0, 255, 0);\n"
+            self.viewButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+            self.viewButton.setStyleSheet("background-color: rgb(0, 255, 0);\n"
                                             "color: rgb(255, 255, 255);")
-            self.pushButton_3.setObjectName("pushButton_3")
-            self.pushButton_3.setText(_translate("ListaCliente", "Visualizza Elemento"))
-            self.gridLayout.addWidget(self.pushButton_3, a+1, 2, 1, 1)
+            self.viewButton.setObjectName("viewButton")
+            self.viewButton.setText(_translate("ListaCliente", "Visualizza Elemento"))
+            self.gridLayout.addWidget(self.viewButton, a+1, 2, 1, 1)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
@@ -111,4 +112,24 @@ class Ui_ListaCliente(QWidget):
         _translate = QtCore.QCoreApplication.translate
         ListaCliente.setWindowTitle(_translate("ListaCliente", "ListaCliente"))
         self.label.setText(_translate("ListaCliente", "Lista dei Cliente"))
-        
+
+    def deleteConfirm(self,cliente):
+
+        msg = QMessageBox()
+        msg.setWindowTitle('Conferma')
+        msg.setText('sei sicuro di voler cancellare il Cliente '+cliente['nome_azienda'] + '?')
+        msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        okButton = msg.button(QMessageBox.Yes)
+        noButton = msg.button(QMessageBox.No)
+        okButton.setText('si')
+        retval = msg.exec_()
+        if(msg.clickedButton() == okButton):
+            print('cancellazione confermata')
+            postbody = {'PIVA':cliente['PIVA']}
+            res = self.controller.Delete(postbody)
+            print(res)
+            self.RefreshLista = Ui_ListaCliente()
+            self.RefreshLista.show()
+            self.close()
+        else:
+            print('cancellazione annullata')   

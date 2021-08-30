@@ -11,7 +11,7 @@ from typing import KeysView
 from Dipendente.Controller.DipendenteC import DipendenteC
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
-
+import copy
 
 class Ui_VisualizzaAnagDip(QWidget):
     def __init__(self,CF, parent=None):
@@ -55,10 +55,29 @@ class Ui_VisualizzaAnagDip(QWidget):
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         
+        self.traduzione = {'CF':'codice fiscale',
+        'nome_cognome':'nome e cognome',
+        'tipo_dipendente':'tipo mansione',
+        'importo_orario_feriale':'importo orario feriale',
+        'importo_orario_regolare':'importo orario regolare',
+        'importo_orario_straordinario':'importo orario straordinario',
+        'IBAN':'IBAN',
+        'username':'username',
+        'data_di_nascita':'data di nascita'}
+
+        #print(self.chiamata)
+        #esclude elemento non desiderato per visualizzazione
+        self.viewList = copy.deepcopy(self.chiamata)
+        self.exclude = ['remember_token']
+        for elem in self.exclude:
+            self.viewList.pop(elem)
+
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
         self.count = 0
-        for a in self.chiamata:
+        
+
+        for a in self.viewList:
             self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
             self.label_2.setSizePolicy(sizePolicy)
@@ -74,7 +93,7 @@ class Ui_VisualizzaAnagDip(QWidget):
             self.label_3.setObjectName("label_3")
             self.gridLayout.addWidget(self.label_3, self.count, 1, 1, 1)
             _translate = QtCore.QCoreApplication.translate
-            self.label_2.setText(_translate("VisualizzaAnagDip", "  "+str(a)))
+            self.label_2.setText(_translate("VisualizzaAnagDip", "  "+str(self.traduzione[a])))
             self.label_3.setText(_translate("VisualizzaAnagDip", "  "+str(self.chiamata[a])))
             self.count += 1
 
@@ -85,4 +104,3 @@ class Ui_VisualizzaAnagDip(QWidget):
         _translate = QtCore.QCoreApplication.translate
         VisualizzaAnagDip.setWindowTitle(_translate("VisualizzaAnagDip", "VisualizzaAnagDip"))
         self.label.setText(_translate("VisualizzaAnagDip", "<html><head/><body><p align=\"center\">Dettagli</p></body></html>"))
-        
