@@ -88,7 +88,7 @@ class Ui_ListaDipendenti(QWidget):
             self.pushButton_1[a].setStyleSheet("background-color: rgb(255, 0, 0);\n"
                                                 "color: rgb(255, 255, 255);")
             self.pushButton_1[a].setObjectName("pushButton"+str(a))
-            self.gridLayout.addWidget(self.pushButton_1[a], a, 3, 1, 1)
+            self.gridLayout.addWidget(self.pushButton_1[a], a+1, 3, 1, 1)
             self.pushButton_1[a].setText(_translate("UIwindow", "PushButton"+str(a)))
             self.pushButton_1[a].clicked.connect(lambda state,b=a: self.printbutton(b))
 
@@ -96,7 +96,7 @@ class Ui_ListaDipendenti(QWidget):
             self.pushButton_2[a].setStyleSheet("background-color: rgb(0, 0, 255);\n"
                                                 "color: rgb(255, 255, 255);")
             self.pushButton_2[a].setObjectName("pushButton"+str(a))
-            self.gridLayout.addWidget(self.pushButton_2[a], a, 4, 1, 1)
+            self.gridLayout.addWidget(self.pushButton_2[a], a+1, 4, 1, 1)
             self.pushButton_2[a].setText(_translate("UIwindow", "PushButton"+str(a)))
             self.pushButton_2[a].clicked.connect(lambda state,b=a: self.printbutton(b))
 
@@ -104,7 +104,7 @@ class Ui_ListaDipendenti(QWidget):
             self.pushButton_3[a].setStyleSheet("background-color: rgb(0, 255, 0);\n"
                                                 "color: rgb(255, 255, 255);")
             self.pushButton_3[a].setObjectName("pushButton"+str(a))
-            self.gridLayout.addWidget(self.pushButton_3[a], a, 2, 1, 1)
+            self.gridLayout.addWidget(self.pushButton_3[a], a+1, 2, 1, 1)
             self.pushButton_3[a].setText(_translate("UIwindow", "PushButton"+str(a)))
             self.pushButton_3[a].clicked.connect(lambda state,b=a: self.printbutton(self.chiamata[b]['CF']))
 
