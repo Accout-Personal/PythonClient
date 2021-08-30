@@ -89,15 +89,15 @@ class Ui_ListaDipendenti(QWidget):
                                                 "color: rgb(255, 255, 255);")
             self.pushButton_1[a].setObjectName("pushButton"+str(a))
             self.gridLayout.addWidget(self.pushButton_1[a], a+1, 3, 1, 1)
-            self.pushButton_1[a].setText(_translate("UIwindow", "PushButton"+str(a)))
-            self.pushButton_1[a].clicked.connect(lambda state,b=a: self.printbutton(b))
+            self.pushButton_1[a].setText(_translate("ListaDipendenti", "Cancella Elemento"))
+            self.pushButton_1[a].clicked.connect(lambda state,b=a: self.deleteConfirm(self.chiamata[b]))
 
             self.pushButton_2.append(QtWidgets.QPushButton(self.scrollAreaWidgetContents))
             self.pushButton_2[a].setStyleSheet("background-color: rgb(0, 0, 255);\n"
                                                 "color: rgb(255, 255, 255);")
             self.pushButton_2[a].setObjectName("pushButton"+str(a))
             self.gridLayout.addWidget(self.pushButton_2[a], a+1, 4, 1, 1)
-            self.pushButton_2[a].setText(_translate("UIwindow", "PushButton"+str(a)))
+            self.pushButton_2[a].setText(_translate("ListaDipendenti", "Modifica Elemento"))
             self.pushButton_2[a].clicked.connect(lambda state,b=a: self.printbutton(b))
 
             self.pushButton_3.append(QtWidgets.QPushButton(self.scrollAreaWidgetContents))
@@ -105,16 +105,16 @@ class Ui_ListaDipendenti(QWidget):
                                                 "color: rgb(255, 255, 255);")
             self.pushButton_3[a].setObjectName("pushButton"+str(a))
             self.gridLayout.addWidget(self.pushButton_3[a], a+1, 2, 1, 1)
-            self.pushButton_3[a].setText(_translate("UIwindow", "PushButton"+str(a)))
+            self.pushButton_3[a].setText(_translate("ListaDipendenti", "Visualizza Elemento"))
             self.pushButton_3[a].clicked.connect(lambda state,b=a: self.printbutton(self.chiamata[b]['CF']))
 
             self.scrollArea.setWidget(self.scrollAreaWidgetContents)
             self.verticalLayout.addWidget(self.scrollArea)
             self.label_3.setText(_translate("ListaDipendenti","   "+ self.chiamata[a]['nome_cognome']))
             self.label_4.setText(_translate("ListaDipendenti","  Tipo: "+self.chiamata[a]['tipo_dipendente']))
-            self.pushButton_1[a].setText(_translate("ListaDipendenti", "Cancella Elemento"))
-            self.pushButton_2[a].setText(_translate("ListaDipendenti", "Modifica Elemento"))
-            self.pushButton_3[a].setText(_translate("ListaDipendenti", "Visualizza Elemento"))
+            
+            
+            
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
@@ -131,4 +131,22 @@ class Ui_ListaDipendenti(QWidget):
         print(str(cf))
         self.Dettaglio = Ui_VisualizzaAnagDip(cf)
         self.Dettaglio.show()
-        
+
+    def deleteConfirm(self,dipendente):
+
+        msg = QMessageBox()
+        msg.setWindowTitle('Conferma')
+        msg.setText('sei sicuro di voler cancellare dipendente '+dipendente['nome_cognome'] + '?')
+        msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        okButton = msg.button(QMessageBox.Yes)
+        noButton = msg.button(QMessageBox.No)
+        okButton.setText('si')
+        retval = msg.exec_()
+        if(msg.clickedButton() == okButton):
+            print('cancellazione confermata')
+            #self.controller.Delete(dipendente['CF'])
+            self.RefreshLista = Ui_ListaDipendenti()
+            self.RefreshLista.show()
+            self.close()
+        else:
+            print('cancellazione annullata')
