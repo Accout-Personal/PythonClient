@@ -91,7 +91,7 @@ class Ui_ListaDipendenti(QWidget):
             self.pushButton_1[a].setObjectName("pushButton"+str(a))
             self.gridLayout.addWidget(self.pushButton_1[a], a+1, 3, 1, 1)
             self.pushButton_1[a].setText(_translate("ListaDipendenti", "Cancella Elemento"))
-            self.pushButton_1[a].clicked.connect(lambda state,b=a: self.deleteConfirm(self.chiamata[b]))
+            self.pushButton_1[a].clicked.connect(lambda state,b=a: self.deleteConfirm(self.chiamata[b]['CF']))
 
             self.pushButton_2.append(QtWidgets.QPushButton(self.scrollAreaWidgetContents))
             self.pushButton_2[a].setStyleSheet("background-color: rgb(0, 0, 255);\n"

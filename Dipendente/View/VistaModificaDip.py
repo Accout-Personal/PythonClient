@@ -10,6 +10,7 @@
 from Dipendente.Controller.DipendenteC import DipendenteC
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
+import copy
 
 class Ui_ModificaDipAng(QWidget):
     def __init__(self,CF, parent=None):
@@ -69,18 +70,37 @@ class Ui_ModificaDipAng(QWidget):
         sizePolicy.setVerticalStretch(0)
         font = QtGui.QFont()
         font.setPointSize(9)
-        for a in self.chiamata:
+
+        self.traduzione = {'CF':'codice fiscale',
+        'nome_cognome':'nome e cognome',
+        'tipo_dipendente':'tipo mansione',
+        'importo_orario_feriale':'importo orario feriale',
+        'importo_orario_regolare':'importo orario regolare',
+        'importo_orario_straordinario':'importo orario straordinario',
+        'IBAN':'IBAN',
+        'username':'username',
+        'data_di_nascita':'data di nascita'}
+
+        #print(self.chiamata)
+        #esclude elemento non desiderato per visualizzazione
+        self.viewList = copy.deepcopy(self.chiamata)
+        self.exclude = ['CF','nome_cognome','data_di_nascita','remember_token']
+        for elem in self.exclude:
+            self.viewList.pop(elem)
+
+        for a in self.viewList:
             self.horizontalLayout = QtWidgets.QHBoxLayout()
             self.horizontalLayout.setObjectName("horizontalLayout")
-            self.textEdit = QtWidgets.QTextEdit(self.scrollAreaWidgetContents)
-            sizePolicy.setHeightForWidth(self.textEdit.sizePolicy().hasHeightForWidth())
-            self.textEdit.setSizePolicy(sizePolicy)
-            self.textEdit.setMinimumSize(QtCore.QSize(0, 0))
-            self.textEdit.setMaximumSize(QtCore.QSize(350, 30))
-            self.textEdit.setFont(font)
-            self.textEdit.setStyleSheet("background-color: rgb(255, 255, 255);")
-            self.textEdit.setObjectName("textEdit")
-            self.horizontalLayout.addWidget(self.textEdit)
+            self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+            sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+            self.label_3.setSizePolicy(sizePolicy)
+            self.label_3.setMinimumSize(QtCore.QSize(300, 0))
+            self.label_3.setMaximumSize(QtCore.QSize(325, 28))
+            self.label_3.setFont(font)
+            self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
+            self.label_3.setText("")
+            self.label_3.setObjectName("label_3")
+            self.horizontalLayout.addWidget(self.label_3)
             self.textEdit_2 = QtWidgets.QTextEdit(self.scrollAreaWidgetContents)
             sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
             sizePolicy.setHorizontalStretch(0)
@@ -97,8 +117,7 @@ class Ui_ModificaDipAng(QWidget):
             self.horizontalLayout.addWidget(self.textEdit_2)
             self.verticalLayout_2.addLayout(self.horizontalLayout)
             _translate = QtCore.QCoreApplication.translate
-            self.textEdit.setText(_translate("ModificaDipAng", "  "+str(a)))
-            self.textEdit.setReadOnly(True)
+            self.label_3.setText(_translate("ModificaDipAng", "  "+str(self.traduzione[a])))
             self.textEdit_2.setText(_translate("ModificaDipAng", "  "+str(self.chiamata[a])))
 
         self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
@@ -114,6 +133,7 @@ class Ui_ModificaDipAng(QWidget):
         self.pushButton.setStyleSheet("background-color: rgb(85, 255, 255);\n"
 "color: rgb(247, 247, 247);")
         self.pushButton.setObjectName("pushButton")
+        self.pushButton.clicked.connect(self.Modify)
         self.verticalLayout_2.addWidget(self.pushButton, 0, QtCore.Qt.AlignHCenter)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
@@ -126,9 +146,8 @@ class Ui_ModificaDipAng(QWidget):
         ModificaDipAng.setWindowTitle(_translate("ModificaDipAng", "ModificaDipAng"))
         self.label.setText(_translate("ModificaDipAng", "Modifica Elemento"))
         self.label_2.setText(_translate("ModificaDipAng", "I campi con il segno ( * ) sono obbligatori"))
-        self.textEdit.setHtml(_translate("ModificaDipAng", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8.25pt;\"><br /></p></body></html>"))
         self.pushButton.setText(_translate("ModificaDipAng", "Modifica"))
+
+    def Modify(self):
+        self.risultato = self.controller.Update(self.cf)
+        print(str(self.risultato))
