@@ -55,9 +55,27 @@ class Ui_VisualizzaAnagDip(QWidget):
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         
+        self.traduzione = {'CF':'codice fiscale',
+        'nome_cognome':'nome e cognome',
+        'tipo_dipendente':'tipo mansione',
+        'importo_orario_feriale':'importo orario feriale',
+        'importo_orario_regolare':'importo orario regolare',
+        'importo_orario_straordinario':'importo orario straordinario',
+        'IBAN':'IBAN',
+        'username':'username',
+        'data_di_nascita':'data di nascita'}
+        print(self.chiamata)
+        #esclude elemento non desiderato per visualizzazione
+        self.exclude = ['remember_token']
+        for elem in self.exclude:
+            print(elem)
+            self.chiamata.pop(elem)
+
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
         self.count = 0
+
+
         for a in self.chiamata:
             self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
@@ -74,7 +92,7 @@ class Ui_VisualizzaAnagDip(QWidget):
             self.label_3.setObjectName("label_3")
             self.gridLayout.addWidget(self.label_3, self.count, 1, 1, 1)
             _translate = QtCore.QCoreApplication.translate
-            self.label_2.setText(_translate("VisualizzaAnagDip", "  "+str(a)))
+            self.label_2.setText(_translate("VisualizzaAnagDip", "  "+str(self.traduzione[a])))
             self.label_3.setText(_translate("VisualizzaAnagDip", "  "+str(self.chiamata[a])))
             self.count += 1
 
@@ -85,4 +103,3 @@ class Ui_VisualizzaAnagDip(QWidget):
         _translate = QtCore.QCoreApplication.translate
         VisualizzaAnagDip.setWindowTitle(_translate("VisualizzaAnagDip", "VisualizzaAnagDip"))
         self.label.setText(_translate("VisualizzaAnagDip", "<html><head/><body><p align=\"center\">Dettagli</p></body></html>"))
-        
