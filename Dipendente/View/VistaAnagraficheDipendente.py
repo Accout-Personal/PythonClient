@@ -11,7 +11,7 @@ from typing import KeysView
 from Dipendente.Controller.DipendenteC import DipendenteC
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
-
+import copy
 
 class Ui_VisualizzaAnagDip(QWidget):
     def __init__(self,CF, parent=None):
@@ -67,17 +67,17 @@ class Ui_VisualizzaAnagDip(QWidget):
 
         #print(self.chiamata)
         #esclude elemento non desiderato per visualizzazione
+        self.viewList = copy.deepcopy(self.chiamata)
         self.exclude = ['remember_token']
         for elem in self.exclude:
-            print(elem)
-            self.chiamata.pop(elem)
+            self.viewList.pop(elem)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
         self.count = 0
-        self.viewList = 
+        
 
-        for a in self.chiamata:
+        for a in self.viewList:
             self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
             self.label_2.setSizePolicy(sizePolicy)
