@@ -144,7 +144,9 @@ class Ui_ListaDipendenti(QWidget):
         retval = msg.exec_()
         if(msg.clickedButton() == okButton):
             print('cancellazione confermata')
-            #self.controller.Delete(dipendente['CF'])
+            postbody = {'CF':dipendente['CF']}
+            res = self.controller.Delete(postbody)
+            print(res)
             self.RefreshLista = Ui_ListaDipendenti()
             self.RefreshLista.show()
             self.close()
