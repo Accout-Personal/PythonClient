@@ -10,6 +10,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 
 from Dipendente.View.VistaListaDipendenti import Ui_ListaDipendenti
+from ListinoPrezzi.View.VistaListaListinoPrezzi import Ui_ListaListinoPrezzi
+from Cliente.View.VistaListaCliente import Ui_ListaCliente
+
 
 class VistaAnagrafica(QWidget):
     def __init__(self, parent=None):
@@ -178,20 +181,22 @@ class VistaAnagrafica(QWidget):
 
         self.label_2.setText(_translate("HomeClass", "Dipendente"))
         self.ListaDipendenti.setText(_translate("HomeClass", "Lista dipendenti"))
-        self.AddDipendenteButton.setText(_translate("HomeClass", "Aggiunge un dipendente"))
         self.ListaDipendenti.clicked.connect(self.Go_ListaDipendenti)
+        self.AddDipendenteButton.setText(_translate("HomeClass", "Aggiunge un dipendente"))
         self.ListaDipendenti.setStyleSheet("background-color: rgb(85, 255, 255);")
         self.AddDipendenteButton.setStyleSheet("background-color: rgb(85, 255, 255);")
 
 
         self.label_3.setText(_translate("HomeClass", "Clienti"))
         self.ListaClienteButton.setText(_translate("HomeClass", "Lista cliente"))
+        self.ListaClienteButton.clicked.connect(self.Go_ListinaClienti)
         self.AddClienteButton.setText(_translate("HomeClass", "Aggiunge un cliente"))
         self.ListaClienteButton.setStyleSheet("background-color: rgb(85, 255, 255);")
         self.AddClienteButton.setStyleSheet("background-color: rgb(85, 255, 255);")
 
         self.label_4.setText(_translate("HomeClass", "Listino Prezzi"))
         self.ListaPrezzo.setText(_translate("HomeClass", "Lista listino prezzi"))
+        self.ListaPrezzo.clicked.connect(self.Go_ListinoPrezzi)
         self.AddListaPrezzo.setText(_translate("HomeClass", "Aggiunge un listono prezzi"))
         self.ListaPrezzo.setStyleSheet("background-color: rgb(85, 255, 255);")
         self.AddListaPrezzo.setStyleSheet("background-color: rgb(85, 255, 255);")
@@ -207,3 +212,11 @@ class VistaAnagrafica(QWidget):
     def Go_ListaDipendenti(self):
         self.ListaDipendeti = Ui_ListaDipendenti()
         self.ListaDipendeti.show()
+
+    def Go_ListinoPrezzi(self):
+        self.ListinoPrezzi = Ui_ListaListinoPrezzi()
+        self.ListinoPrezzi.show()
+
+    def Go_ListinaClienti(self):
+        self.ListaClienti = Ui_ListaCliente()
+        self.ListaClienti.show()

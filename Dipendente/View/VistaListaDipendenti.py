@@ -45,8 +45,26 @@ class Ui_ListaDipendenti(QWidget):
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        
+
         _translate = QtCore.QCoreApplication.translate
+        
+        self.header1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        sizePolicy.setHeightForWidth(self.header1.sizePolicy().hasHeightForWidth())
+        self.header1.setSizePolicy(sizePolicy)
+        self.header1.setMinimumSize(QtCore.QSize(250, 30))
+        self.header1.setObjectName("header1")
+        self.header1.setText(_translate("ListaDipendenti","Nome e Cognome"))
+        self.gridLayout.addWidget(self.header1, 0, 0, 1, 1)
+
+        self.header2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        sizePolicy.setHeightForWidth(self.header2.sizePolicy().hasHeightForWidth())
+        self.header2.setSizePolicy(sizePolicy)
+        self.header2.setMinimumSize(QtCore.QSize(150, 30))
+        self.header2.setObjectName("header2")
+        self.header2.setText(_translate("ListaDipendenti","Tipo Dipendente"))
+        self.gridLayout.addWidget(self.header2, 0, 1, 1, 1)
+
+        
         for a in range(0,len(self.chiamata)):
             self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
@@ -54,7 +72,8 @@ class Ui_ListaDipendenti(QWidget):
             self.label_3.setMinimumSize(QtCore.QSize(250, 30))
             self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
             self.label_3.setObjectName("label_3")
-            self.gridLayout.addWidget(self.label_3, a, 0, 1, 1)
+            self.label_3.setText(_translate("ListaDipendenti","   "+ self.chiamata[a]['nome_cognome']))
+            self.gridLayout.addWidget(self.label_3, a+1, 0, 1, 1)
 
             self.label_4 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
@@ -62,7 +81,8 @@ class Ui_ListaDipendenti(QWidget):
             self.label_4.setMinimumSize(QtCore.QSize(150, 30))
             self.label_4.setStyleSheet("background-color: rgb(255, 255, 255);")
             self.label_4.setObjectName("label_4")
-            self.gridLayout.addWidget(self.label_4, a, 1, 1, 1)
+            self.label_4.setText(_translate("ListaDipendenti"," "+self.chiamata[a]['tipo_dipendente']))
+            self.gridLayout.addWidget(self.label_4, a+1, 1, 1, 1)
 
             self.pushButton_1.append(QtWidgets.QPushButton(self.scrollAreaWidgetContents))
             self.pushButton_1[a].setStyleSheet("background-color: rgb(255, 0, 0);\n"
@@ -96,6 +116,9 @@ class Ui_ListaDipendenti(QWidget):
             self.pushButton_2[a].setText(_translate("ListaDipendenti", "Modifica Elemento"))
             self.pushButton_3[a].setText(_translate("ListaDipendenti", "Visualizza Elemento"))
 
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout.addWidget(self.scrollArea)
+            
         self.retranslateUi(ListaDipendenti)
         QtCore.QMetaObject.connectSlotsByName(ListaDipendenti)
 
