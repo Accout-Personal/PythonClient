@@ -98,7 +98,7 @@ class Ui_ListaDipendenti(QWidget):
                                                 "color: rgb(255, 255, 255);")
             self.pushButton_2[a].setObjectName("pushButton"+str(a))
             self.gridLayout.addWidget(self.pushButton_2[a], a+1, 4, 1, 1)
-            self.pushButton_2[a].setText(_translate("UIwindow", "PushButton"+str(a)))
+            self.pushButton_2[a].setText(_translate("UIwindow", "Modifica Elemento"))
             self.pushButton_2[a].clicked.connect(lambda state,b=a: self.ModificaDip(self.chiamata[b]['CF']))
 
             self.pushButton_3.append(QtWidgets.QPushButton(self.scrollAreaWidgetContents))
@@ -106,7 +106,7 @@ class Ui_ListaDipendenti(QWidget):
                                                 "color: rgb(255, 255, 255);")
             self.pushButton_3[a].setObjectName("pushButton"+str(a))
             self.gridLayout.addWidget(self.pushButton_3[a], a+1, 2, 1, 1)
-            self.pushButton_3[a].setText(_translate("UIwindow", "PushButton"+str(a)))
+            self.pushButton_3[a].setText(_translate("UIwindow", "Visualizza Elemento"))
             self.pushButton_3[a].clicked.connect(lambda state,b=a: self.Visualizza(self.chiamata[b]['CF']))
 
             self.scrollArea.setWidget(self.scrollAreaWidgetContents)
