@@ -64,7 +64,8 @@ class Ui_VisualizzaAnagDip(QWidget):
         'IBAN':'IBAN',
         'username':'username',
         'data_di_nascita':'data di nascita'}
-        print(self.chiamata)
+
+        #print(self.chiamata)
         #esclude elemento non desiderato per visualizzazione
         self.exclude = ['remember_token']
         for elem in self.exclude:
@@ -74,7 +75,7 @@ class Ui_VisualizzaAnagDip(QWidget):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
         self.count = 0
-
+        self.viewList = 
 
         for a in self.chiamata:
             self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
