@@ -1,3 +1,4 @@
+from Dipendente.View.VistaModificaDip import Ui_ModificaDipAng
 from Dipendente.View.VistaAnagraficheDipendente import Ui_VisualizzaAnagDip
 from Login.VistaLogin.formLogPython import Ui_VistaLog
 from formpythonsimo3 import Ui_UIwindow
