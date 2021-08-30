@@ -8,5 +8,3 @@ if __name__ == '__main__':
     vista_home = Ui_VistaLog()
     vista_home.show()
     sys.exit(app.exec())
-
-

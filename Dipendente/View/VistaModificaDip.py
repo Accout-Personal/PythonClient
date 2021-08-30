@@ -97,8 +97,9 @@ class Ui_ModificaDipAng(QWidget):
             self.horizontalLayout.addWidget(self.textEdit_2)
             self.verticalLayout_2.addLayout(self.horizontalLayout)
             _translate = QtCore.QCoreApplication.translate
-            self.label.setText(_translate("VisualizzaAnagDip", "  "+str(a)))
-            self.label_2.setText(_translate("VisualizzaAnagDip", "  "+str(self.chiamata[a])))
+            self.textEdit.setText(_translate("ModificaDipAng", "  "+str(a)))
+            self.textEdit.setReadOnly(True)
+            self.textEdit_2.setText(_translate("ModificaDipAng", "  "+str(self.chiamata[a])))
 
         self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
