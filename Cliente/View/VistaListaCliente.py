@@ -25,27 +25,13 @@ class Ui_ListaCliente(QWidget):
         ListaCliente.setWindowTitle(self._translate("ListaCliente", "ListaCliente"))
         self.verticalLayout = QtWidgets.QVBoxLayout(ListaCliente)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label = QtWidgets.QLabel(ListaCliente)
-        self.label.setMinimumSize(QtCore.QSize(250, 50))
-        font = QtGui.QFont()
-        font.setPointSize(18)
-        self.label.setFont(font)
-        self.label.setObjectName("label")
-        self.label.setText(self._translate("ListaCliente", "Lista dei Cliente"))
-        self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
-
-        self.scrollArea = QtWidgets.QScrollArea(ListaCliente)
-        self.scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.setObjectName("scrollArea")
-        self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 780, 524))
-        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
-        self.gridLayout.setObjectName("gridLayout")
         self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         self.sizePolicy.setHorizontalStretch(0)
         self.sizePolicy.setVerticalStretch(0)
+
+        self.AddLabelTitolo("Lista dei Clienti")
+
+        self.AddScrollArea()
 
         self.traduzione = {
         'nome_azienda':'nome dell\'azienda',
@@ -53,6 +39,7 @@ class Ui_ListaCliente(QWidget):
         }
 
         self.listAttr = ['nome_azienda','citta']
+        #le dimensioni delle colonne
         sizes = [250,100]
         for attr in range(len(self.listAttr)):
             
@@ -153,3 +140,29 @@ class Ui_ListaCliente(QWidget):
     def Modify(self,elem):
         print(elem)
         print("not yet defined..")
+    
+    def AddScrollArea(self):
+        self.scrollArea = QtWidgets.QScrollArea(self)
+        self.scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 780, 524))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
+        self.gridLayout.setObjectName("gridLayout")
+    
+    def AddLabelTitolo(self,text):
+        self.label = QtWidgets.QLabel(self)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        self.label.setMinimumSize(QtCore.QSize(200, 50))
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
+        self.label.setText(self._translate("ModificaDipAng", text))
