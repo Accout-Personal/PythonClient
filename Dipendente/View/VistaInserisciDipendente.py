@@ -4,9 +4,8 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 import copy
 
 class Ui_InserisciDip(QWidget):
-    def __init__(self,CF, parent=None):
+    def __init__(self, parent=None):
         super(Ui_InserisciDip, self).__init__(parent)
-        self.cf = CF
         self.controller = DipendenteC()
         InsDipendente = self
         InsDipendente.setObjectName("InsDipendente")

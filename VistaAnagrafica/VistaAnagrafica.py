@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 from Dipendente.View.VistaListaDipendenti import Ui_ListaDipendenti
 from ListinoPrezzi.View.VistaListaListinoPrezzi import Ui_ListaListinoPrezzi
 from Cliente.View.VistaListaCliente import Ui_ListaCliente
+from Dipendente.View.VistaInserisciDipendente import Ui_InserisciDip
 
 
 class VistaAnagrafica(QWidget):
@@ -135,6 +136,7 @@ class VistaAnagrafica(QWidget):
         font.setPointSize(12)
         self.AddDipendenteButton.setFont(font)
         self.AddDipendenteButton.setObjectName("AddDipendenteButton")
+        self.AddDipendenteButton.clicked.connect(self.Go_InserisciDipendente())
         self.gridLayout_2.addWidget(self.AddDipendenteButton, 1, 2, 1, 1)
         self.ListaDipendenti = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         self.ListaDipendenti.setMinimumSize(QtCore.QSize(300, 50))
@@ -220,3 +222,7 @@ class VistaAnagrafica(QWidget):
     def Go_ListinaClienti(self):
         self.ListaClienti = Ui_ListaCliente()
         self.ListaClienti.show()
+
+    def Go_InserisciDipendente(self):
+        self.InserisciDipendente = Ui_InserisciDip()
+        self.InserisciDipendente.show()
