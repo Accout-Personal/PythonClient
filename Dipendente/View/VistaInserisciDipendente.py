@@ -69,7 +69,10 @@ class Ui_InserisciDip(QWidget):
         'importo_orario_straordinario':'importo orario straordinario *',
         'IBAN':'IBAN *',
         'username':'username *',
-        'data_di_nascita':'data di nascita *'}
+        'data_di_nascita':'data di nascita *',
+        'password': 'Password *',
+        'password_confirmation': 'Conferma la password *'
+        }
 
         self.body = {
         'CF': '',
@@ -80,7 +83,9 @@ class Ui_InserisciDip(QWidget):
         'importo_orario_straordinario':'',
         'IBAN':'',
         'username':'',
-        'data_di_nascita': ''
+        'data_di_nascita': '',
+        'password': '',
+        'password_confirmation': ''
         }
 
         for a in self.traduzione:
@@ -114,7 +119,6 @@ class Ui_InserisciDip(QWidget):
             _translate = QtCore.QCoreApplication.translate
             self.label_3.setText(_translate("InsDipendente", "  "+str(self.traduzione[a])))
             self.listaInput[a]=self.textEdit_2
-            
 
         self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
@@ -148,4 +152,13 @@ class Ui_InserisciDip(QWidget):
         for a in self.listaInput:
             self.body[a] = self.listaInput[a].toPlainText().replace('  ', '')
         self.risultato = self.controller.Insert(self.body)
-        print(str(self.risultato))
+        self.messaggio = ""
+        if(self.risultato['message'] != ''):
+            if(self.risultato['errors'] != ""):
+                for a in self.risultato['errors']:
+                    self.messaggio += self.risultato['errors'][a][0]+'\n'
+            else:
+                print(self.risultato)
+            QMessageBox.about(self, "Errore nella compilazione dei campi",self.messaggio)
+        else:
+            self.close()
