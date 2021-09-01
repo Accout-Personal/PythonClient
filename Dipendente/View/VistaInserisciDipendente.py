@@ -161,4 +161,5 @@ class Ui_InserisciDip(QWidget):
                 QMessageBox.about(self, "Errore del server ",str(self.risultato['message']))
             QMessageBox.about(self, "Errore nella compilazione dei campi",self.messaggio)
         else:
+            QMessageBox.about(self, "Esito operazione","Operazione completata con successo")
             self.close()

@@ -115,9 +115,10 @@ class Ui_ModificaDipAng(QWidget):
                 for a in self.risultato['errors']:
                     self.messaggio += self.risultato['errors'][a][0]+'\n'
             else:
-                print(self.risultato)
+                QMessageBox.about(self, "Errore del server ",str(self.risultato['message']))
             QMessageBox.about(self, "Errore nella compilazione dei campi",self.messaggio)
         else:
+            QMessageBox.about(self, "Esito operazione","Operazione completata con successo")
             self.close()
 
     def AddLabelTitolo(self,text):
