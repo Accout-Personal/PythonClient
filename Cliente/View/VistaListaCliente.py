@@ -83,7 +83,7 @@ class Ui_ListaCliente(QWidget):
         ]
 
         X_offset = len(self.listAttr)
-        for i in range(0,3):
+        for i in range(0,len(self.OperationButtons)):
             for a in range(0,len(self.chiamata)):
                 #print(i)
                 self.OperationButtons[i]
