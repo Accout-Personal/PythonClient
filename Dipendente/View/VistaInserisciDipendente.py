@@ -153,8 +153,8 @@ class Ui_InserisciDip(QWidget):
             self.body[a] = self.listaInput[a].toPlainText().replace('  ', '')
         self.risultato = self.controller.Insert(self.body)
         self.messaggio = ""
-        if(bool(self.risultato['message'])):
-            if(bool(self.risultato['errors'])):
+        if('message' in self.risultato):
+            if('errors' in self.risultato):
                 for a in self.risultato['errors']:
                     self.messaggio += self.risultato['errors'][a][0]+'\n'
             else:
