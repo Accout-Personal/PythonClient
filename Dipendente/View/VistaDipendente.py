@@ -19,41 +19,19 @@ class Ui_VisualizzaAnagDip(QWidget):
         self.cf = CF
         VisualizzaAnagDip = self
         self.controller = DipendenteC()
+        self._translate = QtCore.QCoreApplication.translate
         self.chiamata = self.controller.GetKey(self.cf)
         VisualizzaAnagDip.setObjectName("VisualizzaAnagDip")
         VisualizzaAnagDip.resize(800, 600)
+        VisualizzaAnagDip.setWindowTitle(self._translate("VisualizzaAnagDip", "Visualizza Anagrafiche"))
         self.verticalLayout = QtWidgets.QVBoxLayout(VisualizzaAnagDip)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label = QtWidgets.QLabel(VisualizzaAnagDip)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-        self.label.setMinimumSize(QtCore.QSize(250, 50))
-        font = QtGui.QFont()
-        font.setPointSize(20)
-        self.label.setFont(font)
-        self.label.setObjectName("label")
-        self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
-        self.scrollArea = QtWidgets.QScrollArea(VisualizzaAnagDip)
-        self.scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.setObjectName("scrollArea")
-        self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 780, 524))
-        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
-        self.gridLayout.setObjectName("gridLayout")
         
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+        self.AddLabelTitolo("Dettagli "+self.chiamata['nome_cognome'])
+        
+        self.gridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(500)
         
         
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
         
         self.traduzione = {'CF':'codice fiscale',
         'nome_cognome':'nome e cognome',
@@ -72,11 +50,12 @@ class Ui_VisualizzaAnagDip(QWidget):
         for elem in self.exclude:
             self.viewList.pop(elem)
 
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        self.verticalLayout.addWidget(self.scrollArea)
+        
         self.count = 0
         
-
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
         for a in self.viewList:
             self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
@@ -92,15 +71,43 @@ class Ui_VisualizzaAnagDip(QWidget):
             self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
             self.label_3.setObjectName("label_3")
             self.gridLayout.addWidget(self.label_3, self.count, 1, 1, 1)
-            _translate = QtCore.QCoreApplication.translate
-            self.label_2.setText(_translate("VisualizzaAnagDip", "  "+str(self.traduzione[a])))
-            self.label_3.setText(_translate("VisualizzaAnagDip", "  "+str(self.chiamata[a])))
+            
+            self.label_2.setText(self._translate("VisualizzaAnagDip", "  "+str(self.traduzione[a])))
+            self.label_3.setText(self._translate("VisualizzaAnagDip", "  "+str(self.chiamata[a])))
             self.count += 1
 
-        self.retranslateUi(VisualizzaAnagDip)
         QtCore.QMetaObject.connectSlotsByName(VisualizzaAnagDip)
 
-    def retranslateUi(self, VisualizzaAnagDip):
-        _translate = QtCore.QCoreApplication.translate
-        VisualizzaAnagDip.setWindowTitle(_translate("VisualizzaAnagDip", "VisualizzaAnagDip"))
-        self.label.setText(_translate("VisualizzaAnagDip", "<html><head/><body><p align=\"center\">Dettagli</p></body></html>"))
+
+
+
+    def AddLabelTitolo(self,text):
+        
+        self.label = QtWidgets.QLabel(self)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        self.label.setMinimumSize(QtCore.QSize(200, 50))
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
+        self.label.setText(self._translate("ModificaDipAng", text))
+
+    def AddScrollArea(self,min_size):
+        scrollArea = QtWidgets.QScrollArea(self)
+        scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
+        scrollArea.setWidgetResizable(True)
+        scrollArea.setObjectName("scrollArea")
+        scrollArea.setMinimumSize(QtCore.QSize(0, min_size))
+        scrollAreaWidgetContents = QtWidgets.QWidget()
+        scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 780, 524))
+        scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        gridLayout = QtWidgets.QGridLayout(scrollAreaWidgetContents)
+        gridLayout.setObjectName("gridLayout")
+        scrollArea.setWidget(scrollAreaWidgetContents)
+        self.verticalLayout.addWidget(scrollArea)
+        return (gridLayout,scrollAreaWidgetContents)
