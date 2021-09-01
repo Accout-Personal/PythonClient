@@ -110,7 +110,7 @@ class Ui_ModificaDipAng(QWidget):
             self.label_3.setMinimumSize(QtCore.QSize(300, 0))
             self.label_3.setMaximumSize(QtCore.QSize(325, 28))
             self.label_3.setFont(font)
-            self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
+            #self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
             self.label_3.setText("")
             self.label_3.setObjectName("label_3")
             self.horizontalLayout.addWidget(self.label_3)

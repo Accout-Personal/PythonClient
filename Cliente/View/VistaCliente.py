@@ -16,7 +16,7 @@ import copy
 class Ui_Cliente(QWidget):
     def __init__(self,CF, parent=None):
         super(Ui_Cliente, self).__init__(parent)
-        _translate = QtCore.QCoreApplication.translate
+        self._translate = QtCore.QCoreApplication.translate
         
         
         self.cf = CF
@@ -25,43 +25,13 @@ class Ui_Cliente(QWidget):
         self.chiamata = self.controller.GetKey(self.cf)
         VisualizzaAnagDip.setObjectName("VisualizzaAnagDip")
         VisualizzaAnagDip.resize(800, 600)
-        VisualizzaAnagDip.setWindowTitle(_translate("VisualizzaAnagDip", "VisualizzaAnagDip"))
+        VisualizzaAnagDip.setWindowTitle(self._translate("VisualizzaAnagDip", "VisualizzaAnagDip"))
         self.verticalLayout = QtWidgets.QVBoxLayout(VisualizzaAnagDip)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label = QtWidgets.QLabel(VisualizzaAnagDip)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy)
-        self.label.setMinimumSize(QtCore.QSize(250, 50))
-        font = QtGui.QFont()
-        font.setPointSize(20)
-        self.label.setFont(font)
-        self.label.setObjectName("label")
-        self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
-        self.label.setText(_translate("VisualizzaAnagDip", "<html><head/><body><p align=\"center\">Dettagli</p></body></html>"))
-        self.scrollArea = QtWidgets.QScrollArea(VisualizzaAnagDip)
-        self.scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.setObjectName("scrollArea")
-        self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 780, 524))
-        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
-        self.gridLayout.setObjectName("gridLayout")
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        self.verticalLayout.addWidget(self.scrollArea)
-        
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        
-        
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        
+        self.verticalpos = 0
+
+        self.AddSectionLabel('Dettagli')
+        self.gridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(200)
 
         self.traduzione = {'PIVA':'partita iva',
         'nome_azienda':'nome dell\'azienda',
@@ -74,9 +44,7 @@ class Ui_Cliente(QWidget):
         'telefono':'numero telefonico',
         'numero':'numero'
         }
-        
-        self.commessa = copy.deepcopy(self.chiamata['commessa'])
-        
+                
         #print(self.chiamata)
         #esclude elemento non desiderato per visualizzazione
         self.viewList = copy.deepcopy(self.chiamata)
@@ -88,7 +56,9 @@ class Ui_Cliente(QWidget):
 
         self.count = 0
         print(self.viewList)
-
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
         for a in self.viewList:
             self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
@@ -97,7 +67,7 @@ class Ui_Cliente(QWidget):
             self.label_2.setStyleSheet("background-color: rgb(255, 255, 255);")
             self.label_2.setObjectName("label_2")
             self.gridLayout.addWidget(self.label_2, self.count, 0, 1, 1)
-            self.label_2.setText(_translate("VisualizzaAnagDip", "  "+str(self.traduzione[a])))
+            self.label_2.setText(self._translate("VisualizzaAnagDip", "  "+str(self.traduzione[a])))
 
             
             self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
@@ -107,9 +77,9 @@ class Ui_Cliente(QWidget):
             self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
             self.label_3.setObjectName("label_3")
             self.gridLayout.addWidget(self.label_3, self.count, 1, 1, 1)
-            _translate = QtCore.QCoreApplication.translate
+            self._translate = QtCore.QCoreApplication.translate
             
-            self.label_3.setText(_translate("VisualizzaAnagDip", "  "+str(self.chiamata[a])))
+            self.label_3.setText(self._translate("VisualizzaAnagDip", "  "+str(self.chiamata[a])))
             self.count += 1
 
         #Sezione del telefono
@@ -117,43 +87,12 @@ class Ui_Cliente(QWidget):
         self.telefono_attr = ['numero']
         if(len(self.telefono)>0):
         
-            self.TelefonoLabel = QtWidgets.QLabel(VisualizzaAnagDip)
-            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-            sizePolicy.setHorizontalStretch(0)
-            sizePolicy.setVerticalStretch(0)
-            sizePolicy.setHeightForWidth(self.TelefonoLabel.sizePolicy().hasHeightForWidth())
-            self.TelefonoLabel.setSizePolicy(sizePolicy)
-            self.TelefonoLabel.setMinimumSize(QtCore.QSize(250, 50))
-            font = QtGui.QFont()
-            font.setPointSize(20)
-            self.TelefonoLabel.setFont(font)
-            self.TelefonoLabel.setObjectName("label")
-            self.verticalLayout.addWidget(self.TelefonoLabel, 0, QtCore.Qt.AlignHCenter)
-            self.TelefonoLabel.setText(_translate("VisualizzaAnagDip", "<html><head/><body><p align=\"center\">Telefono</p></body></html>"))
-            self.TelefonoscrollArea = QtWidgets.QScrollArea(VisualizzaAnagDip)
-            self.TelefonoscrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
-            self.TelefonoscrollArea.setWidgetResizable(True)
-            self.TelefonoscrollArea.setObjectName("TelefonoscrollArea")
-            self.scrollAreaWidgetContents = QtWidgets.QWidget()
-            self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 780, 524))
-            self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-            self.TelefonoGridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
-            self.TelefonoGridLayout.setObjectName("TelefonoGridLayout")
-            self.TelefonoscrollArea.setWidget(self.scrollAreaWidgetContents)
-            self.verticalLayout.addWidget(self.TelefonoscrollArea)
+            self.AddSectionLabel('Telefono')
+            self.TelefonoGridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(100)
 
-
+            #Aggiunge l'intestazione della tabella
             for a in range(len(self.telefono_attr)):
-                self.label_headTelefono = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-                sizePolicy.setHeightForWidth(self.label_headTelefono.sizePolicy().hasHeightForWidth())
-                self.label_headTelefono.setSizePolicy(sizePolicy)
-                self.label_headTelefono.setMinimumSize(QtCore.QSize(0, 20))
-                self.label_headTelefono.setObjectName("label_headTelefono")
-                self.TelefonoGridLayout.addWidget(self.label_headTelefono, 0, a, 1, 1)
-                self.label_headTelefono.setText(self.traduzione[self.telefono_attr[a]])
-
-            
-            for a in range(len(self.telefono_attr)):
+                self.addTableHead(self.traduzione[self.telefono_attr[a]],self.TelefonoGridLayout,a,self.scrollAreaWidgetContents)
                 self.count = 1
                 for numero in self.telefono:
                     self.label_numero = QtWidgets.QLabel(self.scrollAreaWidgetContents)
@@ -163,12 +102,81 @@ class Ui_Cliente(QWidget):
                     self.label_numero.setStyleSheet("background-color: rgb(255, 255, 255);")
                     self.label_numero.setObjectName("label_numero")
                     self.TelefonoGridLayout.addWidget(self.label_numero, self.count, a, 1, 1)
-                    self.label_numero.setText(_translate("VisualizzaAnagDip", "  "+str(numero[self.telefono_attr[a]])))
-                    self.count += 1  
+                    self.label_numero.setText(self._translate("VisualizzaAnagDip", "  "+str(numero[self.telefono_attr[a]])))
+                    self.count += 1
 
-              
+        #sezione delle commesse
+        self.commessa = copy.deepcopy(self.chiamata['commessa'])
+        self.commessa_attr = ['numero_commessa','valore_commessa_cliente','listino_prezzi_modello','Qta','nddt_cliente','data']
+        self.traduzione["numero_commessa"] = "numero di commessa"
+        self.traduzione["valore_commessa_cliente"] = "valore della commessa"
+        self.traduzione["listino_prezzi_modello"] = "modello"
+        self.traduzione["Qta"] = "Q.ta"
+        self.traduzione["nddt_cliente"] = "ddt del cliente"
+        self.traduzione["data"] = "data"
+        if(len(self.commessa)>0):
+            self.AddSectionLabel('Commesse')
+            self.CommesaGridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(200)
 
+            #Aggiunge l'intestazione della tabella
+            for a in range(len(self.commessa_attr)):
+                self.addTableHead(self.traduzione[self.commessa_attr[a]],self.CommesaGridLayout,a,self.scrollAreaWidgetContents)
+                self.count = 1
+                #Popolazione della tabella
+                for commessa in self.commessa:
+                    print(commessa)
+                    self.label_commessa = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+                    sizePolicy.setHeightForWidth(self.label_commessa.sizePolicy().hasHeightForWidth())
+                    self.label_commessa.setSizePolicy(sizePolicy)
+                    self.label_commessa.setMinimumSize(QtCore.QSize(0, 20))
+                    self.label_commessa.setStyleSheet("background-color: rgb(255, 255, 255);")
+                    self.label_commessa.setObjectName("label_commessa")
+                    self.CommesaGridLayout.addWidget(self.label_commessa, self.count, a, 1, 1)
+                    self.label_commessa.setText(self._translate("CommessaCliente", "  "+str(commessa[self.commessa_attr[a]])))
+                    self.count += 1
+            
         QtCore.QMetaObject.connectSlotsByName(VisualizzaAnagDip)
 
+    def AddScrollArea(self,min_size):
+        scrollArea = QtWidgets.QScrollArea(self)
+        scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
+        scrollArea.setWidgetResizable(True)
+        scrollArea.setObjectName("scrollArea")
+        scrollArea.setMinimumSize(QtCore.QSize(0, min_size))
+        scrollAreaWidgetContents = QtWidgets.QWidget()
+        scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 780, 524))
+        scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        gridLayout = QtWidgets.QGridLayout(scrollAreaWidgetContents)
+        gridLayout.setObjectName("gridLayout")
+        scrollArea.setWidget(scrollAreaWidgetContents)
+        self.verticalLayout.addWidget(scrollArea)
+        return (gridLayout,scrollAreaWidgetContents)
+
+    def AddSectionLabel(self,text):
         
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)        
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        self.label = QtWidgets.QLabel(self)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        self.label.setMinimumSize(QtCore.QSize(250, 50))       
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
+        self._translate = QtCore.QCoreApplication.translate
+        self.label.setText(self._translate("VisualizzaAnagDip", "<html><head/><body><p align=\"center\">"+text+"</p></body></html>"))
     
+    def addTableHead(self,text,grid,pos,widget):
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        self.label_headTelefono = QtWidgets.QLabel(widget)
+        sizePolicy.setHeightForWidth(self.label_headTelefono.sizePolicy().hasHeightForWidth())
+        self.label_headTelefono.setSizePolicy(sizePolicy)
+        self.label_headTelefono.setMinimumSize(QtCore.QSize(0, 20))
+        self.label_headTelefono.setObjectName("label_headTelefono")
+        grid.addWidget(self.label_headTelefono, 0, pos, 1, 1)
+        self.label_headTelefono.setText(text)
