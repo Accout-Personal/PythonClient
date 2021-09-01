@@ -70,6 +70,7 @@ class Ui_ModificaDipAng(QWidget):
         sizePolicy.setVerticalStretch(0)
         font = QtGui.QFont()
         font.setPointSize(9)
+        self.listaInput = {}
 
         self.traduzione = {'CF':'codice fiscale',
         'nome_cognome':'nome e cognome',
@@ -80,6 +81,18 @@ class Ui_ModificaDipAng(QWidget):
         'IBAN':'IBAN',
         'username':'username',
         'data_di_nascita':'data di nascita'}
+
+        self.body = {
+        'CF': self.chiamata['CF'],
+        'nome_cognome':self.chiamata['nome_cognome'],
+        'tipo_dipendente':'',
+        'importo_orario_feriale':'',
+        'importo_orario_regolare':'',
+        'importo_orario_straordinario':'',
+        'IBAN':'',
+        'username':'',
+        'data_di_nascita': self.chiamata['data_di_nascita']
+        }
 
         #print(self.chiamata)
         #esclude elemento non desiderato per visualizzazione
@@ -113,12 +126,14 @@ class Ui_ModificaDipAng(QWidget):
             font.setPointSize(9)
             self.textEdit_2.setFont(font)
             self.textEdit_2.setStyleSheet("background-color: rgb(255, 255, 255);")
-            self.textEdit_2.setObjectName("textEdit_2")
+            self.textEdit_2.setObjectName("textEdit")
             self.horizontalLayout.addWidget(self.textEdit_2)
             self.verticalLayout_2.addLayout(self.horizontalLayout)
             _translate = QtCore.QCoreApplication.translate
             self.label_3.setText(_translate("ModificaDipAng", "  "+str(self.traduzione[a])))
             self.textEdit_2.setText(_translate("ModificaDipAng", "  "+str(self.chiamata[a])))
+            self.listaInput[a]=self.textEdit_2
+            
 
         self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
@@ -149,5 +164,7 @@ class Ui_ModificaDipAng(QWidget):
         self.pushButton.setText(_translate("ModificaDipAng", "Modifica"))
 
     def Modify(self):
-        self.risultato = self.controller.Update(self.cf)
+        for a in self.listaInput:
+            self.body[a] = self.listaInput[a].toPlainText().replace('  ', '')
+        self.risultato = self.controller.Update(self.body)
         print(str(self.risultato))
