@@ -153,12 +153,12 @@ class Ui_InserisciDip(QWidget):
             self.body[a] = self.listaInput[a].toPlainText().replace('  ', '')
         self.risultato = self.controller.Insert(self.body)
         self.messaggio = ""
-        if(self.risultato['message'] != ''):
-            if(self.risultato['errors'] != ""):
+        if(bool(self.risultato['message'])):
+            if(bool(self.risultato['errors'])):
                 for a in self.risultato['errors']:
                     self.messaggio += self.risultato['errors'][a][0]+'\n'
             else:
-                print(self.risultato)
+                QMessageBox.about(self, "Errore del server ",str(self.risultato['message']))
             QMessageBox.about(self, "Errore nella compilazione dei campi",self.messaggio)
         else:
             self.close()
