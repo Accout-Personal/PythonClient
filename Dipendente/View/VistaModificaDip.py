@@ -32,8 +32,7 @@ class Ui_ModificaDipAng(QWidget):
         #Aggiunge un scroll area per i campi
         self.scrollArea,self.scrollAreaWidgetContents,self.verticalLayout_2 = self.AddScrollArea()
         self.AddInsertHint("I campi con il segno ( * ) sono obbligatori")
-
-        self.listaInput = {}
+        
 
         self.traduzione = {'CF':'codice fiscale',
         'nome_cognome':'nome e cognome',
@@ -45,6 +44,7 @@ class Ui_ModificaDipAng(QWidget):
         'username':'username',
         'data_di_nascita':'data di nascita'}
 
+        #si usa un dizionario per iterare tutti i campi dell'inserimento e popolazione del campo
         self.body = {
         'CF': self.chiamata['CF'],
         'nome_cognome':self.chiamata['nome_cognome'],
@@ -57,7 +57,6 @@ class Ui_ModificaDipAng(QWidget):
         'data_di_nascita': self.chiamata['data_di_nascita']
         }
 
-        #print(self.chiamata)
         #esclude elemento non desiderato per visualizzazione
         self.viewList = copy.deepcopy(self.chiamata)
         self.exclude = ['CF','nome_cognome','data_di_nascita','remember_token']
@@ -70,6 +69,7 @@ class Ui_ModificaDipAng(QWidget):
         sizePolicy.setVerticalStretch(0)
         font = QtGui.QFont()
         font.setPointSize(9)
+        self.listaInput = {}
         for a in self.viewList:
             
             #Crea il label del campo
