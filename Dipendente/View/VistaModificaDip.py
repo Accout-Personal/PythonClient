@@ -109,7 +109,16 @@ class Ui_ModificaDipAng(QWidget):
         for a in self.listaInput:
             self.body[a] = self.listaInput[a].toPlainText().replace('  ', '')
         self.risultato = self.controller.Update(self.body)
-        print(str(self.risultato))
+        self.messaggio = ""
+        if(bool(self.risultato['message'])):
+            if(bool(self.risultato['errors'])):
+                for a in self.risultato['errors']:
+                    self.messaggio += self.risultato['errors'][a][0]+'\n'
+            else:
+                print(self.risultato)
+            QMessageBox.about(self, "Errore nella compilazione dei campi",self.messaggio)
+        else:
+            self.close()
 
     def AddLabelTitolo(self,text):
         self.label = QtWidgets.QLabel(self)
