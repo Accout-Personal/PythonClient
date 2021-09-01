@@ -137,6 +137,7 @@ class Ui_ListaDipendenti(QWidget):
         print(str(cf))
         self.Dettaglio = Ui_ModificaDipAng(cf)
         self.Dettaglio.show()
+        self.close()
 
     def deleteConfirm(self,dipendente):
 
