@@ -8,13 +8,12 @@ class Ui_InserisciDip(QWidget):
         super(Ui_InserisciDip, self).__init__(parent)
         self.cf = CF
         self.controller = DipendenteC()
-        self.chiamata = self.controller.GetKey(self.cf)
-        ModificaDipAng = self
-        ModificaDipAng.setObjectName("ModificaDipAng")
-        ModificaDipAng.resize(800, 600)
-        self.verticalLayout = QtWidgets.QVBoxLayout(ModificaDipAng)
+        InsDipendente = self
+        InsDipendente.setObjectName("InsDipendente")
+        InsDipendente.resize(800, 600)
+        self.verticalLayout = QtWidgets.QVBoxLayout(InsDipendente)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label = QtWidgets.QLabel(ModificaDipAng)
+        self.label = QtWidgets.QLabel(InsDipendente)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -26,7 +25,7 @@ class Ui_InserisciDip(QWidget):
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
-        self.scrollArea = QtWidgets.QScrollArea(ModificaDipAng)
+        self.scrollArea = QtWidgets.QScrollArea(InsDipendente)
         self.scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
@@ -63,36 +62,29 @@ class Ui_InserisciDip(QWidget):
         font.setPointSize(9)
         self.listaInput = {}
 
-        self.traduzione = {'CF':'codice fiscale',
-        'nome_cognome':'nome e cognome',
-        'tipo_dipendente':'tipo mansione',
-        'importo_orario_feriale':'importo orario feriale',
-        'importo_orario_regolare':'importo orario regolare',
-        'importo_orario_straordinario':'importo orario straordinario',
-        'IBAN':'IBAN',
-        'username':'username',
-        'data_di_nascita':'data di nascita'}
+        self.traduzione = {'CF':'codice fiscale *',
+        'nome_cognome':'nome e cognome *',
+        'tipo_dipendente':'tipo mansione *',
+        'importo_orario_feriale':'importo orario feriale *',
+        'importo_orario_regolare':'importo orario regolare *',
+        'importo_orario_straordinario':'importo orario straordinario *',
+        'IBAN':'IBAN *',
+        'username':'username *',
+        'data_di_nascita':'data di nascita *'}
 
         self.body = {
-        'CF': self.chiamata['CF'],
-        'nome_cognome':self.chiamata['nome_cognome'],
+        'CF': '',
+        'nome_cognome': '',
         'tipo_dipendente':'',
         'importo_orario_feriale':'',
         'importo_orario_regolare':'',
         'importo_orario_straordinario':'',
         'IBAN':'',
         'username':'',
-        'data_di_nascita': self.chiamata['data_di_nascita']
+        'data_di_nascita': ''
         }
 
-        #print(self.chiamata)
-        #esclude elemento non desiderato per visualizzazione
-        self.viewList = copy.deepcopy(self.chiamata)
-        self.exclude = ['CF','nome_cognome','data_di_nascita','remember_token']
-        for elem in self.exclude:
-            self.viewList.pop(elem)
-
-        for a in self.viewList:
+        for a in self.traduzione:
             self.horizontalLayout = QtWidgets.QHBoxLayout()
             self.horizontalLayout.setObjectName("horizontalLayout")
             self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
@@ -121,8 +113,7 @@ class Ui_InserisciDip(QWidget):
             self.horizontalLayout.addWidget(self.textEdit_2)
             self.verticalLayout_2.addLayout(self.horizontalLayout)
             _translate = QtCore.QCoreApplication.translate
-            self.label_3.setText(_translate("ModificaDipAng", "  "+str(self.traduzione[a])))
-            self.textEdit_2.setText(_translate("ModificaDipAng", "  "+str(self.chiamata[a])))
+            self.label_3.setText(_translate("InsDipendente", "  "+str(self.traduzione[a])))
             self.listaInput[a]=self.textEdit_2
             
 
@@ -144,18 +135,18 @@ class Ui_InserisciDip(QWidget):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
 
-        self.retranslateUi(ModificaDipAng)
-        QtCore.QMetaObject.connectSlotsByName(ModificaDipAng)
+        self.retranslateUi(InsDipendente)
+        QtCore.QMetaObject.connectSlotsByName(InsDipendente)
 
-    def retranslateUi(self, ModificaDipAng):
+    def retranslateUi(self, InsDipendente):
         _translate = QtCore.QCoreApplication.translate
-        ModificaDipAng.setWindowTitle(_translate("ModificaDipAng", "ModificaDipAng"))
-        self.label.setText(_translate("ModificaDipAng", "Modifica Elemento"))
-        self.label_2.setText(_translate("ModificaDipAng", "I campi con il segno ( * ) sono obbligatori"))
-        self.pushButton.setText(_translate("ModificaDipAng", "Modifica"))
+        InsDipendente.setWindowTitle(_translate("InsDipendente", "InsDipendente"))
+        self.label.setText(_translate("InsDipendente", "Inserisci un nuovo Elemento"))
+        self.label_2.setText(_translate("InsDipendente", "I campi con il segno ( * ) sono obbligatori"))
+        self.pushButton.setText(_translate("InsDipendente", "Inserisci"))
 
     def Modify(self):
         for a in self.listaInput:
             self.body[a] = self.listaInput[a].toPlainText().replace('  ', '')
-        self.risultato = self.controller.Update(self.body)
+        self.risultato = self.controller.Insert(self.body)
         print(str(self.risultato))
