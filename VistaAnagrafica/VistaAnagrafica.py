@@ -136,7 +136,7 @@ class VistaAnagrafica(QWidget):
         font.setPointSize(12)
         self.AddDipendenteButton.setFont(font)
         self.AddDipendenteButton.setObjectName("AddDipendenteButton")
-        self.AddDipendenteButton.clicked.connect(self.Go_InserisciDipendente())
+        self.AddDipendenteButton.clicked.connect(self.Go_InserisciDipendente)
         self.gridLayout_2.addWidget(self.AddDipendenteButton, 1, 2, 1, 1)
         self.ListaDipendenti = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         self.ListaDipendenti.setMinimumSize(QtCore.QSize(300, 50))

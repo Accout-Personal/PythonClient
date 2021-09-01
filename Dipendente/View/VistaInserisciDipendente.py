@@ -129,7 +129,7 @@ class Ui_InserisciDip(QWidget):
         self.pushButton.setStyleSheet("background-color: rgb(85, 255, 255);\n"
 "color: rgb(247, 247, 247);")
         self.pushButton.setObjectName("pushButton")
-        self.pushButton.clicked.connect(self.Modify)
+        self.pushButton.clicked.connect(self.Insert)
         self.verticalLayout_2.addWidget(self.pushButton, 0, QtCore.Qt.AlignHCenter)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
@@ -144,7 +144,7 @@ class Ui_InserisciDip(QWidget):
         self.label_2.setText(_translate("InsDipendente", "I campi con il segno ( * ) sono obbligatori"))
         self.pushButton.setText(_translate("InsDipendente", "Inserisci"))
 
-    def Modify(self):
+    def Insert(self):
         for a in self.listaInput:
             self.body[a] = self.listaInput[a].toPlainText().replace('  ', '')
         self.risultato = self.controller.Insert(self.body)
