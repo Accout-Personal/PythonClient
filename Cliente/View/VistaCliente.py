@@ -55,7 +55,7 @@ class Ui_Cliente(QWidget):
 
 
         self.count = 0
-        print(self.viewList)
+        #print(self.viewList)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -124,7 +124,7 @@ class Ui_Cliente(QWidget):
                 self.count = 1
                 #Popolazione della tabella
                 for commessa in self.commessa:
-                    print(commessa)
+                    #print(commessa)
                     self.label_commessa = QtWidgets.QLabel(self.scrollAreaWidgetContents)
                     sizePolicy.setHeightForWidth(self.label_commessa.sizePolicy().hasHeightForWidth())
                     self.label_commessa.setSizePolicy(sizePolicy)
