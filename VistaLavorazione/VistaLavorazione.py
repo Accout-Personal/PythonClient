@@ -20,17 +20,8 @@ class VistaLavorazione(QWidget):
         self.verticalLayout = QtWidgets.QVBoxLayout(HomeClass)
         self.verticalLayout.setObjectName("verticalLayout")
 
-        self.scrollArea = QtWidgets.QScrollArea(HomeClass)
-        self.scrollArea.setMinimumSize(QtCore.QSize(400, 200))
-        self.scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.setObjectName("scrollArea")
-        self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 732, 561))
-        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.AddScrollArea()
 
-        self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
-        self.gridLayout.setObjectName("gridLayout")
         self.AddLabelTitolo("Vista Lavorazione")
 
         self.AddSectionLabel(1,"Commessse")
@@ -53,6 +44,19 @@ class VistaLavorazione(QWidget):
         self.verticalLayout.addWidget(self.scrollArea)
         QtCore.QMetaObject.connectSlotsByName(HomeClass)
 
+    def AddScrollArea(self):
+
+        self.scrollArea = QtWidgets.QScrollArea(self)
+        self.scrollArea.setMinimumSize(QtCore.QSize(400, 200))
+        self.scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 732, 561))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+
+        self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
+        self.gridLayout.setObjectName("gridLayout")
 
     def AddButtonInLayout(self,layout,text,function):
         Button = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
