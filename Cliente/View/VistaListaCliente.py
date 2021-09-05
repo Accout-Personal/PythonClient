@@ -82,7 +82,7 @@ class Ui_ListaCliente(QWidget):
 
         QtCore.QMetaObject.connectSlotsByName(ListaCliente)
 
-    #chiamata alla funzione per la cancellazione dell'elemento
+    #chiamata alla funzione per la cancellazione di un elemento
     def deleteConfirm(self,cliente):
 
         msg = QMessageBox()

@@ -148,7 +148,9 @@ class Ui_ModificaDipAng(QWidget):
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
         self.label.setText(self._translate("ModificaDipAng", text))
-    
+
+
+    #aggiunge un scroll area alla finestra
     def AddScrollArea(self):
         scrollArea = QtWidgets.QScrollArea(self)
         scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
@@ -167,7 +169,8 @@ class Ui_ModificaDipAng(QWidget):
         scrollArea.setWidget(scrollAreaWidgetContents)
         self.verticalLayout.addWidget(scrollArea)
         return scrollArea,scrollAreaWidgetContents,verticalLayout_2
-    
+
+    #questa funzione aggiunge un etichetta alla finestra
     def AddInsertHint(self,text): 
         self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -184,7 +187,8 @@ class Ui_ModificaDipAng(QWidget):
         self.label_2.setObjectName("label_2")
         self.verticalLayout_2.addWidget(self.label_2)
         self.label_2.setText(self._translate("ModificaDipAng", text))
-    
+
+    #questa funzione aggiunge una pulsante d'azione
     def AddSubmitButton(self,text):
         pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)

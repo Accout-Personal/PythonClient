@@ -15,21 +15,134 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 class Ui_ListaListinoPrezzi(QWidget):
     def __init__(self, parent=None):
         super(Ui_ListaListinoPrezzi, self).__init__(parent)
-        ListaListinoPrezzi = self
+        self._translate = QtCore.QCoreApplication.translate
+        ListaCliente = self
         self.controller = ListinoPrezziC()
-        self.ListaElementi = self.controller.GetAll()
-        ListaListinoPrezzi.setObjectName("ListaListinoPrezzi")
-        ListaListinoPrezzi.resize(800, 600)
-        self.verticalLayout = QtWidgets.QVBoxLayout(ListaListinoPrezzi)
+        self.chiamata = self.controller.GetAll()
+        ListaCliente.setObjectName("ListaCliente")
+        ListaCliente.resize(800, 600)
+        ListaCliente.setWindowTitle(self._translate("ListaCliente", "ListaCliente"))
+        self.verticalLayout = QtWidgets.QVBoxLayout(ListaCliente)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label = QtWidgets.QLabel(ListaListinoPrezzi)
-        self.label.setMinimumSize(QtCore.QSize(250, 50))
-        font = QtGui.QFont()
-        font.setPointSize(18)
-        self.label.setFont(font)
-        self.label.setObjectName("label")
-        self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
-        self.scrollArea = QtWidgets.QScrollArea(ListaListinoPrezzi)
+        self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        self.sizePolicy.setHorizontalStretch(0)
+        self.sizePolicy.setVerticalStretch(0)
+
+        self.AddLabelTitolo("Lista dei Clienti")
+
+        self.AddScrollArea()
+
+        self.traduzione = {
+        'modello':'modello',
+        'valore_cliente':'valore cliente',
+        'valore_dipendente':'valore dipendente'
+        }
+
+        self.listAttr = ['modello','valore_cliente','valore_dipendente']
+        #le dimensioni delle colonne
+        sizes = [250,100,100]
+        for attr in range(len(self.listAttr)):
+            print(self.listAttr[attr])
+            #Aggiunge l'intestazione della tabella
+            self.AddTableHeader(self.traduzione[self.listAttr[attr]],attr,sizes[attr])
+
+            #aggiunge elemento nella tabella
+            for a in range(0,len(self.chiamata)):
+                self.AddTableContent(attr,a+1,self.chiamata[a][self.listAttr[attr]],sizes[attr])
+
+        #Aggiunge pulsante delle operazioni
+        self.OperationButtons=[
+            {
+                "name":"Cancella Elemento",
+                "StyleSheet":"background-color: rgb(255, 0, 0);\n color: rgb(255, 255, 255);",
+                "function":self.deleteConfirm
+            },
+            {
+                "name":"Modifica Elemento",
+                "StyleSheet":"background-color: rgb(0, 0, 255);\n color: rgb(255, 255, 255);",
+                "function":self.Modify
+            }
+        ]
+
+        X_offset = len(self.listAttr)
+        for i in range(0,len(self.OperationButtons)):
+            for a in range(0,len(self.chiamata)):
+                #print(i)
+                self.OperationButtons[i]
+                self.AddOperationButton(X_offset+i,a,self.OperationButtons[i],lambda state,b=a,c=i: self.OperationButtons[c]["function"](self.chiamata[b]))
+                            
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout.addWidget(self.scrollArea)
+
+        QtCore.QMetaObject.connectSlotsByName(ListaCliente)
+
+    #chiamata alla funzione per la cancellazione di un elemento
+    def deleteConfirm(self,cliente):
+
+        msg = QMessageBox()
+        msg.setWindowTitle('Conferma')
+        msg.setText('sei sicuro di voler cancellare il Cliente '+cliente['nome_azienda'] + '?')
+        msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        okButton = msg.button(QMessageBox.Yes)
+        noButton = msg.button(QMessageBox.No)
+        okButton.setText('si')
+        retval = msg.exec_()
+        if(msg.clickedButton() == okButton):
+            print('cancellazione confermata')
+            postbody = {'PIVA':cliente['PIVA']}
+            res = self.controller.Delete(postbody)
+            print(res)
+            self.RefreshLista = ListinoPrezziC()
+            self.RefreshLista.show()
+            self.close()
+        else:
+            print('cancellazione annullata')   
+    #Viene chiamata la funzione per visualizzare i dettagli di quell'elemento
+    #def Visualizza(self,elem):
+    #    print(elem)
+    #    self.Dettaglio = Ui_Cliente(str(elem['PIVA']))
+    #    self.Dettaglio.show()
+
+    #Viene settata l'intestazione della finestra
+    def AddTableHeader(self,text,pos,width):
+        self.header1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.sizePolicy.setHeightForWidth(self.header1.sizePolicy().hasHeightForWidth())
+        self.header1.setSizePolicy(self.sizePolicy)
+        self.header1.setMinimumSize(QtCore.QSize(width, 30))
+        self.header1.setObjectName("header1")
+        self.header1.setText(self._translate("ListaCliente",text))
+        self.gridLayout.addWidget(self.header1, 0, pos, 1, 1)
+    
+    #Questa funzione aggiunge le label alla finestra
+    def AddTableContent(self,x,y,content,width):
+        self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(self.sizePolicy)
+        self.label_3.setMinimumSize(QtCore.QSize(width, 30))
+        self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.label_3.setObjectName("label_3")
+        self.label_3.setText(self._translate("ListaCliente","   "+ content))
+        self.gridLayout.addWidget(self.label_3, y, x, 1, 1)
+
+    #Questa funzione aggiunge un bottone a cui viene collegata una particolare funzione, da attivare quando 
+    # il bottone viene premuto
+    def AddOperationButton(self,x,y,buttonDict,function):
+        OperationButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
+        OperationButton.setStyleSheet(buttonDict["StyleSheet"])
+        OperationButton.setObjectName("OperationButton")
+        OperationButton.setText(self._translate("ListaCliente", buttonDict["name"]))        
+        OperationButton.clicked.connect(function)
+        self.gridLayout.addWidget(OperationButton, y+1, x, 1, 1)
+        return OperationButton
+
+    def Modify(self,elem):
+        print(elem)
+        print("not yet defined..")
+    
+    #Questa funzione aggiunge una scroll area
+    def AddScrollArea(self):
+        self.scrollArea = QtWidgets.QScrollArea(self)
         self.scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
@@ -38,91 +151,19 @@ class Ui_ListaListinoPrezzi(QWidget):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName("gridLayout")
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+
+    # In questa funzione viene impostata la label che si trova sopra la lista
+    def AddLabelTitolo(self,text):
+        self.label = QtWidgets.QLabel(self)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        _translate = QtCore.QCoreApplication.translate
-
-        self.label_head1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        sizePolicy.setHeightForWidth(self.label_head1.sizePolicy().hasHeightForWidth())
-        self.label_head1.setSizePolicy(sizePolicy)
-        self.label_head1.setMinimumSize(QtCore.QSize(150, 30))
-        self.label_head1.setObjectName("label_head1")
-        self.label_head1.setText(_translate("ListaListinoPrezzi","Modello"))
-        self.gridLayout.addWidget(self.label_head1, 0, 1, 1, 1)
-
-        self.label_head1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        sizePolicy.setHeightForWidth(self.label_head1.sizePolicy().hasHeightForWidth())
-        self.label_head1.setSizePolicy(sizePolicy)
-        self.label_head1.setMinimumSize(QtCore.QSize(100, 30))
-        self.label_head1.setObjectName("label_head1")
-        self.label_head1.setText(_translate("ListaListinoPrezzi","Valore Cliente"))
-        self.gridLayout.addWidget(self.label_head1, 0, 2, 1, 1)
-
-        self.label_head1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        sizePolicy.setHeightForWidth(self.label_head1.sizePolicy().hasHeightForWidth())
-        self.label_head1.setSizePolicy(sizePolicy)
-        self.label_head1.setMinimumSize(QtCore.QSize(100, 30))
-        self.label_head1.setObjectName("label_head1")
-        self.label_head1.setText(_translate("ListaListinoPrezzi","Valore Dipendente"))
-        self.gridLayout.addWidget(self.label_head1, 0, 3, 1, 1)
-
-
-        
-        for a in range(0,len(self.ListaElementi)):
-
-            self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-            self.label_3.setSizePolicy(sizePolicy)
-            self.label_3.setMinimumSize(QtCore.QSize(150, 30))
-            self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
-            self.label_3.setObjectName("label_3")
-            self.label_3.setText(_translate("ListaListinoPrezzi","   "+ self.ListaElementi[a]['modello']))
-            self.gridLayout.addWidget(self.label_3, a+1, 1, 1, 1)
-
-            self.label_4 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-            self.label_4.setSizePolicy(sizePolicy)
-            self.label_4.setMinimumSize(QtCore.QSize(100, 30))
-            self.label_4.setStyleSheet("background-color: rgb(255, 255, 255);")
-            self.label_4.setObjectName("label_4")
-            self.label_4.setText(_translate("ListaListinoPrezzi"," "+self.ListaElementi[a]['valore_cliente']+"€"))
-            self.gridLayout.addWidget(self.label_4, a+1, 2, 1, 1)
-
-            self.label_5 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
-            self.label_5.setSizePolicy(sizePolicy)
-            self.label_5.setMinimumSize(QtCore.QSize(100, 30))
-            self.label_5.setStyleSheet("background-color: rgb(255, 255, 255);")
-            self.label_5.setObjectName("label_5")
-            self.label_5.setText(_translate("ListaListinoPrezzi"," "+self.ListaElementi[a]['valore_dipendente']+"€"))
-            self.gridLayout.addWidget(self.label_5, a+1, 3, 1, 1)
-
-            self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-            self.pushButton.setStyleSheet("background-color: rgb(255, 0, 0);\n"
-                                                "color: rgb(255, 255, 255);")
-            self.pushButton.setObjectName("pushButton")
-            self.gridLayout.addWidget(self.pushButton, a+1, 4, 1, 1)
-
-            self.pushButton_2 = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
-            self.pushButton_2.setStyleSheet("background-color: rgb(0, 0, 255);\n"
-                                            "color: rgb(255, 255, 255);")
-            self.pushButton_2.setObjectName("pushButton_2")
-            self.gridLayout.addWidget(self.pushButton_2, a+1, 5, 1, 1)
-
-            self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-            self.verticalLayout.addWidget(self.scrollArea)
-            
-            
-            self.pushButton.setText(_translate("ListaListinoPrezzi", "Cancella Elemento"))
-            self.pushButton_2.setText(_translate("ListaListinoPrezzi", "Modifica Elemento"))
-
-
-        self.retranslateUi(ListaListinoPrezzi)
-        QtCore.QMetaObject.connectSlotsByName(ListaListinoPrezzi)
-
-    def retranslateUi(self, ListaListinoPrezzi):
-        _translate = QtCore.QCoreApplication.translate
-        ListaListinoPrezzi.setWindowTitle(_translate("ListaListinoPrezzi", "ListaListinoPrezzi"))
-        self.label.setText(_translate("ListaListinoPrezzi", "Lista dei ListinoPrezzi"))
-        
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        self.label.setMinimumSize(QtCore.QSize(200, 50))
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
+        self.label.setText(self._translate("ModificaDipAng", text))
