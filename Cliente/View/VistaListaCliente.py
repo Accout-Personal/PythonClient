@@ -82,7 +82,7 @@ class Ui_ListaCliente(QWidget):
 
         QtCore.QMetaObject.connectSlotsByName(ListaCliente)
 
-
+    #chiamata alla funzione per la cancellazione dell'elemento
     def deleteConfirm(self,cliente):
 
         msg = QMessageBox()
@@ -103,12 +103,13 @@ class Ui_ListaCliente(QWidget):
             self.close()
         else:
             print('cancellazione annullata')   
-
+    #Viene chiamata la funzione per visualizzare i dettagli di quell'elemento
     def Visualizza(self,elem):
         print(elem)
         self.Dettaglio = Ui_Cliente(str(elem['PIVA']))
         self.Dettaglio.show()
-    
+
+    #Viene settata l'intestazione della finestra
     def AddTableHeader(self,text,pos,width):
         self.header1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         self.sizePolicy.setHeightForWidth(self.header1.sizePolicy().hasHeightForWidth())
@@ -118,6 +119,7 @@ class Ui_ListaCliente(QWidget):
         self.header1.setText(self._translate("ListaCliente",text))
         self.gridLayout.addWidget(self.header1, 0, pos, 1, 1)
     
+    #Questa funzione aggiunge le label alla finestra
     def AddTableContent(self,x,y,content,width):
         self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         self.sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
@@ -128,6 +130,8 @@ class Ui_ListaCliente(QWidget):
         self.label_3.setText(self._translate("ListaCliente","   "+ content))
         self.gridLayout.addWidget(self.label_3, y, x, 1, 1)
 
+    #Questa funzione aggiunge un bottone a cui viene collegata una particolare funzione, da attivare quando 
+    # il bottone viene premuto
     def AddOperationButton(self,x,y,buttonDict,function):
         OperationButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         OperationButton.setStyleSheet(buttonDict["StyleSheet"])
@@ -141,6 +145,7 @@ class Ui_ListaCliente(QWidget):
         print(elem)
         print("not yet defined..")
     
+    #Questa funzione aggiunge una scroll area
     def AddScrollArea(self):
         self.scrollArea = QtWidgets.QScrollArea(self)
         self.scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
@@ -151,7 +156,8 @@ class Ui_ListaCliente(QWidget):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.gridLayout = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout.setObjectName("gridLayout")
-    
+
+    # In questa funzione viene impostata la label che si trova sopra la lista
     def AddLabelTitolo(self,text):
         self.label = QtWidgets.QLabel(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
