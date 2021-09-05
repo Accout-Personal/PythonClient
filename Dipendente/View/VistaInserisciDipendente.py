@@ -95,6 +95,7 @@ class Ui_InserisciDip(QWidget):
         self.pushButton.setText(self._translate("InsDipendente", text))
         self.verticalLayout_2.addWidget(self.pushButton, 0, QtCore.Qt.AlignHCenter)
 
+    #Aggiunge un campo di campo inseribile all'utente
     def AddEdit(self):
         textEdit_2 = QtWidgets.QTextEdit(self.scrollAreaWidgetContents)
         self.sizePolicyTextEdit.setHeightForWidth(textEdit_2.sizePolicy().hasHeightForWidth())
@@ -109,6 +110,7 @@ class Ui_InserisciDip(QWidget):
 
         return textEdit_2
 
+    #Aggiunge un etichetta descrittiva del campo
     def AddLabelCampo(self,text):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
