@@ -28,7 +28,7 @@ class Ui_ListaAggiornamenti(QWidget):
         self.sizePolicy.setHorizontalStretch(0)
         self.sizePolicy.setVerticalStretch(0)
 
-        self.AddLabelTitolo("Lista dei Clienti")
+        self.AddLabelTitolo("Lista Aggiornamenti")
 
         self.AddScrollArea()
 
@@ -47,7 +47,6 @@ class Ui_ListaAggiornamenti(QWidget):
             
             #Aggiunge l'intestazione della tabella
             self.AddTableHeader(self.traduzione[self.listAttr[attr]],attr,sizes[attr])
-            print(self.chiamata[1]['dipendente']['CF'])
 
             #aggiunge elemento nella tabella
             for a in range(0,len(self.chiamata)):
