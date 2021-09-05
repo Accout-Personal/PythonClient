@@ -122,7 +122,8 @@ class Ui_VistaLog(QWidget):
         self.pushButton.setText(_translate("VistaLog", "Invio"))
 
     def login(self):
-        auth = {"username": self.lineEdit.text(),"password": self.lineEdit_2.text()}
+        #auth = {"username": self.lineEdit.text(),"password": self.lineEdit_2.text()}
+        auth = {"username": "user4","password": "password"}
         self.credenziali = {"Accept": env.impostazione}
         response = requests.post(env.host + "/progettolaurea/public/api/login", data=auth, headers=self.credenziali)
         if response.ok:
