@@ -69,40 +69,8 @@ class Ui_InserisciDip(QWidget):
             
             self.AddLabelCampo(self.traduzione[a])
 
-            #self.horizontalLayout = QtWidgets.QHBoxLayout()
-            #self.horizontalLayout.setObjectName("horizontalLayout")
-            #self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            #sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-            #self.label_3.setSizePolicy(sizePolicy)
-            #self.label_3.setMinimumSize(QtCore.QSize(300, 0))
-            #self.label_3.setMaximumSize(QtCore.QSize(325, 28))
-            #self.label_3.setFont(font)
-            ##self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
-            #self.label_3.setText("")
-            #self.label_3.setObjectName("label_3")
-            #self.horizontalLayout.addWidget(self.label_3)
-            #self.label_3.setText(self._translate("InsDipendente", "  "+str(self.traduzione[a])))
-
-
             self.listaInput[a] = self.AddEdit()
-            #self.textEdit_2 = QtWidgets.QTextEdit(self.scrollAreaWidgetContents)
-            #sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-            #sizePolicy.setHorizontalStretch(0)
-            #sizePolicy.setVerticalStretch(0)
-            #sizePolicy.setHeightForWidth(self.textEdit_2.sizePolicy().hasHeightForWidth())
-            #self.textEdit_2.setSizePolicy(sizePolicy)
-            #self.textEdit_2.setMinimumSize(QtCore.QSize(300, 0))
-            #self.textEdit_2.setMaximumSize(QtCore.QSize(500, 30))
-            #font = QtGui.QFont()
-            #font.setPointSize(9)
-            #self.textEdit_2.setFont(font)
-            #self.textEdit_2.setStyleSheet("background-color: rgb(255, 255, 255);")
-            #self.textEdit_2.setObjectName("textEdit")
-            #self.horizontalLayout.addWidget(self.textEdit_2)
-            #self.verticalLayout_2.addLayout(self.horizontalLayout)
-            #self._translate = QtCore.QCoreApplication.translate
-            #
-            #self.listaInput[a]=self.textEdit_2
+
 
         self.AddButton("Inserisci",self.Insert)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
