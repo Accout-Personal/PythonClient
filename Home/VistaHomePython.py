@@ -11,7 +11,9 @@
 from Aggiornamento.View.AggiornamentoV import Ui_ListaAggiornamenti
 from VistaStrategiche.VistaStrategiche import Ui_VistaStrategiche
 from Dipendente.View.VistaListaDipendenti import Ui_ListaDipendenti
+
 from VistaAnagrafica.VistaAnagrafica import VistaAnagrafica
+from VistaLavorazione.VistaLavorazione import VistaLavorazione
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 
@@ -81,6 +83,7 @@ class Ui_HomeClass(QWidget):
         self.label.setText(_translate("HomeClass", "Welcome Home"))
         
         self.pushButton_2.setText(_translate("HomeClass", "Vista Lavorazione"))
+        self.pushButton_2.clicked.connect(self.GoVistaLavorazione)
         self.pushButton_3.setText(_translate("HomeClass", "Vista Strategiche"))
         self.pushButton_3.clicked.connect(self.GoVistaStrategiche)
 
@@ -92,4 +95,8 @@ class Ui_HomeClass(QWidget):
     def GoVistaStrategiche(self):
         self.Anagrafica = Ui_ListaAggiornamenti()
         self.Anagrafica.show()
+    
+    def GoVistaLavorazione(self):
+        self.Lavorazione = VistaLavorazione()
+        self.Lavorazione.show()
         self.close()

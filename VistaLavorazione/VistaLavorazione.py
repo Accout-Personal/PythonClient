@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'VistaAnagrafica.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
@@ -15,46 +8,44 @@ from Cliente.View.VistaListaCliente import Ui_ListaCliente
 from Dipendente.View.VistaInserisciDipendente import Ui_InserisciDip
 
 
-class VistaAnagrafica(QWidget):
+class VistaLavorazione(QWidget):
     def __init__(self, parent=None):
-        super(VistaAnagrafica, self).__init__(parent)
+        super(VistaLavorazione, self).__init__(parent)
         self._translate = QtCore.QCoreApplication.translate
+        _translate = QtCore.QCoreApplication.translate
         HomeClass = self
-        HomeClass.setObjectName("VistaAnagrafica")
+        HomeClass.setObjectName("VistaLavorazione")
         HomeClass.resize(756, 585)
+        HomeClass.setWindowTitle(_translate("HomeClass", "HomeClass"))
         self.verticalLayout = QtWidgets.QVBoxLayout(HomeClass)
         self.verticalLayout.setObjectName("verticalLayout")
 
         self.AddScrollArea()
 
-        self.AddLabelTitolo("Vista Anagrafica")
+        self.AddLabelTitolo("Vista Lavorazione")
 
-        self.AddSectionLabel(1,"Dipendenti")
+        self.AddSectionLabel(1,"Commessse")
         self.horizontalLayout = self.AddHorizontalLayout(0,2)
-        self.AddButtonInLayout(self.horizontalLayout,"Lista dipendenti",self.Go_ListaDipendenti)     
-        self.AddButtonInLayout(self.horizontalLayout,"Inserisci un dipendente",self.Go_NewDipendente)   
+        self.AddButtonInLayout(self.horizontalLayout,"Lista commesse",self.Go_ListaCommesse)     
+        self.AddButtonInLayout(self.horizontalLayout,"Inserisci una commessa",self.Go_NewCommesse)   
 
-        self.AddSectionLabel(3,"Clienti")
+        self.AddSectionLabel(3,"Documento di Trasporto (DDT)")
         self.horizontalLayout_2 = self.AddHorizontalLayout(0,4)
-        self.AddButtonInLayout(self.horizontalLayout_2,"Lista clienti",self.Go_ListaClienti)     
-        self.AddButtonInLayout(self.horizontalLayout_2,"Inserisci un cliente",self.Go_NewCliente)     
+        self.AddButtonInLayout(self.horizontalLayout_2,"Lista DDT",self.Go_ListaDDT)     
+        self.AddButtonInLayout(self.horizontalLayout_2,"Inserisci un DDT",self.Go_NewDDT)     
 
-        self.AddSectionLabel(5,"Listino Prezzi")
+        self.AddSectionLabel(5,"Suddivisione Lavoro")
         self.horizontalLayout_3 = self.AddHorizontalLayout(0,6)
-        self.AddButtonInLayout(self.horizontalLayout_3,"Lista modelli",self.Go_ListinoPrezzi)     
-        self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un modello",self.Go_NewPrezzo)     
+        self.AddButtonInLayout(self.horizontalLayout_3,"Lista lavoro",self.Go_ListaLavoro)     
+        self.AddButtonInLayout(self.horizontalLayout_3,"Assegna un lavoro",self.Go_NewLavoro)     
 
-        self.AddSectionLabel(7,"Macchine Pubbliche")
-        self.horizontalLayout_3 = self.AddHorizontalLayout(0,8)
-        self.AddButtonInLayout(self.horizontalLayout_3,"Lista macchinari",self.Go_ListaMacchinari)     
-        self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un macchinario",self.Go_NewMacchinario)   
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
         QtCore.QMetaObject.connectSlotsByName(HomeClass)
 
-        
     def AddScrollArea(self):
+
         self.scrollArea = QtWidgets.QScrollArea(self)
         self.scrollArea.setMinimumSize(QtCore.QSize(400, 200))
         self.scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
@@ -118,30 +109,30 @@ class VistaAnagrafica(QWidget):
         self.label.setText(self._translate("HomeClass", text))
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1, QtCore.Qt.AlignHCenter)
 
-    def Go_ListaDipendenti(self):
-        self.ListaDipendeti = Ui_ListaDipendenti()
-        self.ListaDipendeti.show()
+    def Go_NewDDT(self):
+        print('go new ddt')
+
+    def Go_ListaCommesse(self):
+        print('go lista commesse')
+        #self.ListaCommesse = Ui_ListaDipendenti()
+        #self.ListaCommesse.show()
+    def Go_NewCommesse(self):
+        print('Go New Commesse')
+
+    def Go_ListaLavorazione(self):
+        print('go lista lavorazione')
+        #self.ListaLavorazione = Ui_ListaListaLavorazione()
+        #self.ListaLavorazione.show()
+
+    def Go_ListaDDT(self):
+        print('go lista DDT')
+        #self.ListaClienti = Ui_ListaCliente()
+        #self.ListaClienti.show()
+
+    def Go_ListaLavoro(self):
+        print('go lista lavoro')
+        #self.InserisciDipendente = Ui_InserisciDip()
+        #self.InserisciDipendente.show()
     
-    def Go_NewDipendente(self):
-        self.InserisciDipendente = Ui_InserisciDip()
-        self.InserisciDipendente.show()
-
-    def Go_ListinoPrezzi(self):
-        self.ListinoPrezzi = Ui_ListaListinoPrezzi()
-        self.ListinoPrezzi.show()
-
-    def Go_NewPrezzo(self):
-        print('Go new modello')
-
-    def Go_NewCliente(self):
-        print('Go new clienti')
-
-    def Go_ListaClienti(self):
-        self.ListaClienti = Ui_ListaCliente()
-        self.ListaClienti.show()
-    
-    def Go_NewMacchinario(self):
-        print('Go new macchinario')
-    
-    def Go_ListaMacchinari(self):
-        print('Go lista macchinari')
+    def Go_NewLavoro(self):
+        print('Go new lavoro')
