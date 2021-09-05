@@ -104,12 +104,13 @@ class Ui_InserisciDip(QWidget):
             #
             #self.listaInput[a]=self.textEdit_2
 
-        self.AddButton("Inserisci")
+        self.AddButton("Inserisci",self.Insert)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
         QtCore.QMetaObject.connectSlotsByName(InsDipendente)
 
-    def AddButton(self,text):
+    #Aggiunge un pulsante con dato testo e funzione
+    def AddButton(self,text,function):
         self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -122,7 +123,7 @@ class Ui_InserisciDip(QWidget):
         self.pushButton.setFont(font)
         self.pushButton.setStyleSheet("background-color: rgb(85, 255, 255);\n color: rgb(247, 247, 247);")
         self.pushButton.setObjectName("pushButton")
-        self.pushButton.clicked.connect(self.Insert)
+        self.pushButton.clicked.connect(function)
         self.pushButton.setText(self._translate("InsDipendente", text))
         self.verticalLayout_2.addWidget(self.pushButton, 0, QtCore.Qt.AlignHCenter)
 
