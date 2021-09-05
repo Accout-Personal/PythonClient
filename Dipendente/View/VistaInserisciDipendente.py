@@ -162,6 +162,7 @@ class Ui_InserisciDip(QWidget):
         self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
         self.label.setText(self._translate("ModificaDipAng", text))
 
+    #Funzione dell'inserimento
     def Insert(self):
         for a in self.listaInput:
             self.body[a] = self.listaInput[a].toPlainText().replace('  ', '')
@@ -178,7 +179,7 @@ class Ui_InserisciDip(QWidget):
             QMessageBox.about(self, "Esito operazione","Operazione completata con successo")
             self.close()
 
-        #Aggiunge un area scroll
+    #Aggiunge un area scroll
     def AddScrollAreaLayout(self):
         self.scrollArea = QtWidgets.QScrollArea(self)
         self.scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
