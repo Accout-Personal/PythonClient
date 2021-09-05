@@ -56,8 +56,8 @@ class VistaFinanziari(QWidget):
 
         self.AddSectionLabel(11,"Retribuzione variabile")
         self.horizontalLayout_3 = self.AddHorizontalLayout(0,12)
-        self.AddButtonInLayout(self.horizontalLayout_3,"Lista macchinari",self.Go_ListaRetribuzioni)     
-        self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un macchinario",self.Go_NewRetribuzione) 
+        self.AddButtonInLayout(self.horizontalLayout_3,"Lista retribuzione",self.Go_ListaRetribuzioni)     
+        self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un retribuzione",self.Go_NewRetribuzione) 
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
