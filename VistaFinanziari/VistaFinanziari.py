@@ -31,33 +31,33 @@ class VistaFinanziari(QWidget):
 
         self.AddSectionLabel(1,"Contabili")
         self.horizontalLayout = self.AddHorizontalLayout(0,2)
-        self.AddButtonInLayout(self.horizontalLayout,"Lista dipendenti",self.Go_ListaDipendenti)     
-        self.AddButtonInLayout(self.horizontalLayout,"Inserisci un contabile",self.Go_NewDipendente)   
+        self.AddButtonInLayout(self.horizontalLayout,"Lista contabile",self.Go_ListaContabile)     
+        #self.AddButtonInLayout(self.horizontalLayout,"Inserisci un contabile",self.Go_NewDipendente)   
 
         self.AddSectionLabel(3,"Altra Spesa")
         self.horizontalLayout_2 = self.AddHorizontalLayout(0,4)
-        self.AddButtonInLayout(self.horizontalLayout_2,"Lista clienti",self.Go_ListaClienti)     
-        self.AddButtonInLayout(self.horizontalLayout_2,"Inserisci un cliente",self.Go_NewCliente)     
+        self.AddButtonInLayout(self.horizontalLayout_2,"Lista spese",self.Go_ListaSpese)     
+        self.AddButtonInLayout(self.horizontalLayout_2,"Inserisci una spesa",self.Go_NewSpese)     
 
         self.AddSectionLabel(5,"Entrata")
         self.horizontalLayout_3 = self.AddHorizontalLayout(0,6)
-        self.AddButtonInLayout(self.horizontalLayout_3,"Lista modelli",self.Go_ListinoPrezzi)     
-        self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un modello",self.Go_NewPrezzo)     
+        self.AddButtonInLayout(self.horizontalLayout_3,"Lista entrate",self.Go_ListaEntrate)     
+        self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un entrata",self.Go_NewEntrata)     
 
         self.AddSectionLabel(7,"Uscita Effettuata")
         self.horizontalLayout_3 = self.AddHorizontalLayout(0,8)
-        self.AddButtonInLayout(self.horizontalLayout_3,"Lista macchinari",self.Go_ListaMacchinari)     
-        self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un macchinario",self.Go_NewMacchinario)   
+        self.AddButtonInLayout(self.horizontalLayout_3,"Lista uscite effettuate",self.Go_ListaUsciteEffettuate)     
+        self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un uscita effettuata",self.Go_NewUscitaEffettuata)   
 
         self.AddSectionLabel(9,"Stipendio")
         self.horizontalLayout_3 = self.AddHorizontalLayout(0,10)
-        self.AddButtonInLayout(self.horizontalLayout_3,"Lista macchinari",self.Go_ListaMacchinari)     
-        self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un macchinario",self.Go_NewMacchinario) 
+        self.AddButtonInLayout(self.horizontalLayout_3,"Lista stipendio",self.Go_ListaStipendio)     
+        self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un stipendio",self.Go_NewStipendio) 
 
         self.AddSectionLabel(11,"Retribuzione variabile")
         self.horizontalLayout_3 = self.AddHorizontalLayout(0,12)
-        self.AddButtonInLayout(self.horizontalLayout_3,"Lista macchinari",self.Go_ListaMacchinari)     
-        self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un macchinario",self.Go_NewMacchinario) 
+        self.AddButtonInLayout(self.horizontalLayout_3,"Lista macchinari",self.Go_ListaRetribuzioni)     
+        self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un macchinario",self.Go_NewRetribuzione) 
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
@@ -128,20 +128,42 @@ class VistaFinanziari(QWidget):
         self.label.setText(self._translate("HomeClass", text))
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1, QtCore.Qt.AlignHCenter)
 
-    def Go_ListaDipendenti(self):
-        self.ListaDipendeti = Ui_ListaDipendenti()
-        self.ListaDipendeti.show()
+    def Go_NewRetribuzione(self):
+        print("Go_NewRetribuzione")
+
+    def Go_ListaRetribuzioni(self):
+        print("Go_ListaRetribuzioni")
+
+    def Go_NewStipendio(self):
+        print("Go_NewStipendio")
+
+    def Go_ListaStipendio(self):
+        print("Go_ListaStipendio")
+
+    def Go_NewUscitaEffettuata(self):
+        print("Go_NewUscitaEffettuata")
+
+    def Go_ListaUsciteEffettuate(self):
+        print("Go_ListaUsciteEffettuate")
+
+    def Go_ListaContabile(self):
+        print('Go listaContabile')
+        #self.ListaDipendeti = Ui_ListaDipendenti()
+        #self.ListaDipendeti.show()
     
-    def Go_NewDipendente(self):
-        self.InserisciDipendente = Ui_InserisciDip()
-        self.InserisciDipendente.show()
+    def Go_ListaEntrate(self):
+        print("Go_ListaEntrate")
 
-    def Go_ListinoPrezzi(self):
-        self.ListinoPrezzi = Ui_ListaListinoPrezzi()
-        self.ListinoPrezzi.show()
+    def Go_NewSpese(self):
+        print('Go_NewSpese')
 
-    def Go_NewPrezzo(self):
-        print('Go new modello')
+    def Go_ListaSpese(self):
+        print('Go_ListaSpese')
+        #self.ListinoPrezzi = Ui_ListaListinoPrezzi()
+        #self.ListinoPrezzi.show()
+
+    def Go_NewEntrata(self):
+        print('Go_NewEntrata')
 
     def Go_NewCliente(self):
         print('Go new clienti')
