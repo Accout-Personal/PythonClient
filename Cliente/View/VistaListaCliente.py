@@ -30,7 +30,7 @@ class Ui_ListaCliente(QWidget):
         self.sizePolicy.setVerticalStretch(0)
 
         self.AddLabelTitolo("Lista dei Clienti")
-
+        
         self.AddScrollArea()
 
         self.traduzione = {
