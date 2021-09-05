@@ -65,47 +65,56 @@ class Ui_ModificaDipAng(QWidget):
             self.viewList.pop(elem)
         
         #settare size policy per tutti elementi
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        font = QtGui.QFont()
-        font.setPointSize(9)
+        self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.sizePolicy.setHorizontalStretch(0)
+        self.sizePolicy.setVerticalStretch(0)
+        self.font = QtGui.QFont()
+        self.font.setPointSize(9)
         self.listaInput = {}
         for a in self.viewList:
             
             #Crea il label del campo
-            self.horizontalLayout = QtWidgets.QHBoxLayout()
-            self.horizontalLayout.setObjectName("horizontalLayout")
-            self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-            self.label_3.setSizePolicy(sizePolicy)
-            self.label_3.setMinimumSize(QtCore.QSize(300, 0))
-            self.label_3.setMaximumSize(QtCore.QSize(325, 28))
-            self.label_3.setFont(font)
-            self.label_3.setText("")
-            self.label_3.setObjectName("label_3")
-            self.label_3.setText(self._translate("ModificaDipAng", "  "+str(self.traduzione[a])))
-            self.horizontalLayout.addWidget(self.label_3)
-
-            #Crea il campo per la modifica
-            self.textEdit_2 = QtWidgets.QTextEdit(self.scrollAreaWidgetContents)
-            sizePolicy.setHeightForWidth(self.textEdit_2.sizePolicy().hasHeightForWidth())
-            self.textEdit_2.setSizePolicy(sizePolicy)
-            self.textEdit_2.setMinimumSize(QtCore.QSize(300, 0))
-            self.textEdit_2.setMaximumSize(QtCore.QSize(500, 30))
-            self.textEdit_2.setFont(font)
-            self.textEdit_2.setStyleSheet("background-color: rgb(255, 255, 255);")
-            self.textEdit_2.setObjectName("textEdit")
-            self.horizontalLayout.addWidget(self.textEdit_2)
-            self.verticalLayout_2.addLayout(self.horizontalLayout)
-            self._translate = QtCore.QCoreApplication.translate
-            self.textEdit_2.setText(self._translate("ModificaDipAng", "  "+str(self.chiamata[a])))
-            self.listaInput[a]=self.textEdit_2
+            self.AddLabel(self.traduzione[a])
             
+            #Crea il campo per la modifica
+            self.listaInput[a] = self.AddField(self.chiamata[a])
+
         #Aggiunge il pulsante per la modifica
         self.pushButton = self.AddSubmitButton("Modifica")
         self.pushButton.clicked.connect(self.Modify)
 
+    #Aggiunge il campo di inserimento e ritona i suoi valori
+    def AddField(self,text):
+        textEdit_2 = QtWidgets.QTextEdit(self.scrollAreaWidgetContents)
+        self.sizePolicy.setHeightForWidth(textEdit_2.sizePolicy().hasHeightForWidth())
+        textEdit_2.setSizePolicy(self.sizePolicy)
+        textEdit_2.setMinimumSize(QtCore.QSize(300, 0))
+        textEdit_2.setMaximumSize(QtCore.QSize(500, 30))
+        textEdit_2.setFont(self.font)
+        textEdit_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        textEdit_2.setObjectName("textEdit")
+        self.horizontalLayout.addWidget(textEdit_2)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        self._translate = QtCore.QCoreApplication.translate
+        textEdit_2.setText(self._translate("ModificaDipAng", "  "+str(text)))
+        return textEdit_2
+    
+    #Aggiunge un label descrittivo
+    def AddLabel(self,text):
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.sizePolicy.setHeightForWidth(label_3.sizePolicy().hasHeightForWidth())
+        label_3.setSizePolicy(self.sizePolicy)
+        label_3.setMinimumSize(QtCore.QSize(300, 0))
+        label_3.setMaximumSize(QtCore.QSize(325, 28))
+        label_3.setFont(self.font)
+        label_3.setText("")
+        label_3.setObjectName("label_3")
+        label_3.setText(self._translate("ModificaDipAng", "  "+str(text)))
+        self.horizontalLayout.addWidget(label_3)
+
+    #Operazione di modifica in seguito alla conferma
     def Modify(self):
         for a in self.listaInput:
             self.body[a] = self.listaInput[a].toPlainText().replace('  ', '')
@@ -124,6 +133,7 @@ class Ui_ModificaDipAng(QWidget):
             self.OpenLista.show()
             self.close()
 
+    #Aggiunge il label titolo della finestra
     def AddLabelTitolo(self,text):
         self.label = QtWidgets.QLabel(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
