@@ -42,7 +42,7 @@ class Ui_ListaAggiornamenti(QWidget):
 
         self.listAttr = ['CF','nome_cognome','data','quantita','magazzino']
         #le dimensioni delle colonne
-        sizes = [150,100,85,85]
+        sizes = [150,100,85,50,85]
         for attr in range(len(self.listAttr)):
             
             #Aggiunge l'intestazione della tabella
@@ -51,7 +51,7 @@ class Ui_ListaAggiornamenti(QWidget):
 
             #aggiunge elemento nella tabella
             for a in range(0,len(self.chiamata)):
-                if(attr == 1):
+                if(self.listAttr[attr] == "CF" or self.listAttr[attr] == "nome_cognome"):
                     self.AddTableContent(attr,a+1,self.chiamata[a]['dipendente'][self.listAttr[attr]],sizes[attr])
                 else:
                     self.AddTableContent(attr,a+1,self.chiamata[a][self.listAttr[attr]],sizes[attr])
