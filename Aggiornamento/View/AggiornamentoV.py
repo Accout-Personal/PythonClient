@@ -42,7 +42,7 @@ class Ui_ListaAggiornamenti(QWidget):
 
         self.listAttr = ['CF','nome_cognome','data','quantita','magazzino']
         #le dimensioni delle colonne
-        sizes = [150,100,85,50,85]
+        sizes = [100,100,85,50,100]
         for attr in range(len(self.listAttr)):
             
             #Aggiunge l'intestazione della tabella
