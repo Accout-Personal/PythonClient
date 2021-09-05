@@ -17,8 +17,6 @@ class Ui_Cliente(QWidget):
     def __init__(self,CF, parent=None):
         super(Ui_Cliente, self).__init__(parent)
         self._translate = QtCore.QCoreApplication.translate
-        
-        
         self.cf = CF
         VisualizzaAnagDip = self
         self.controller = ClienteC()
@@ -60,27 +58,14 @@ class Ui_Cliente(QWidget):
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         for a in self.viewList:
-            self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-            self.label_2.setSizePolicy(sizePolicy)
-            self.label_2.setMinimumSize(QtCore.QSize(0, 20))
-            self.label_2.setStyleSheet("background-color: rgb(255, 255, 255);")
-            self.label_2.setObjectName("label_2")
-            self.gridLayout.addWidget(self.label_2, self.count, 0, 1, 1)
-            self.label_2.setText(self._translate("VisualizzaAnagDip", "  "+str(self.traduzione[a])))
+
+            #inserimento del label
+            self.AddElement(self.gridLayout,self.traduzione[a],0,self.count)
+            #inserimento del contenuto
+            self.AddElement(self.gridLayout,self.chiamata[a],1,self.count)
+            self.count += 1
 
             
-            self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-            self.label_3.setSizePolicy(sizePolicy)
-            self.label_3.setMinimumSize(QtCore.QSize(0, 20))
-            self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
-            self.label_3.setObjectName("label_3")
-            self.gridLayout.addWidget(self.label_3, self.count, 1, 1, 1)
-            self._translate = QtCore.QCoreApplication.translate
-            
-            self.label_3.setText(self._translate("VisualizzaAnagDip", "  "+str(self.chiamata[a])))
-            self.count += 1
 
         #Sezione del telefono
         self.telefono = copy.deepcopy(self.chiamata['telefono'])
@@ -95,14 +80,8 @@ class Ui_Cliente(QWidget):
                 self.addTableHead(self.traduzione[self.telefono_attr[a]],self.TelefonoGridLayout,a,self.scrollAreaWidgetContents)
                 self.count = 1
                 for numero in self.telefono:
-                    self.label_numero = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-                    sizePolicy.setHeightForWidth(self.label_numero.sizePolicy().hasHeightForWidth())
-                    self.label_numero.setSizePolicy(sizePolicy)
-                    self.label_numero.setMinimumSize(QtCore.QSize(0, 20))
-                    self.label_numero.setStyleSheet("background-color: rgb(255, 255, 255);")
-                    self.label_numero.setObjectName("label_numero")
-                    self.TelefonoGridLayout.addWidget(self.label_numero, self.count, a, 1, 1)
-                    self.label_numero.setText(self._translate("VisualizzaAnagDip", "  "+str(numero[self.telefono_attr[a]])))
+                    #Aggiunge il numero telefono in colonna
+                    self.AddElement(self.TelefonoGridLayout,numero[self.telefono_attr[a]],0,self.count)
                     self.count += 1
 
         #sezione delle commesse
@@ -125,18 +104,31 @@ class Ui_Cliente(QWidget):
                 #Popolazione della tabella
                 for commessa in self.commessa:
                     #print(commessa)
-                    self.label_commessa = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-                    sizePolicy.setHeightForWidth(self.label_commessa.sizePolicy().hasHeightForWidth())
-                    self.label_commessa.setSizePolicy(sizePolicy)
-                    self.label_commessa.setMinimumSize(QtCore.QSize(0, 20))
-                    self.label_commessa.setStyleSheet("background-color: rgb(255, 255, 255);")
-                    self.label_commessa.setObjectName("label_commessa")
-                    self.CommesaGridLayout.addWidget(self.label_commessa, self.count, a, 1, 1)
-                    self.label_commessa.setText(self._translate("CommessaCliente", "  "+str(commessa[self.commessa_attr[a]])))
+
+                    #popola elemento nella tabella
+                    self.AddElement(self.CommesaGridLayout,commessa[self.commessa_attr[a]],a,self.count)
                     self.count += 1
+                    
             
         QtCore.QMetaObject.connectSlotsByName(VisualizzaAnagDip)
 
+    #Questa funzione aggiunge un label al GridLayout nella posizione x(colonna) e y(riga)
+    def AddElement(self,gridLayout,text,x,y):
+        gridLayout
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        sizePolicy.setHeightForWidth(label_2.sizePolicy().hasHeightForWidth())
+        label_2.setSizePolicy(sizePolicy)
+        label_2.setMinimumSize(QtCore.QSize(0, 20))
+        label_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        label_2.setObjectName("label_2")
+        #self.gridLayout.addWidget(label_2, y, x, 1, 1)
+        gridLayout.addWidget(label_2, y, x, 1, 1)
+        label_2.setText(self._translate("VisualizzaAnagDip", "  "+str(text)))
+    
+    #Aggiunge un scrollArea alla finestra principale
     def AddScrollArea(self,min_size):
         scrollArea = QtWidgets.QScrollArea(self)
         scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
