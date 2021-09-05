@@ -18,10 +18,14 @@ class Ui_ListaDipendenti(QWidget):
     def __init__(self, parent=None):
         super(Ui_ListaDipendenti, self).__init__(parent)
         ListaDipendenti = self
+
+        #definiamo le liste vuote dei bottoni
         self.pushButton_1 = []
         self.pushButton_2 = []
         self.pushButton_3 = []
         self.controller = DipendenteC()
+
+        #Viene fatta la chiamata al server per avere la lista di tutti i dipendenti
         self.chiamata = self.controller.GetAll()
         ListaDipendenti.setObjectName("ListaDipendenti")
         ListaDipendenti.resize(800, 600)
@@ -30,7 +34,7 @@ class Ui_ListaDipendenti(QWidget):
         self._translate = QtCore.QCoreApplication.translate
 
         self.AddLabelTitolo("Lista dei Dipendenti")
-
+        #Viene aggiunta una scrollArea
         self.gridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(200)
 
        
@@ -55,7 +59,8 @@ class Ui_ListaDipendenti(QWidget):
         self.header2.setText(self._translate("ListaDipendenti","Tipo Dipendente"))
         self.gridLayout.addWidget(self.header2, 0, 1, 1, 1)
 
-        
+        #Qui viene iterato il risultato della chiamata al controller, vengono valorizzate tutte le label e a tutti 
+        # i bottoni viene assegnata la funzione corrispondente alla quale viene passato il CF di quell'elemento
         for a in range(0,len(self.chiamata)):
             self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
             sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
@@ -106,23 +111,25 @@ class Ui_ListaDipendenti(QWidget):
             
         self.retranslateUi(ListaDipendenti)
         QtCore.QMetaObject.connectSlotsByName(ListaDipendenti)
-
+    #In questa funzione viene settato il titolo della finestra
     def retranslateUi(self, ListaDipendenti):
         _translate = QtCore.QCoreApplication.translate
         ListaDipendenti.setWindowTitle(_translate("ListaDipendenti", "ListaDipendenti"))
         
-
+    #Questa funzione serve per navigare nella finestra di visualizzazione dei dettagli 
     def Visualizza(self,cf):
         print(str(cf))
         self.Dettaglio = Ui_VisualizzaAnagDip(cf)
         self.Dettaglio.show()
 
+    #Questa funzione serve per navigare nella finestra di modifica dell'elemento 
     def ModificaDip(self,cf):
         print(str(cf))
         self.Dettaglio = Ui_ModificaDipAng(cf)
         self.Dettaglio.show()
         self.close()
 
+    #Funzione per cancellare un elemento 
     def deleteConfirm(self,dipendente):
 
         msg = QMessageBox()
@@ -144,6 +151,7 @@ class Ui_ListaDipendenti(QWidget):
         else:
             print('cancellazione annullata')
 
+    #Questa funzione serve per aggiungere una ScrollArea
     def AddScrollArea(self,min_size):
         scrollArea = QtWidgets.QScrollArea(self)
         scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
@@ -159,6 +167,7 @@ class Ui_ListaDipendenti(QWidget):
         self.verticalLayout.addWidget(scrollArea)
         return (gridLayout,scrollAreaWidgetContents)
 
+    #Questa funzione serve per assegnare una stringa alla label situata all'inizio della pagina 
     def AddLabelTitolo(self,text):
         self.label = QtWidgets.QLabel(self)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)

@@ -1,4 +1,4 @@
-from Dipendente.View.VistaModificaDip import Ui_ModificaDipAng
+
 from Login.VistaLogin.formLogPython import Ui_VistaLog
 from formpythonsimo3 import Ui_UIwindow
 import sys
