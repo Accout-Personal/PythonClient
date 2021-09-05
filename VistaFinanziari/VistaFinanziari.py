@@ -167,10 +167,6 @@ class VistaFinanziari(QWidget):
 
     def Go_NewCliente(self):
         print('Go new clienti')
-
-    def Go_ListaClienti(self):
-        self.ListaClienti = Ui_ListaCliente()
-        self.ListaClienti.show()
     
     def Go_NewMacchinario(self):
         print('Go new macchinario')
