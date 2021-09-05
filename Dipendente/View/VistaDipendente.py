@@ -29,9 +29,7 @@ class Ui_VisualizzaAnagDip(QWidget):
         
         self.AddLabelTitolo("Dettagli "+self.chiamata['nome_cognome'])
         
-        self.gridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(500)
-        
-        
+        self.gridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(500)       
         
         self.traduzione = {'CF':'codice fiscale',
         'nome_cognome':'nome e cognome',
@@ -57,30 +55,32 @@ class Ui_VisualizzaAnagDip(QWidget):
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         for a in self.viewList:
-            self.label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-            self.label_2.setSizePolicy(sizePolicy)
-            self.label_2.setMinimumSize(QtCore.QSize(0, 20))
-            self.label_2.setStyleSheet("background-color: rgb(255, 255, 255);")
-            self.label_2.setObjectName("label_2")
-            self.gridLayout.addWidget(self.label_2, self.count, 0, 1, 1)
-            self.label_3 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-            sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-            self.label_3.setSizePolicy(sizePolicy)
-            self.label_3.setMinimumSize(QtCore.QSize(0, 20))
-            self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
-            self.label_3.setObjectName("label_3")
-            self.gridLayout.addWidget(self.label_3, self.count, 1, 1, 1)
-            
-            self.label_2.setText(self._translate("VisualizzaAnagDip", "  "+str(self.traduzione[a])))
-            self.label_3.setText(self._translate("VisualizzaAnagDip", "  "+str(self.chiamata[a])))
+            #Aggiunge un label descrittivo
+            self.AddElement(self.gridLayout,self.traduzione[a],0,self.count)
+            #Aggiunge un label contenuto
+            self.AddElement(self.gridLayout,self.chiamata[a],1,self.count)
+
             self.count += 1
 
         QtCore.QMetaObject.connectSlotsByName(VisualizzaAnagDip)
 
 
+    #Questa funzione aggiunge un label al GridLayout nella posizione x(colonna) e y(riga)
+    def AddElement(self,gridLayout,text,x,y):
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        label_2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        sizePolicy.setHeightForWidth(label_2.sizePolicy().hasHeightForWidth())
+        label_2.setSizePolicy(sizePolicy)
+        label_2.setMinimumSize(QtCore.QSize(0, 20))
+        label_2.setStyleSheet("background-color: rgb(255, 255, 255);")
+        label_2.setObjectName("label_2")
+        #self.gridLayout.addWidget(label_2, y, x, 1, 1)
+        gridLayout.addWidget(label_2, y, x, 1, 1)
+        label_2.setText(self._translate("VisualizzaAnagDip", "  "+str(text)))
 
-
+    #Questa funzione aggiunge un label descrittivo della finestra
     def AddLabelTitolo(self,text):
         
         self.label = QtWidgets.QLabel(self)
@@ -97,6 +97,7 @@ class Ui_VisualizzaAnagDip(QWidget):
         self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
         self.label.setText(self._translate("ModificaDipAng", text))
 
+    #Aggiunge un area scroll
     def AddScrollArea(self,min_size):
         scrollArea = QtWidgets.QScrollArea(self)
         scrollArea.setStyleSheet("background-color: rgb(109, 109, 109);")
