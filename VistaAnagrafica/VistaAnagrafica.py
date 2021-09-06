@@ -18,6 +18,9 @@ from ListinoPrezzi.View.VistaInserisciListinoPrezzi import Ui_InserisciListinoPr
 from Cliente.View.VistaInserisciCliente import Ui_InserisciCliente
 from Cliente.View.VistaListaCliente import Ui_ListaCliente
 
+from MacchinePubbliche.View.VistaInserisciMacchine import Ui_InsertMacchina
+from MacchinePubbliche.View.VistaListaMacchine import Ui_ListaMacchina
+
 class VistaAnagrafica(QWidget):
     def __init__(self, parent=None):
         super(VistaAnagrafica, self).__init__(parent)
@@ -146,7 +149,10 @@ class VistaAnagrafica(QWidget):
         self.ListaClienti.show()
     
     def Go_NewMacchinario(self):
-        print('Go new macchinario')
+        self.NewMacchina = Ui_InsertMacchina()
+        self.NewMacchina.show()
+
     
     def Go_ListaMacchinari(self):
-        print('Go lista macchinari')
+        self.ListaMacchina = Ui_ListaMacchina()
+        self.ListaMacchina.show()

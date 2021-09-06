@@ -18,6 +18,7 @@ class MacchinePubblicheC:
         response = requests.get(env.host+env.Url+self.url+"key/",params={"codice_macchina": codice_macchina},headers=self.credenziali)
         if response.ok:
             print(response.json())
+            return response.json()
         else:
             print(response.json())
             raise Exception("Errore. ",response.status_code)
