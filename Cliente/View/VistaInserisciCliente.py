@@ -1,4 +1,3 @@
-from requests import NullHandler
 from Cliente.Controller.ClienteC import ClienteC
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
