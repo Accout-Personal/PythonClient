@@ -12,8 +12,9 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 from Dipendente.View.VistaListaDipendenti import Ui_ListaDipendenti
 from ListinoPrezzi.View.VistaListaListinoPrezzi import Ui_ListaListinoPrezzi
 from Cliente.View.VistaListaCliente import Ui_ListaCliente
-from Dipendente.View.VistaInserisciDipendente import Ui_InserisciDip
 
+from Dipendente.View.VistaInserisciDipendente import Ui_InserisciDip
+from Cliente.View.VistaInserisciCliente import Ui_InserisciCliente
 
 class VistaAnagrafica(QWidget):
     def __init__(self, parent=None):
@@ -134,7 +135,8 @@ class VistaAnagrafica(QWidget):
         print('Go new modello')
 
     def Go_NewCliente(self):
-        print('Go new clienti')
+        self.NewClienti = Ui_InserisciCliente()
+        self.NewClienti.show()
 
     def Go_ListaClienti(self):
         self.ListaClienti = Ui_ListaCliente()

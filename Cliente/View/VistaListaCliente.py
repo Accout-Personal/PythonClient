@@ -25,11 +25,16 @@ class Ui_ListaCliente(QWidget):
         ListaCliente.setWindowTitle(self._translate("ListaCliente", "ListaCliente"))
         self.verticalLayout = QtWidgets.QVBoxLayout(ListaCliente)
         self.verticalLayout.setObjectName("verticalLayout")
+
+
+
         self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         self.sizePolicy.setHorizontalStretch(0)
         self.sizePolicy.setVerticalStretch(0)
 
         self.AddLabelTitolo("Lista dei Clienti")
+
+        
 
         self.AddScrollArea()
 

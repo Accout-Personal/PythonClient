@@ -45,8 +45,7 @@ class Ui_HomeClass(QWidget):
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
         self.label.setMinimumSize(QtCore.QSize(0, 50))
-        self.label.setStyleSheet("font: 75 18pt \"MS Shell Dlg 2\";\n"
-"color: rgb(255, 255, 255);")
+        self.label.setStyleSheet("font: 75 18pt \"MS Shell Dlg 2\";\n color: rgb(255, 255, 255);")
         self.label.setObjectName("label")
         self.verticalLayout_2.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
         self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
