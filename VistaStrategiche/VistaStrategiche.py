@@ -16,9 +16,10 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 
 
 class Ui_VistaStrategiche(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None,fakeparent=None):
         super(Ui_VistaStrategiche, self).__init__(parent)
         _translate = QtCore.QCoreApplication.translate
+        self.fakeparent = fakeparent
         VistaStrategiche = self
         VistaStrategiche.setObjectName("VistaStrategiche")
         VistaStrategiche.resize(800, 600)
@@ -82,6 +83,13 @@ class Ui_VistaStrategiche(QWidget):
         self.pushButton_2.clicked.connect(self.GoListaMagazzino)
         self.pushButton_3.clicked.connect(self.GoVistaFinanziari)
 
+    def closeEvent(self, event):
+        if(self.handClose ==0):
+            self.handClose = 1
+        else:
+            self.fakeparent.show()
+        event.accept()
+
     def GoListaMagazzino(self):
         self.magazzino = Ui_ListaMagazzino()
         self.magazzino.show()
@@ -90,9 +98,11 @@ class Ui_VistaStrategiche(QWidget):
     def GoListaAggiornamenti(self):
         self.Anagrafica = Ui_ListaAggiornamenti()
         self.Anagrafica.show()
+        self.handClose = 0
         self.close()
     
     def GoVistaFinanziari(self):
         self.Finanziari = VistaFinanziari()
         self.Finanziari.show()
+        self.handClose = 0
         self.close()
