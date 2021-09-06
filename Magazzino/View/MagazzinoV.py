@@ -101,7 +101,7 @@ class Ui_ListaMagazzino(QWidget):
             postbody = {'tipo_scorta':articolo['tipo_scorta']}
             res = self.controller.Delete(postbody)
             print(res)
-            self.RefreshLista = Ui_ListaMagazzino()
+            self.RefreshLista = Ui_ListaMagazzino(fakeparent=self.fakeparent)
             self.RefreshLista.show()
             self.handClose = 0
             self.close()

@@ -18,6 +18,7 @@ class Ui_ListaAggiornamenti(QWidget):
         self._translate = QtCore.QCoreApplication.translate
         self.fakeparent = fakeparent
         ListaAggiornamenti = self
+        self.handClose = 1
         self.controller = AggiornamentoC()
         self.chiamata = self.controller.GetAll()
         ListaAggiornamenti.setObjectName("ListaAggiornamenti")
@@ -94,8 +95,9 @@ class Ui_ListaAggiornamenti(QWidget):
             postbody = {'id':aggiornamento['id']}
             res = self.controller.Delete(postbody)
             print(res)
-            self.RefreshLista = Ui_ListaAggiornamenti()
+            self.RefreshLista = Ui_ListaAggiornamenti(fakeparent=self.fakeparent)
             self.RefreshLista.show()
+            self.handClose = 0
             self.close()
         else:
             print('cancellazione annullata')   
@@ -162,6 +164,8 @@ class Ui_ListaAggiornamenti(QWidget):
         self.label.setText(self._translate("ModificaDipAng", text))
     
     def closeEvent(self, event):
-        
-        self.fakeparent.show()
+        if(self.handClose == 0):
+            self.handClose = 1
+        else:
+            self.fakeparent.show()
         event.accept()
