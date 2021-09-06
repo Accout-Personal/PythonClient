@@ -24,8 +24,9 @@ from MacchinePubbliche.View.VistaInserisciMacchine import Ui_InsertMacchina
 from MacchinePubbliche.View.VistaListaMacchine import Ui_ListaMacchina
 
 class VistaAnagrafica(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None,fakeparent=None):
         super(VistaAnagrafica, self).__init__(parent)
+        self.fakeparent = fakeparent
         self._translate = QtCore.QCoreApplication.translate
         HomeClass = self
         HomeClass.setObjectName("VistaAnagrafica")
@@ -160,15 +161,5 @@ class VistaAnagrafica(QWidget):
         self.ListaMacchina.show()
     
     def closeEvent(self, event):
-        reply = QMessageBox.question(self, 'Quit?',
-                                     'Sei Sicuro di volere chiudere?',
-                                     QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-
-        if reply == QMessageBox.Yes:
-            if not type(event) == bool:
-                self.HomeView = home.Ui_HomeClass()
-                self.HomeView.show()
-                event.accept()
-        else:
-            if not type(event) == bool:
-                event.ignore()
+        self.fakeparent.show()
+        event.accept()

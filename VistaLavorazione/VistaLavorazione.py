@@ -9,8 +9,9 @@ from Dipendente.View.VistaInserisciDipendente import Ui_InserisciDip
 
 
 class VistaLavorazione(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None,fakeparent=None):
         super(VistaLavorazione, self).__init__(parent)
+        self.fakeparent = fakeparent
         self._translate = QtCore.QCoreApplication.translate
         _translate = QtCore.QCoreApplication.translate
         HomeClass = self
@@ -108,6 +109,10 @@ class VistaLavorazione(QWidget):
         self.label.setObjectName("label")
         self.label.setText(self._translate("HomeClass", text))
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1, QtCore.Qt.AlignHCenter)
+
+    def closeEvent(self, event):
+        self.fakeparent.show()
+        event.accept()
 
     def Go_NewDDT(self):
         print('go new ddt')

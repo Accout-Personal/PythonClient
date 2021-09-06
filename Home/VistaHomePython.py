@@ -86,15 +86,44 @@ class Ui_HomeClass(QWidget):
         self.pushButton_3.clicked.connect(self.GoVistaStrategiche)
 
     def GoVistaAnagrafiche(self):
-        self.Anagrafica = VistaAnagrafica()
+        self.Anagrafica = VistaAnagrafica(fakeparent=self)
         self.Anagrafica.show()
+        self.handClose = 0
         self.close()
+        
 
     def GoVistaStrategiche(self):
-        self.Anagrafica = Ui_VistaStrategiche()
+        self.Anagrafica = Ui_VistaStrategiche(fakeparent=self)
         self.Anagrafica.show()
+        self.handClose = 0
+        self.close()
     
     def GoVistaLavorazione(self):
-        self.Lavorazione = VistaLavorazione()
+        self.Lavorazione = VistaLavorazione(fakeparent=self)
         self.Lavorazione.show()
+        self.handClose = 0
         self.close()
+
+
+    def closeEvent(self, event):
+        print(self.handClose)
+        if(self.handClose == 1):
+            msg = QMessageBox()
+            msg.setWindowTitle('Conferma')
+            msg.setText('sei sicuro di voler uscire ?')
+            msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            okButton = msg.button(QMessageBox.Yes)
+            noButton = msg.button(QMessageBox.No)
+            okButton.setText('si')
+            retval = msg.exec_()
+            if(msg.clickedButton() == okButton):
+                print('chiusura accettata')
+                if not type(event) == bool:
+                    event.accept()            
+            else:
+                if not type(event) == bool:
+                    event.ignore()
+        else:
+            self.handClose = 1
+            event.accept()
+            

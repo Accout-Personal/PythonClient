@@ -16,8 +16,9 @@ from Dipendente.View.VistaInserisciDipendente import Ui_InserisciDip
 
 
 class VistaFinanziari(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None,fakeparent=None):
         super(VistaFinanziari, self).__init__(parent)
+        self.fakeparent = fakeparent
         self._translate = QtCore.QCoreApplication.translate
         HomeClass = self
         HomeClass.setObjectName("VistaFinanziari")
@@ -128,6 +129,10 @@ class VistaFinanziari(QWidget):
         self.label.setText(self._translate("HomeClass", text))
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1, QtCore.Qt.AlignHCenter)
 
+    def closeEvent(self, event):
+        self.fakeparent.show()
+        event.accept()
+
     def Go_NewRetribuzione(self):
         print("Go_NewRetribuzione")
 
@@ -173,3 +178,4 @@ class VistaFinanziari(QWidget):
     
     def Go_ListaMacchinari(self):
         print('Go lista macchinari')
+    
