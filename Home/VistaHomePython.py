@@ -19,11 +19,10 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 
 
 class Ui_HomeClass(QWidget):
-    def __init__(self,credenziali, parent=None):
+    def __init__(self, parent=None):
         super(Ui_HomeClass, self).__init__(parent)
         _translate = QtCore.QCoreApplication.translate
         HomeClass = self
-        self.credenziali = credenziali
         HomeClass.setObjectName("HomeClass")
         HomeClass.resize(800, 600)
         self.verticalLayout = QtWidgets.QVBoxLayout(HomeClass)

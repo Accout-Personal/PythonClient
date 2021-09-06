@@ -9,6 +9,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 
+import Home.VistaHomePython as home
+
 from Dipendente.View.VistaListaDipendenti import Ui_ListaDipendenti
 from Dipendente.View.VistaInserisciDipendente import Ui_InserisciDip
 
@@ -156,3 +158,17 @@ class VistaAnagrafica(QWidget):
     def Go_ListaMacchinari(self):
         self.ListaMacchina = Ui_ListaMacchina()
         self.ListaMacchina.show()
+    
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, 'Quit?',
+                                     'Sei Sicuro di volere chiudere?',
+                                     QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+        if reply == QMessageBox.Yes:
+            if not type(event) == bool:
+                self.HomeView = home.Ui_HomeClass()
+                self.HomeView.show()
+                event.accept()
+        else:
+            if not type(event) == bool:
+                event.ignore()
