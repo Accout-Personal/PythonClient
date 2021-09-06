@@ -13,18 +13,18 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 import copy
 
-class Ui_Cliente(QWidget):
-    def __init__(self,CF, parent=None):
-        super(Ui_Cliente, self).__init__(parent)
+class Ui_VistaCliente(QWidget):
+    def __init__(self,key, parent=None):
+        super(Ui_VistaCliente, self).__init__(parent)
         self._translate = QtCore.QCoreApplication.translate
-        self.cf = CF
-        VisualizzaAnagDip = self
+        self.key = key
+        VisualizzaWindow = self
         self.controller = ClienteC()
-        self.chiamata = self.controller.GetKey(self.cf)
-        VisualizzaAnagDip.setObjectName("VisualizzaAnagDip")
-        VisualizzaAnagDip.resize(800, 600)
-        VisualizzaAnagDip.setWindowTitle(self._translate("VisualizzaAnagDip", "VisualizzaAnagDip"))
-        self.verticalLayout = QtWidgets.QVBoxLayout(VisualizzaAnagDip)
+        self.chiamata = self.controller.GetKey(self.key)
+        VisualizzaWindow.setObjectName("VisualizzaWindow")
+        VisualizzaWindow.resize(800, 600)
+        VisualizzaWindow.setWindowTitle(self._translate("VisualizzaWindow", "VisualizzaCliente"))
+        self.verticalLayout = QtWidgets.QVBoxLayout(VisualizzaWindow)
         self.verticalLayout.setObjectName("verticalLayout")
         self.verticalpos = 0
 
@@ -110,7 +110,7 @@ class Ui_Cliente(QWidget):
                     self.count += 1
                     
             
-        QtCore.QMetaObject.connectSlotsByName(VisualizzaAnagDip)
+        QtCore.QMetaObject.connectSlotsByName(VisualizzaWindow)
 
     #Questa funzione aggiunge un label al GridLayout nella posizione x(colonna) e y(riga)
     def AddElement(self,gridLayout,text,x,y):
@@ -126,7 +126,7 @@ class Ui_Cliente(QWidget):
         label_2.setObjectName("label_2")
         #self.gridLayout.addWidget(label_2, y, x, 1, 1)
         gridLayout.addWidget(label_2, y, x, 1, 1)
-        label_2.setText(self._translate("VisualizzaAnagDip", "  "+str(text)))
+        label_2.setText(self._translate("VisualizzaWindow", "  "+str(text)))
     
     #Aggiunge un scrollArea alla finestra principale
     def AddScrollArea(self,min_size):
@@ -159,7 +159,7 @@ class Ui_Cliente(QWidget):
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
         self._translate = QtCore.QCoreApplication.translate
-        self.label.setText(self._translate("VisualizzaAnagDip", "<html><head/><body><p align=\"center\">"+text+"</p></body></html>"))
+        self.label.setText(self._translate("VisualizzaWindow", "<html><head/><body><p align=\"center\">"+text+"</p></body></html>"))
     
     def addTableHead(self,text,grid,pos,widget):
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
