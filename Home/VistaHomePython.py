@@ -19,11 +19,10 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 
 
 class Ui_HomeClass(QWidget):
-    def __init__(self,credenziali, parent=None):
+    def __init__(self, parent=None):
         super(Ui_HomeClass, self).__init__(parent)
         _translate = QtCore.QCoreApplication.translate
         HomeClass = self
-        self.credenziali = credenziali
         HomeClass.setObjectName("HomeClass")
         HomeClass.resize(800, 600)
         self.verticalLayout = QtWidgets.QVBoxLayout(HomeClass)
@@ -45,8 +44,7 @@ class Ui_HomeClass(QWidget):
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
         self.label.setMinimumSize(QtCore.QSize(0, 50))
-        self.label.setStyleSheet("font: 75 18pt \"MS Shell Dlg 2\";\n"
-"color: rgb(255, 255, 255);")
+        self.label.setStyleSheet("font: 75 18pt \"MS Shell Dlg 2\";\n color: rgb(255, 255, 255);")
         self.label.setObjectName("label")
         self.verticalLayout_2.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
         self.pushButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)

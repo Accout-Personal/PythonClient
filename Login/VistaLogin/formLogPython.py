@@ -41,8 +41,7 @@ class Ui_VistaLog(QWidget):
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
         self.label.setMinimumSize(QtCore.QSize(255, 0))
-        self.label.setStyleSheet("font: 20pt \"Segoe MDL2 Assets\";\n"
-"color: rgb(247, 247, 247);")
+        self.label.setStyleSheet("font: 20pt \"Segoe MDL2 Assets\";\n color: rgb(247, 247, 247);")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
@@ -52,8 +51,7 @@ class Ui_VistaLog(QWidget):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
         self.label_2.setSizePolicy(sizePolicy)
-        self.label_2.setStyleSheet("font: 20pt \"Segoe MDL2 Assets\";\n"
-"color: rgb(247, 247, 247);")
+        self.label_2.setStyleSheet("font: 20pt \"Segoe MDL2 Assets\";\n color: rgb(247, 247, 247);")
         self.label_2.setObjectName("label_2")
         self.verticalLayout.addWidget(self.label_2)
         self.lineEdit = QtWidgets.QLineEdit(self.scrollAreaWidgetContents)
@@ -76,8 +74,7 @@ class Ui_VistaLog(QWidget):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
         self.label_3.setSizePolicy(sizePolicy)
-        self.label_3.setStyleSheet("font: 20pt \"Segoe MDL2 Assets\";\n"
-"color: rgb(247, 247, 247);")
+        self.label_3.setStyleSheet("font: 20pt \"Segoe MDL2 Assets\";\n color: rgb(247, 247, 247);")
         self.label_3.setObjectName("label_3")
         self.verticalLayout.addWidget(self.label_3)
         self.lineEdit_2 = QtWidgets.QLineEdit(self.scrollAreaWidgetContents)
@@ -102,8 +99,7 @@ class Ui_VistaLog(QWidget):
         sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
         self.pushButton.setSizePolicy(sizePolicy)
         self.pushButton.setMinimumSize(QtCore.QSize(180, 50))
-        self.pushButton.setStyleSheet("background-color: rgb(85, 255, 255);\n"
-"color: rgb(247, 247, 247);")
+        self.pushButton.setStyleSheet("background-color: rgb(85, 255, 255);\n color: rgb(247, 247, 247);")
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.login)
         self.verticalLayout.addWidget(self.pushButton, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
@@ -129,10 +125,10 @@ class Ui_VistaLog(QWidget):
         if response.ok:
             print("va bene")
             print(response.json())
-            self.prova_vista = Ui_HomeClass(response.json())
+            self.HomeVista = Ui_HomeClass()
             print(response.json()['token'])
             env.token = response.json()['token']
-            self.prova_vista.show()
+            self.HomeVista.show()
             self.close()
         else:
             print(response.json())

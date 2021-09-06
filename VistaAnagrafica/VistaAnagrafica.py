@@ -9,11 +9,19 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 
+import Home.VistaHomePython as home
+
 from Dipendente.View.VistaListaDipendenti import Ui_ListaDipendenti
-from ListinoPrezzi.View.VistaListaListinoPrezzi import Ui_ListaListinoPrezzi
-from Cliente.View.VistaListaCliente import Ui_ListaCliente
 from Dipendente.View.VistaInserisciDipendente import Ui_InserisciDip
 
+from ListinoPrezzi.View.VistaListaListinoPrezzi import Ui_ListaListinoPrezzi
+from ListinoPrezzi.View.VistaInserisciListinoPrezzi import Ui_InserisciListinoPrezzi
+
+from Cliente.View.VistaInserisciCliente import Ui_InserisciCliente
+from Cliente.View.VistaListaCliente import Ui_ListaCliente
+
+from MacchinePubbliche.View.VistaInserisciMacchine import Ui_InsertMacchina
+from MacchinePubbliche.View.VistaListaMacchine import Ui_ListaMacchina
 
 class VistaAnagrafica(QWidget):
     def __init__(self, parent=None):
@@ -131,17 +139,36 @@ class VistaAnagrafica(QWidget):
         self.ListinoPrezzi.show()
 
     def Go_NewPrezzo(self):
-        print('Go new modello')
+        self.NewModello = Ui_InserisciListinoPrezzi()
+        self.NewModello.show()
 
     def Go_NewCliente(self):
-        print('Go new clienti')
+        self.NewClienti = Ui_InserisciCliente()
+        self.NewClienti.show()
 
     def Go_ListaClienti(self):
         self.ListaClienti = Ui_ListaCliente()
         self.ListaClienti.show()
     
     def Go_NewMacchinario(self):
-        print('Go new macchinario')
+        self.NewMacchina = Ui_InsertMacchina()
+        self.NewMacchina.show()
+
     
     def Go_ListaMacchinari(self):
-        print('Go lista macchinari')
+        self.ListaMacchina = Ui_ListaMacchina()
+        self.ListaMacchina.show()
+    
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, 'Quit?',
+                                     'Sei Sicuro di volere chiudere?',
+                                     QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+        if reply == QMessageBox.Yes:
+            if not type(event) == bool:
+                self.HomeView = home.Ui_HomeClass()
+                self.HomeView.show()
+                event.accept()
+        else:
+            if not type(event) == bool:
+                event.ignore()
