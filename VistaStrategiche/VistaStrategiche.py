@@ -20,6 +20,7 @@ class Ui_VistaStrategiche(QWidget):
         super(Ui_VistaStrategiche, self).__init__(parent)
         _translate = QtCore.QCoreApplication.translate
         self.fakeparent = fakeparent
+        self.handClose = 1
         VistaStrategiche = self
         VistaStrategiche.setObjectName("VistaStrategiche")
         VistaStrategiche.resize(800, 600)
@@ -91,18 +92,19 @@ class Ui_VistaStrategiche(QWidget):
         event.accept()
 
     def GoListaMagazzino(self):
-        self.magazzino = Ui_ListaMagazzino()
+        self.magazzino = Ui_ListaMagazzino(fakeparent = self)
         self.magazzino.show()
+        self.handClose = 0
         self.close()
 
     def GoListaAggiornamenti(self):
-        self.Anagrafica = Ui_ListaAggiornamenti()
+        self.Anagrafica = Ui_ListaAggiornamenti(fakeparent = self)
         self.Anagrafica.show()
         self.handClose = 0
         self.close()
     
     def GoVistaFinanziari(self):
-        self.Finanziari = VistaFinanziari()
+        self.Finanziari = VistaFinanziari(fakeparent = self)
         self.Finanziari.show()
         self.handClose = 0
         self.close()

@@ -14,12 +14,14 @@ from PyQt5.QtWidgets import QMessageBox, QSizePolicy, QWidget
 
 
 class Ui_ListaMagazzino(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None,fakeparent=None):
         super(Ui_ListaMagazzino, self).__init__(parent)
+        self.fakeparent=fakeparent
         self._translate = QtCore.QCoreApplication.translate
         ListaMagazzino = self
         self.controller = MagazzinoC()
         self.chiamata = self.controller.GetAll()
+        self.handClose = 1
         ListaMagazzino.setObjectName("ListaMagazzino")
         ListaMagazzino.resize(800, 600)
         ListaMagazzino.setWindowTitle(self._translate("ListaMagazzino", "ListaMagazzino"))
@@ -40,8 +42,7 @@ class Ui_ListaMagazzino(QWidget):
         sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
         self.pushButton.setSizePolicy(sizePolicy)
         self.pushButton.setMinimumSize(QtCore.QSize(180, 50))
-        self.pushButton.setStyleSheet("background-color: rgb(0, 0, 0);\n"
-"color: rgb(255, 255, 255);")
+        self.pushButton.setStyleSheet("background-color: rgb(0, 0, 0);\n color: rgb(255, 255, 255);")
         self.pushButton.setObjectName("pushButton")
         self.pushButton.setText(self._translate("ListaMagazzino", "inserisci un nuovo elemento"))
         self.pushButton.clicked.connect(self.GoInserimentoMagazzino)
@@ -102,6 +103,7 @@ class Ui_ListaMagazzino(QWidget):
             print(res)
             self.RefreshLista = Ui_ListaMagazzino()
             self.RefreshLista.show()
+            self.handClose = 0
             self.close()
         else:
             print('cancellazione annullata')   
@@ -171,6 +173,14 @@ class Ui_ListaMagazzino(QWidget):
         self.label.setText(self._translate("ListaMagazzino", text))
 
     def GoInserimentoMagazzino(self):
-        self.InserimentoMagazzino = Ui_InserisciMagazzino()
+        self.InserimentoMagazzino = Ui_InserisciMagazzino(fakeparent = self)
         self.InserimentoMagazzino.show()
+        self.handClose = 0
         self.close()
+    
+    def closeEvent(self, event):
+        if(self.handClose ==0):
+            self.handClose = 1
+        else:
+            self.fakeparent.show()
+        event.accept()

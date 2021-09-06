@@ -4,10 +4,10 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 import copy
 
 class Ui_InserisciMagazzino(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None,fakeparent=None):
         super(Ui_InserisciMagazzino, self).__init__(parent)
         self._translate = QtCore.QCoreApplication.translate
-        
+        self.fakeparent=fakeparent
         self.controller = MagazzinoC()
         InsMagazzino = self
         InsMagazzino.setWindowTitle(self._translate("InserisciMagazzino", "InserisciMagazzino"))
@@ -162,6 +162,7 @@ class Ui_InserisciMagazzino(QWidget):
             QMessageBox.about(self, "Errore nella compilazione dei campi",self.messaggio)
         else:
             QMessageBox.about(self, "Esito operazione","Operazione completata con successo")
+            self.fakeparent.show()
             self.close()
 
     #Aggiunge un area scroll
