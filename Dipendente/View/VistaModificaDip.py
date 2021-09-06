@@ -32,18 +32,18 @@ class Ui_ModificaDipAng(QWidget):
 
         #Aggiunge un scroll area per i campi
         self.scrollArea,self.scrollAreaWidgetContents,self.verticalLayout_2 = self.AddScrollArea()
-        self.AddInsertHint("I campi con il segno ( * ) sono obbligatori")
+        self.AddInsertHint("I campi con il segno ( * ) sono obbligatori non nulli")
         
 
-        self.traduzione = {'CF':'codice fiscale',
-        'nome_cognome':'nome e cognome',
-        'tipo_dipendente':'tipo mansione',
-        'importo_orario_feriale':'importo orario feriale',
-        'importo_orario_regolare':'importo orario regolare',
-        'importo_orario_straordinario':'importo orario straordinario',
-        'IBAN':'IBAN',
-        'username':'username',
-        'data_di_nascita':'data di nascita'}
+        self.traduzione = {'CF':'codice fiscale *',
+        'nome_cognome':'nome e cognome *',
+        'tipo_dipendente':'tipo mansione *',
+        'importo_orario_feriale':'importo orario feriale *',
+        'importo_orario_regolare':'importo orario regolare *',
+        'importo_orario_straordinario':'importo orario straordinario *',
+        'IBAN':'IBAN *',
+        'username':'username *',
+        'data_di_nascita':'data di nascita *'}
 
         #si usa un dizionario per iterare tutti i campi dell'inserimento e popolazione del campo
         self.body = {
