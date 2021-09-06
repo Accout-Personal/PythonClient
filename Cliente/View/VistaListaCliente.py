@@ -21,6 +21,7 @@ class Ui_ListaCliente(QWidget):
         self._translate = QtCore.QCoreApplication.translate
         ListaCliente = self
         self.controller = ClienteC()
+        self.key = 'PIVA'
         self.chiamata = self.controller.GetAll()
         ListaCliente.setObjectName("ListaCliente")
         ListaCliente.resize(800, 600)
@@ -102,7 +103,7 @@ class Ui_ListaCliente(QWidget):
         retval = msg.exec_()
         if(msg.clickedButton() == okButton):
             print('cancellazione confermata')
-            postbody = {'PIVA':cliente['PIVA']}
+            postbody = {self.key:cliente[self.key]}
             res = self.controller.Delete(postbody)
             print(res)
             self.RefreshLista = Ui_ListaCliente()
@@ -113,7 +114,7 @@ class Ui_ListaCliente(QWidget):
     #Viene chiamata la funzione per visualizzare i dettagli di quell'elemento
     def Visualizza(self,elem):
         print(elem)
-        self.Dettaglio = Ui_VistaCliente(str(elem['PIVA']))
+        self.Dettaglio = Ui_VistaCliente(str(elem[self.key]))
         self.Dettaglio.show()
 
     #Viene settata l'intestazione della finestra
@@ -149,8 +150,8 @@ class Ui_ListaCliente(QWidget):
         return OperationButton
 
     def Modify(self,elem):
-        print (elem['PIVA'])
-        self.modificaview = Ui_ModificaCliente(elem['PIVA'])
+        print (elem[self.key])
+        self.modificaview = Ui_ModificaCliente(elem[self.key])
         self.modificaview.show()
     
     #Questa funzione aggiunge una scroll area
