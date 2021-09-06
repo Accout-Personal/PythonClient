@@ -6,6 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+from Contabile.View.ContabileV import Ui_listaContabile
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 
@@ -148,8 +149,8 @@ class VistaFinanziari(QWidget):
 
     def Go_ListaContabile(self):
         print('Go listaContabile')
-        #self.ListaDipendeti = Ui_ListaDipendenti()
-        #self.ListaDipendeti.show()
+        self.ListaDipendeti = Ui_listaContabile()
+        self.ListaDipendeti.show()
     
     def Go_ListaEntrate(self):
         print("Go_ListaEntrate")
