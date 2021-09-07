@@ -2,10 +2,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 
-from Dipendente.View.VistaListaDipendenti import Ui_ListaDipendenti
-from ListinoPrezzi.View.VistaListaListinoPrezzi import Ui_ListaListinoPrezzi
-from Cliente.View.VistaListaCliente import Ui_ListaCliente
-from Dipendente.View.VistaInserisciDipendente import Ui_InserisciDip
+from Commessa.View.VistaListaCommesse import Ui_ListaCommesse
 
 
 class VistaLavorazione(QWidget):
@@ -118,9 +115,8 @@ class VistaLavorazione(QWidget):
         print('go new ddt')
 
     def Go_ListaCommesse(self):
-        print('go lista commesse')
-        #self.ListaCommesse = Ui_ListaDipendenti()
-        #self.ListaCommesse.show()
+        self.ListaCommesse = Ui_ListaCommesse()
+        self.ListaCommesse.show()
     def Go_NewCommesse(self):
         print('Go New Commesse')
 
