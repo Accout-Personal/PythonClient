@@ -13,10 +13,12 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 
 
 class Ui_ListaAggiornamenti(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None,fakeparent = None):
         super(Ui_ListaAggiornamenti, self).__init__(parent)
         self._translate = QtCore.QCoreApplication.translate
+        self.fakeparent = fakeparent
         ListaAggiornamenti = self
+        self.handClose = 1
         self.controller = AggiornamentoC()
         self.chiamata = self.controller.GetAll()
         ListaAggiornamenti.setObjectName("ListaAggiornamenti")
@@ -93,8 +95,9 @@ class Ui_ListaAggiornamenti(QWidget):
             postbody = {'id':aggiornamento['id']}
             res = self.controller.Delete(postbody)
             print(res)
-            self.RefreshLista = Ui_ListaAggiornamenti()
+            self.RefreshLista = Ui_ListaAggiornamenti(fakeparent=self.fakeparent)
             self.RefreshLista.show()
+            self.handClose = 0
             self.close()
         else:
             print('cancellazione annullata')   
@@ -159,3 +162,10 @@ class Ui_ListaAggiornamenti(QWidget):
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
         self.label.setText(self._translate("ModificaDipAng", text))
+    
+    def closeEvent(self, event):
+        if(self.handClose == 0):
+            self.handClose = 1
+        else:
+            self.fakeparent.show()
+        event.accept()
