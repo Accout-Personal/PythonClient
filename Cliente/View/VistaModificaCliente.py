@@ -28,7 +28,7 @@ class Ui_ModificaCliente(QWidget):
         self.verticalLayout.setObjectName("verticalLayout")
 
         #Aggiunge il "titolo" della finestra
-        self.AddLabelTitolo("Modifica Contabile")
+        self.AddLabelTitolo("Modifica Cliente")
 
         #Aggiunge un scroll area per i campi
         self.scrollArea,self.scrollAreaWidgetContents,self.verticalLayout_2 = self.AddScrollArea()

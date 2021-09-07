@@ -1,4 +1,5 @@
 from Contabile.Controller.ContabileC import ContabileC
+import Contabile.View.ContabileV as cont
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 import copy
@@ -26,31 +27,20 @@ class Ui_ModificaContabile(QWidget):
         
 
         self.traduzione = {
-            'PIVA': 'Partita iva *',
-            'nome_azienda':'nome dell\'azienda *',
-            'CAP': 'CAP *',
-            'email': 'posta elettronica',
-            'sito_web': 'sito dell\'azienda',
-            'citta':'citta\' dell\'azienda *',
-            'via':'via *',
-            'nc': 'numero civico *'
+            'entrata':'entrata'
         }
 
         #si usa un dizionario per iterare tutti i campi dell'inserimento e popolazione del campo
         self.body = {
-            'PIVA': self.chiamata['PIVA'],
-            'nome_azienda':None,
-            'CAP': None,
-            'email': None,
-            'sito_web': None,
-            'citta':None,
-            'via':None,
-            'nc':None,
+            'ddt': self.chiamata['ddt'],
+            'data':self.chiamata['data'],
+            'luogo_destinazione': self.chiamata['luogo_destinazione'],
+            'entrata': self.chiamata['entrata'],
         }
 
         #esclude elemento non desiderato per visualizzazione
         self.viewList = copy.deepcopy(self.chiamata)
-        self.exclude = ['PIVA','commessa','telefono']
+        self.exclude = ['ddt','data','luogo_destinazione']
         for elem in self.exclude:
             self.viewList.pop(elem)
         
@@ -62,12 +52,12 @@ class Ui_ModificaContabile(QWidget):
         self.font.setPointSize(9)
         self.listaInput = {}
         for a in self.viewList:
+            if(a != "commessa"):
+                #Crea il label del campo
+                self.AddLabel(self.traduzione[a])
             
-            #Crea il label del campo
-            self.AddLabel(self.traduzione[a])
-            
-            #Crea il campo per la modifica
-            self.listaInput[a] = self.AddField(self.chiamata[a])
+                #Crea il campo per la modifica
+                self.listaInput[a] = self.AddField(self.chiamata[a])
 
         #Aggiunge il pulsante per la modifica
         self.pushButton = self.AddSubmitButton("Modifica")
@@ -121,7 +111,7 @@ class Ui_ModificaContabile(QWidget):
             QMessageBox.about(self, "Errore nella compilazione dei campi",self.messaggio)
         else:
             QMessageBox.about(self, "Esito operazione","Operazione completata con successo")
-            self.OpenLista = clie.Ui_ListaCliente()
+            self.OpenLista = cont.Ui_listaContabile()
             self.OpenLista.show()
             self.close()
 

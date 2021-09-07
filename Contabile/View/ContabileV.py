@@ -1,3 +1,4 @@
+from Contabile.View.ModificaContabile import Ui_ModificaContabile
 from Contabile.Controller.ContabileC import ContabileC
 
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -132,9 +133,10 @@ class Ui_listaContabile(QWidget):
         return OperationButton
 
     def Modify(self,elem):
-        print (elem[self.key])
-        self.modificaview = Ui_ModificaCliente(elem[self.key])
+        print (str(elem[self.key]))
+        self.modificaview = Ui_ModificaContabile(str(elem[self.key]))
         self.modificaview.show()
+        self.close()
     
     #Questa funzione aggiunge una scroll area
     def AddScrollArea(self):
