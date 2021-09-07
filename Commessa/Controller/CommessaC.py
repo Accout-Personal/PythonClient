@@ -46,3 +46,14 @@ class CommessaC:
             return response.json()
         else:
             return response.json()
+
+    #Mi serve per prendere tutti i clienti per generare lista selezioni
+    def GetAllCliente(self):
+        self.Clienteurl = "gen/pro/resp/cliente/"
+        response = requests.get(env.host + env.Url+self.Clienteurl,headers=self.credenziali)
+        if response.ok:
+            print("va bene")
+            return response.json()
+        else:
+            return response.json()
+            raise Exception("Errore. ",response.status_code)
