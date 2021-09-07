@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 
 from Commessa.View.VistaListaCommesse import Ui_ListaCommesse
-
+from Ddt.View.VistaListaDDT import Ui_ListaDDT
 
 class VistaLavorazione(QWidget):
     def __init__(self, parent=None,fakeparent=None):
@@ -111,24 +111,26 @@ class VistaLavorazione(QWidget):
         self.fakeparent.show()
         event.accept()
 
-    def Go_NewDDT(self):
-        print('go new ddt')
 
     def Go_ListaCommesse(self):
         self.ListaCommesse = Ui_ListaCommesse()
         self.ListaCommesse.show()
+
     def Go_NewCommesse(self):
         print('Go New Commesse')
+
+    def Go_ListaDDT(self):
+        print('go lista DDT')
+        self.Ui_ListaDDT = Ui_ListaDDT()
+        self.Ui_ListaDDT.show()
+
+    def Go_NewDDT(self):
+        print('go new ddt')
 
     def Go_ListaLavorazione(self):
         print('go lista lavorazione')
         #self.ListaLavorazione = Ui_ListaListaLavorazione()
         #self.ListaLavorazione.show()
-
-    def Go_ListaDDT(self):
-        print('go lista DDT')
-        #self.ListaClienti = Ui_ListaCliente()
-        #self.ListaClienti.show()
 
     def Go_ListaLavoro(self):
         print('go lista lavoro')
