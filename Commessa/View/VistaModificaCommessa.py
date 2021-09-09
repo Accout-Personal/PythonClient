@@ -10,7 +10,7 @@
 import Commessa.View.VistaListaCommesse as ListView
 from Commessa.Controller.CommessaC import CommessaC
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QComboBox, QListWidgetItem, QMessageBox, QWidget
+from PyQt5.QtWidgets import QComboBox, QMessageBox, QWidget
 import copy
 
 class Ui_ModificaCommessa(QWidget):
@@ -103,7 +103,7 @@ class Ui_ModificaCommessa(QWidget):
         textEdit_2.setText(self._translate("ModificaWindow", "  "+str(text)))
         return textEdit_2
     
-    def AddDropDown(self,text):
+    def AddDropDown(self,text=None):
         
         DropDownSelect = QtWidgets.QComboBox(self.scrollAreaWidgetContents)
         self.sizePolicy.setHeightForWidth(DropDownSelect.sizePolicy().hasHeightForWidth())
