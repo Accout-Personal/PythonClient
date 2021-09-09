@@ -1,12 +1,15 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMessageBox, QWidget
+from PyQt5.QtWidgets import QWidget
 
 from Commessa.View.VistaListaCommesse import Ui_ListaCommesse
 from Commessa.View.VistaInsertCommessa import Ui_InsertCommessa
 
 from Ddt.View.VistaListaDDT import Ui_ListaDDT
 from Ddt.View.VistaInserisciDDT import Ui_InsertDDT
+
+from SuddivisioneLavoro.View.VistaListaLavoro import Ui_ListaLavoro
+from SuddivisioneLavoro.View.VistaInsertLavoro import Ui_InsertLavoro
 
 class VistaLavorazione(QWidget):
     def __init__(self, parent=None,fakeparent=None):
@@ -133,16 +136,12 @@ class VistaLavorazione(QWidget):
     def Go_NewDDT(self):
         self.NewDDT = Ui_InsertDDT()
         self.NewDDT.show()
-
-    def Go_ListaLavorazione(self):
-        print('go lista lavorazione')
-        #self.ListaLavorazione = Ui_ListaListaLavorazione()
-        #self.ListaLavorazione.show()
+        
 
     def Go_ListaLavoro(self):
-        print('go lista lavoro')
-        #self.InserisciDipendente = Ui_InserisciDip()
-        #self.InserisciDipendente.show()
+        self.ListaLavoro = Ui_ListaLavoro()
+        self.ListaLavoro.show()
     
     def Go_NewLavoro(self):
-        print('Go new lavoro')
+        self.NewLavoro = Ui_InsertLavoro()
+        self.NewLavoro.show()
