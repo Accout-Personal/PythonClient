@@ -1,3 +1,4 @@
+from Entrata.View.VisualizzaEntrata import Ui_VistaEntrata
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from Entrata.Controller.EntrataC import EntrataC
@@ -104,8 +105,8 @@ class Ui_ListaEntrata(QWidget):
     #Viene chiamata la funzione per visualizzare i dettagli di quell'elemento
     def Visualizza(self,elem):
         print(elem)
-        #self.Dettaglio = Ui_VistaCliente(str(elem[self.key]))
-        #self.Dettaglio.show()
+        self.Dettaglio = Ui_VistaEntrata(str(elem[self.key]))
+        self.Dettaglio.show()
 
     #Viene settata l'intestazione della finestra
     def AddTableHeader(self,text,pos,width):

@@ -1,20 +1,20 @@
 from typing import KeysView
-from AltraSpesa.Controller.AltraSpesaC import AltraSpesaC
+from Entrata.Controller.EntrataC import EntrataC
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 import copy
 
-class Ui_VistaAltraSpesa(QWidget):
+class Ui_VistaEntrata(QWidget):
     def __init__(self,key, parent=None):
-        super(Ui_VistaAltraSpesa, self).__init__(parent)
+        super(Ui_VistaEntrata, self).__init__(parent)
         self._translate = QtCore.QCoreApplication.translate
         self.key = key
         VisualizzaWindow = self
-        self.controller = AltraSpesaC()
+        self.controller = EntrataC()
         self.chiamata = self.controller.GetKey(self.key)
         VisualizzaWindow.setObjectName("VisualizzaWindow")
         VisualizzaWindow.resize(800, 600)
-        VisualizzaWindow.setWindowTitle(self._translate("VisualizzaWindow", "VisualizzaCliente"))
+        VisualizzaWindow.setWindowTitle(self._translate("VisualizzaWindow", "VisualizzaEntrata"))
         self.verticalLayout = QtWidgets.QVBoxLayout(VisualizzaWindow)
         self.verticalLayout.setObjectName("verticalLayout")
         self.verticalpos = 0
@@ -23,13 +23,21 @@ class Ui_VistaAltraSpesa(QWidget):
         self.gridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(100)
 
         self.traduzione = {
-        'codice':'codice',
-        'importo':'importo',
+        'numero_fattura':'Fattura',
         'data':'data',
-        'causale':'causale',
-        'scadenza':'scadenza',
-        'data_esecuzione':'data esecuzione',
-        'importo_effettuato': 'importo effettuato'
+        'importo_entrata':'importo entrata',
+        'data_versamento':'data versamento',
+        }
+        self.traduzione_2 = {
+            'PIVA':'PIVA',
+            'nome_azienda':'nome azienda'
+        }
+        self.traduzione_3={
+            'numero_commessa':'Commessa',
+            'listino_prezzi_modello':'modello',
+            'data':'data',
+            'nddt_cliente':'nddt_cliente',
+            'valore_commessa_cliente':'Valore commessa cliente'
         }
                 
         #print(self.chiamata)
@@ -42,25 +50,30 @@ class Ui_VistaAltraSpesa(QWidget):
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         for a in self.viewList:
-            if(a != "transazione_altra_spesa"):
+            if(a != "contabile"):
                 #inserimento del label
                 self.AddElement(self.gridLayout,self.traduzione[a],0,self.count)
                 #inserimento del contenuto
                 self.AddElement(self.gridLayout,self.chiamata[a],1,self.count)
             else:
-                if(len(self.viewList['transazione_altra_spesa'])>0):
-                    self.AddSectionLabel('Transazione altra spesa')
-                    self.AltraSpesaGridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(0)
-                    self.count3 = self.count
-                    for b in self.viewList['transazione_altra_spesa']:
-                        print("sono in "+str(b['uscita_effettuata']))
-                        self.count2 = self.count
-                        for c in b['uscita_effettuata']:
-                            self.addTableHead(c,self.AltraSpesaGridLayout,self.count2,self.scrollAreaWidgetContents)
-                            #inserimento del contenuto
-                            self.AddElement(self.AltraSpesaGridLayout,b['uscita_effettuata'][c],self.count2,self.count3)
-                            self.count2 += 1
-                        self.count3 += 1                         
+                if(len(self.viewList['contabile'])>0):
+                    self.AddSectionLabel('Cliente')
+                    self.ClienteGridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(0)
+                    self.AddSectionLabel('Commesse')
+                    self.CommessaGridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(1)
+                    self.count2 = self.count
+                    for b in self.traduzione_2:
+                        self.addTableHead(b,self.ClienteGridLayout,self.count2,self.scrollAreaWidgetContents)
+                        self.AddElement(self.ClienteGridLayout,self.viewList['contabile'][0]['commessa'][0]['cliente'][b],self.count2,self.count)
+                        self.count2 += 1
+                        self.count4 = self.count
+                    for c in self.traduzione_3:
+                        self.count3 = self.count
+                        self.addTableHead(c,self.CommessaGridLayout,self.count4,self.scrollAreaWidgetContents)
+                        for d in self.viewList['contabile'][0]['commessa']:
+                            self.AddElement(self.CommessaGridLayout,d[c],self.count4,self.count3)
+                            self.count3 += 1
+                        self.count4 += 1                     
             self.count += 1
             
         QtCore.QMetaObject.connectSlotsByName(VisualizzaWindow)
@@ -124,4 +137,4 @@ class Ui_VistaAltraSpesa(QWidget):
         self.label_headTelefono.setMinimumSize(QtCore.QSize(0, 20))
         self.label_headTelefono.setObjectName("label_headTelefono")
         grid.addWidget(self.label_headTelefono, 0, pos, 1, 1)
-        self.label_headTelefono.setText(text)
+        self.label_headTelefono.setText(str(text))

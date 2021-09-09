@@ -1,4 +1,6 @@
 
+
+from Entrata.Controller.EntrataC import EntrataC
 from Login.VistaLogin.formLogPython import Ui_VistaLog
 from formpythonsimo3 import Ui_UIwindow
 import sys
@@ -9,3 +11,4 @@ if __name__ == '__main__':
     vista_home = Ui_VistaLog()
     vista_home.show()
     sys.exit(app.exec())
+    
