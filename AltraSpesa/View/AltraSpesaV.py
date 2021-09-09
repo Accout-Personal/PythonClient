@@ -1,3 +1,4 @@
+from AltraSpesa.View.AltraSpesaModifica import Ui_ModificaAltraSpesa
 from AltraSpesa.View.AltraSpesaDettaglio import Ui_VistaAltraSpesa
 from AltraSpesa.Controller.AltraSpesaC import AltraSpesaC
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -143,8 +144,9 @@ class Ui_listaAltraSpesa(QWidget):
 
     def Modify(self,elem):
         print (elem[self.key])
-        """ self.modificaview = Ui_ModificaCliente(elem[self.key])
-        self.modificaview.show()"""
+        self.modificaview = Ui_ModificaAltraSpesa(elem[self.key])
+        self.modificaview.show()
+        self.close()
     
     #Questa funzione aggiunge una scroll area
     def AddScrollArea(self):

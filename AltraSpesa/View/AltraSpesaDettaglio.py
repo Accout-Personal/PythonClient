@@ -62,8 +62,7 @@ class Ui_VistaAltraSpesa(QWidget):
                             #inserimento del contenuto
                             self.AddElement(self.AltraSpesaGridLayout,b['uscita_effettuata'][c],self.count2,self.count3)
                             self.count2 += 1
-                        self.count3 += 1
-                            
+                        self.count3 += 1                         
             self.count += 1
             
         QtCore.QMetaObject.connectSlotsByName(VisualizzaWindow)
