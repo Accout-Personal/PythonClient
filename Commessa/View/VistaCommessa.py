@@ -9,7 +9,7 @@
 
 from Commessa.Controller.CommessaC import CommessaC
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMessageBox, QWidget
+from PyQt5.QtWidgets import QWidget
 import copy
 
 class Ui_VistaCommessa(QWidget):
