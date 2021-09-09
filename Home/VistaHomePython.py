@@ -25,6 +25,7 @@ class Ui_HomeClass(QWidget):
         HomeClass = self
         HomeClass.setObjectName("HomeClass")
         HomeClass.resize(800, 600)
+        self.handClose = 1
         self.verticalLayout = QtWidgets.QVBoxLayout(HomeClass)
         self.verticalLayout.setObjectName("verticalLayout")
         self.scrollArea = QtWidgets.QScrollArea(HomeClass)
