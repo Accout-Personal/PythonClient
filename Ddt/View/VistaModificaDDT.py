@@ -89,7 +89,11 @@ class Ui_VistaModificaDDT(QWidget):
             #Crea il label del campo
             self.AddLabel(self.traduzione[a])
             #Crea il campo per la modifica
-            self.listaInput[a] = self.AddField(self.chiamata[a])
+            
+            if(a == 'data'):
+                self.listaInput[a] = self.AddCalendar(name='data',value=self.chiamata[a])
+            else:
+                self.listaInput[a] = self.AddField(self.chiamata[a])
             
         #Aggiunge il pulsante per la modifica
         self.pushButton = self.AddSubmitButton("Modifica")
@@ -133,6 +137,26 @@ class Ui_VistaModificaDDT(QWidget):
         
         return DropDownSelect
 
+    #aggiunge il calendario
+    def AddCalendar(self,name=None,value=None):
+        CalendarSelect = QtWidgets.QDateEdit(self.scrollAreaWidgetContents,calendarPopup=True)
+        self.sizePolicy.setHeightForWidth(CalendarSelect.sizePolicy().hasHeightForWidth())
+        CalendarSelect.setSizePolicy(self.sizePolicy)
+        CalendarSelect.setMinimumSize(QtCore.QSize(300, 30))
+        CalendarSelect.setMaximumSize(QtCore.QSize(500, 30))
+        CalendarSelect.setFont(self.font)
+        CalendarSelect.setStyleSheet("QDateEdit{background-color: white;}"
+                                     "QCalendarWidget QWidget{ alternate-background-color: rgb(128, 128, 128); }"
+                                     "QCalendarWidget QAbstractItemView:enabled{ color:black; }"
+                                     "QCalendarWidget QAbstractItemView:disabled{ color:rgb(50, 50, 50); }"
+                                    )
+        CalendarSelect.calendarWidget().setLocale(QtCore.QLocale(QtCore.QLocale.English))
+        CalendarSelect.setObjectName(name)
+        self.horizontalLayout.addWidget(CalendarSelect)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        CalendarSelect.setDate(QtCore.QDate.fromString(value,"yyyy-MM-dd"))
+        return CalendarSelect
+    
     #Aggiunge un label descrittivo
     def AddLabel(self,text):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -153,8 +177,11 @@ class Ui_VistaModificaDDT(QWidget):
         
         for a in self.listaInput:
             
-            print(type(self.listaInput[a]))
-            input = self.listaInput[a].toPlainText().replace('  ', '')   
+            if(self.listaInput[a].objectName() =='data'):
+                input = self.listaInput[a].date().toString('yyyy-MM-dd')
+            else:
+                input = self.listaInput[a].toPlainText().replace('  ', '')
+            
             if(input != '' and input != 'None'):
                 self.body[a] = input
         

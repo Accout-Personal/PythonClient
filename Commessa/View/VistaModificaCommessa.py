@@ -10,7 +10,7 @@
 import Commessa.View.VistaListaCommesse as ListView
 from Commessa.Controller.CommessaC import CommessaC
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QComboBox, QListWidgetItem, QMessageBox, QWidget
+from PyQt5.QtWidgets import QComboBox, QMessageBox, QWidget
 import copy
 
 class Ui_ModificaCommessa(QWidget):
@@ -59,6 +59,10 @@ class Ui_ModificaCommessa(QWidget):
         }
         self.AllClienti = self.controller.GetAllCliente()
         self.ClientiDict = {k['nome_azienda']:k['PIVA'] for k in self.AllClienti}
+
+        self.AllModelli = self.controller.GetAllModelli()
+        self.ModelliList = [k['modello'] for k in self.AllModelli]
+
         #esclude elemento non desiderato per visualizzazione
         self.viewList = copy.deepcopy(self.body)
         self.exclude = ['codice_merce']
@@ -76,12 +80,16 @@ class Ui_ModificaCommessa(QWidget):
             
             #Crea il label del campo
             self.AddLabel(self.traduzione[a])
-            
             #Crea il campo per la modifica
             if(a == 'cliente'):
-                self.listaInput[a] = self.AddDropDown(self.chiamata[a]['nome_azienda'])
+                self.listaInput[a] = self.AddDropDown(contentList = list(self.ClientiDict.keys()),name = 'cliente',value=self.chiamata[a])
+            elif(a == 'listino_prezzi_modello'):
+                self.listaInput[a] = self.AddDropDown(contentList = self.ModelliList,name = 'modello',value=self.chiamata[a])
+            elif(a == 'data'):
+                self.listaInput[a] = self.AddCalendar(name = 'data',value=self.chiamata[a])
             else:
                 self.listaInput[a] = self.AddField(self.chiamata[a])
+            
 
         #Aggiunge il pulsante per la modifica
         self.pushButton = self.AddSubmitButton("Modifica")
@@ -103,7 +111,27 @@ class Ui_ModificaCommessa(QWidget):
         textEdit_2.setText(self._translate("ModificaWindow", "  "+str(text)))
         return textEdit_2
     
-    def AddDropDown(self,text):
+    #aggiunge il calendario
+    def AddCalendar(self,name=None,value=None):
+        CalendarSelect = QtWidgets.QDateEdit(self.scrollAreaWidgetContents,calendarPopup=True)
+        self.sizePolicy.setHeightForWidth(CalendarSelect.sizePolicy().hasHeightForWidth())
+        CalendarSelect.setSizePolicy(self.sizePolicy)
+        CalendarSelect.setMinimumSize(QtCore.QSize(300, 30))
+        CalendarSelect.setMaximumSize(QtCore.QSize(500, 30))
+        CalendarSelect.setFont(self.font)
+        CalendarSelect.setStyleSheet("QDateEdit{background-color: white;}"
+                                     "QCalendarWidget QWidget{ alternate-background-color: rgb(128, 128, 128); }"
+                                     "QCalendarWidget QAbstractItemView:enabled{ color:black; }"
+                                     "QCalendarWidget QAbstractItemView:disabled{ color:rgb(50, 50, 50); }"
+                                    )
+        CalendarSelect.calendarWidget().setLocale(QtCore.QLocale(QtCore.QLocale.English))
+        CalendarSelect.setObjectName(name)
+        self.horizontalLayout.addWidget(CalendarSelect)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        CalendarSelect.setDate(QtCore.QDate.fromString(value,"yyyy-MM-dd"))
+        return CalendarSelect
+
+    def AddDropDown(self,value=None,contentList=[],name=None):
         
         DropDownSelect = QtWidgets.QComboBox(self.scrollAreaWidgetContents)
         self.sizePolicy.setHeightForWidth(DropDownSelect.sizePolicy().hasHeightForWidth())
@@ -112,15 +140,14 @@ class Ui_ModificaCommessa(QWidget):
         DropDownSelect.setMaximumSize(QtCore.QSize(500, 30))
         DropDownSelect.setFont(self.font)
         DropDownSelect.setStyleSheet("background-color: rgb(255, 255, 255);")
-        DropDownSelect.setObjectName("textEdit")
+        DropDownSelect.setObjectName(name)
         self.horizontalLayout.addWidget(DropDownSelect)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         self._translate = QtCore.QCoreApplication.translate
-        clienti = list(self.ClientiDict.keys())
-        for i in range(len(clienti)):
+        for i in range(len(contentList)):
 
-            DropDownSelect.addItem(clienti[i])
-            if(text == clienti[i]):
+            DropDownSelect.addItem(contentList[i])
+            if(value == contentList[i]):
                 DropDownSelect.setCurrentIndex(i)
         
         return DropDownSelect
@@ -145,11 +172,15 @@ class Ui_ModificaCommessa(QWidget):
         
         for a in self.listaInput:
             
-            print(type(self.listaInput[a]))
-            if(isinstance(self.listaInput[a],QComboBox)):
+            if(self.listaInput[a].objectName() == 'cliente'):
                 input = self.ClientiDict[self.listaInput[a].currentText()]
+            elif(self.listaInput[a].objectName() == 'modello'):
+                input = self.ModelliList[self.listaInput[a].currentIndex()]
+            elif(self.listaInput[a].objectName() == 'data'):
+                input = self.listaInput[a].date().toString('yyyy-MM-dd')
             else:
-                input = self.listaInput[a].toPlainText().replace('  ', '')
+                input = self.listaInput[a].toPlainText()
+            
             if(input != '' and input != 'None'):
                 self.body[a] = input
         self.risultato = self.controller.Update(self.body)
