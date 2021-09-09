@@ -6,6 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+from AltraSpesa.View.InserisciAltraSpesa import Ui_InserisciAltraSpesa
 from AltraSpesa.View.AltraSpesaV import Ui_listaAltraSpesa
 from Contabile.View.ContabileV import Ui_listaContabile
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -162,7 +163,9 @@ class VistaFinanziari(QWidget):
         print("Go_ListaEntrate")
 
     def Go_NewSpese(self):
-        print('Go_NewSpese')
+        self.InserisciAltraSpesa = Ui_InserisciAltraSpesa()
+        self.InserisciAltraSpesa.show()
+
 
     def Go_ListaSpese(self):
         print('Go_ListaSpese')
