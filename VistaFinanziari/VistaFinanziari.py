@@ -6,6 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+from Entrata.View.InserisciEntrata import Ui_InserisciEntrata
 from Entrata.View.EntrataV import Ui_ListaEntrata
 from AltraSpesa.View.InserisciAltraSpesa import Ui_InserisciAltraSpesa
 from AltraSpesa.View.AltraSpesaV import Ui_listaAltraSpesa
@@ -176,7 +177,8 @@ class VistaFinanziari(QWidget):
         self.ListinoPrezzi.show()
 
     def Go_NewEntrata(self):
-        print('Go_NewEntrata')
+        self.EntrataIns = Ui_InserisciEntrata()
+        self.EntrataIns.show()
 
     def Go_NewCliente(self):
         print('Go new clienti')
