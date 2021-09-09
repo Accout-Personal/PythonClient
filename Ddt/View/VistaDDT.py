@@ -13,13 +13,14 @@ from PyQt5.QtWidgets import QWidget
 import copy
 
 class Ui_VistaDDT(QWidget):
-    def __init__(self,key, parent=None):
+    def __init__(self,key, parent=None,contabile=None):
         super(Ui_VistaDDT, self).__init__(parent)
         self._translate = QtCore.QCoreApplication.translate
         self.key = key
         VisualizzaWindow = self
         self.controller = DdtC()
-        self.chiamata = self.controller.GetKey(self.key)
+        
+        
         VisualizzaWindow.setObjectName("VisualizzaWindow")
         VisualizzaWindow.resize(800, 600)
         VisualizzaWindow.setWindowTitle(self._translate("VisualizzaWindow", "VisualizzaCliente"))
@@ -31,100 +32,72 @@ class Ui_VistaDDT(QWidget):
         self.gridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(200)
 
         self.traduzione = {
-        'numero_ddt_aziendale':'Numero DDT'
+        'ddt':'Numero DDT',
+        'data':'data',
+        'luogo_destinazione':'luogo di destinazione',
+        'entrata':'fattura'
         }
+        if(contabile != None):
+            self.listAttr = [
+                {'nome':'ddt','width':80},
+                {'nome':'data','width':80},
+                {'nome':'luogo_destinazione','width':100},
+            ]
+            self.chiamata = self.controller.ContabileKey(self.key)
+        else:
+            self.listAttr = [
+                {'nome':'ddt','width':80},
+                {'nome':'data','width':80},
+                {'nome':'luogo_destinazione','width':100},
+                {'nome':'entrata','width':50}
+            ]
+            self.chiamata = self.controller.NonContabileKey(self.key)
 
-        self.listAttr = [
-            {'nome':'numero_commessa','width':80},
-            {'nome':'Qta','width':80},
-            {'nome':'data','width':100},
-            {'nome':'cliente','width':200},
-            {'nome':'nddt_cliente','width':50},
-            {'nome':'listino_prezzi_modello','width':120},
-            {'nome':'valore_commessa_cliente','width':100},
-            {'nome':'contabile','width':80},
-            {'nome':'tessuto','width':80},
-        ]
-                
-        #print(self.chiamata)
+          
+        print(self.chiamata)
         #esclude elemento non desiderato per visualizzazione
         
         self.viewList = copy.deepcopy(self.chiamata)
-        print(self.viewList)
-        self.exclude = ['suddivisione_lavoro','codice_merce']
+        self.exclude = ['commessa']
         for elem in self.exclude:
-            self.viewList.pop(elem)
+            self.viewList.pop(elem,None)
 
 
         self.count = 0
-        #print(self.viewList)
+
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         for a in self.viewList:
-            if(a == 'cliente'):
-                self.AddElement(self.gridLayout,self.traduzione['cliente'],0,self.count)
-                self.AddElement(self.gridLayout,self.chiamata[a]['nome_azienda'],1,self.count)
-                continue
             #inserimento del label
             self.AddElement(self.gridLayout,self.traduzione[a],0,self.count)
             #inserimento del contenuto
             self.AddElement(self.gridLayout,self.chiamata[a],1,self.count)
             self.count += 1
 
-            
-
-        #Sezione della suddivisione lavoro
-        self.Lavoro = copy.deepcopy(self.chiamata['suddivisione_lavoro'])
-        self.Lavoro_attr = ['dipendente','quantita_assegnata','valore_lavoro','data_conclusione']
-        if(len(self.Lavoro)>0):
-        
-            self.AddSectionLabel('Suddivisione Lavoro')
-            self.LavoroGridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(100)
-
-            #Aggiunge l'intestazione della tabella
-            for a in range(len(self.Lavoro_attr)):
-                
-
-                self.addTableHead(self.traduzione[self.Lavoro_attr[a]],self.LavoroGridLayout,a,self.scrollAreaWidgetContents)
-                self.count = 1
-                
-                if(self.Lavoro_attr[a] == 'dipendente'):
-                    for numero in self.Lavoro:
-                        #Aggiunge il numero telefono in colonna
-                        #print(numero[self.Lavoro_attr[a]])
-                        self.AddElement(self.LavoroGridLayout,numero[self.Lavoro_attr[a]]['nome_cognome'],a,self.count)
-                        self.count += 1
-                    continue
-                for numero in self.Lavoro:
-                    #Aggiunge il numero telefono in colonna
-                    self.AddElement(self.LavoroGridLayout,numero[self.Lavoro_attr[a]],a,self.count)
-                    self.count += 1
-
         ##sezione delle commesse
-        #self.commessa = copy.deepcopy(self.chiamata['commessa'])
-        #self.commessa_attr = ['numero_commessa','valore_commessa_cliente','listino_prezzi_modello','Qta','nddt_cliente','data']
-        #self.traduzione["numero_commessa"] = "numero di commessa"
-        #self.traduzione["valore_commessa_cliente"] = "valore della commessa"
-        #self.traduzione["listino_prezzi_modello"] = "modello"
-        #self.traduzione["Qta"] = "Q.ta"
-        #self.traduzione["nddt_cliente"] = "ddt del cliente"
-        #self.traduzione["data"] = "data"
-        #if(len(self.commessa)>0):
-        #    self.AddSectionLabel('Commesse')
-        #    self.CommesaGridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(200)
-#
-        #    #Aggiunge l'intestazione della tabella
-        #    for a in range(len(self.commessa_attr)):
-        #        self.addTableHead(self.traduzione[self.commessa_attr[a]],self.CommesaGridLayout,a,self.scrollAreaWidgetContents)
-        #        self.count = 1
-        #        #Popolazione della tabella
-        #        for commessa in self.commessa:
-        #            #print(commessa)
-#
-        #            #popola elemento nella tabella
-        #            self.AddElement(self.CommesaGridLayout,commessa[self.commessa_attr[a]],a,self.count)
-        #            self.count += 1
+        if(contabile !=None):
+            self.commessa = copy.deepcopy(self.chiamata['commessa'])
+            self.commessa_attr = ['Qta','numero_commessa','listino_prezzi_modello','nddt_cliente','data']
+            self.traduzione["numero_commessa"] = "numero di commessa"
+            self.traduzione["listino_prezzi_modello"] = "modello"
+            self.traduzione["Qta"] = "Q.ta"
+            self.traduzione["nddt_cliente"] = "ddt entrata"
+            self.traduzione["data"] = "data"
+            if(len(self.commessa)>0):
+                self.AddSectionLabel('Commesse della DDT')
+                self.CommesaGridLayout,self.scrollAreaWidgetContents = self.AddScrollArea(200)
+            #
+                #Aggiunge l'intestazione della tabella
+                for a in range(len(self.commessa_attr)):
+                    self.addTableHead(self.traduzione[self.commessa_attr[a]],self.CommesaGridLayout,a,self.scrollAreaWidgetContents)
+                    self.count = 1
+                    #Popolazione della tabella
+                    for commessa in self.commessa:
+                        print(commessa)
+                        #popola elemento nella tabella
+                        self.AddElement(self.CommesaGridLayout,commessa[self.commessa_attr[a]],a,self.count)
+                        self.count += 1
                     
             
         QtCore.QMetaObject.connectSlotsByName(VisualizzaWindow)

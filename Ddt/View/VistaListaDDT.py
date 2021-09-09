@@ -72,7 +72,7 @@ class Ui_ListaDDT(QWidget):
         
 
         for a in range(0,len(self.chiamata)):
-            if(listcontabile[a] == None):
+            if( listcontabile[a] == None):
                 
                 self.AddTableContent(0,a+1,str(self.chiamata[a]['Numero_ddt_aziendale']),self.listAttr[0]['width'],"background-color: rgb(123, 123, 123);")
                 self.AddTableContent(1,a+1,str(self.chiamata[a]['non_contabile']['data']),self.listAttr[1]['width'],"background-color: rgb(123, 123, 123);")
@@ -106,8 +106,7 @@ class Ui_ListaDDT(QWidget):
         for i in range(0,len(self.OperationButtons)):
             for a in range(0,len(self.chiamata)):
                 #print(i)
-                self.OperationButtons[i]
-                self.AddOperationButton(X_offset+i,a,self.OperationButtons[i],lambda state,b=a,c=i: self.OperationButtons[c]["function"](self.chiamata[b]))
+                self.AddOperationButton(X_offset+i,a,self.OperationButtons[i],lambda state,b=a,c=i: self.OperationButtons[c]["function"](self.chiamata[b],listcontabile[b]))
                             
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
@@ -116,11 +115,11 @@ class Ui_ListaDDT(QWidget):
         QtCore.QMetaObject.connectSlotsByName(ListaView)
 
     #chiamata alla funzione per la cancellazione di un elemento
-    def deleteConfirm(self,cliente):
+    def deleteConfirm(self,elem,contabile):
 
         msg = QMessageBox()
         msg.setWindowTitle('Conferma')
-        msg.setText('sei sicuro di voler cancellare il Cliente '+cliente['nome_azienda'] + '?')
+        msg.setText('sei sicuro di voler cancellare il DDT numero'+elem['Numero_ddt_aziendale'] + '?')
         msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         okButton = msg.button(QMessageBox.Yes)
         noButton = msg.button(QMessageBox.No)
@@ -128,19 +127,30 @@ class Ui_ListaDDT(QWidget):
         retval = msg.exec_()
         if(msg.clickedButton() == okButton):
             print('cancellazione confermata')
-            postbody = {self.key:cliente[self.key]}
-            res = self.controller.Delete(postbody)
-            print(res)
+            postbody = {self.key:elem[self.key]}
+            if(contabile != None):
+                res = self.controller.ContaBileDelete(postbody)
+                print(res)
+            else:
+                res = self.controller.NonContabileDelete(postbody)
+                print(res)
+
             self.RefreshLista = Ui_ListaDDT()
             self.RefreshLista.show()
             self.close()
         else:
             print('cancellazione annullata')   
     #Viene chiamata la funzione per visualizzare i dettagli di quell'elemento
-    def Visualizza(self,elem):
+    def Visualizza(self,elem,tipo):
         print(elem)
-        self.Dettaglio = Ui_VistaDDT(str(elem[self.key]))
+        print(tipo)
+        self.Dettaglio = Ui_VistaDDT(str(elem[self.key]),contabile=tipo)
         self.Dettaglio.show()
+
+    def Modify(self,elem,tipo):
+        print (elem[self.key])
+        self.modificaview = Ui_VistaModificaDDT(elem[self.key],contabile=tipo)
+        self.modificaview.show()
 
     #Viene settata l'intestazione della finestra
     def AddTableHeader(self,text,pos,width):
@@ -177,11 +187,6 @@ class Ui_ListaDDT(QWidget):
         OperationButton.clicked.connect(function)
         self.gridLayout.addWidget(OperationButton, y+1, x, 1, 1)
         return OperationButton
-
-    def Modify(self,elem):
-        print (elem[self.key])
-        self.modificaview = Ui_VistaModificaDDT(elem[self.key])
-        self.modificaview.show()
     
     #Questa funzione aggiunge una scroll area
     def AddScrollArea(self):
