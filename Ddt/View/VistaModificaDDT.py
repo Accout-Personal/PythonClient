@@ -15,12 +15,12 @@ from PyQt5.QtWidgets import QComboBox, QMessageBox, QWidget
 import copy
 
 class Ui_VistaModificaDDT(QWidget):
-    def __init__(self,key, parent=None):
+    def __init__(self,key, parent=None,contabile=None):
         super(Ui_VistaModificaDDT, self).__init__(parent)
         self._translate = QtCore.QCoreApplication.translate
         self.key = str(key)
+        self.contabile = contabile
         self.controller = DdtC()
-        self.chiamata = self.controller.GetKey(self.key)
         ModificaWindow = self
         ModificaWindow.setObjectName("ModificaWindow")
         ModificaWindow.resize(800, 600)
@@ -36,33 +36,44 @@ class Ui_VistaModificaDDT(QWidget):
         self.AddInsertHint("I campi con il segno ( * ) sono obbligatori non nulli")
         
         self.traduzione = {
-            'numero_commessa':'N.commessa',
-            'Qta':'quantita\'',
             'data':'data',
-            'cliente':'cliente',
-            'nddt_cliente':'DDT',
-            'listino_prezzi_modello':'modello',
-            'contabile':'ddt d\'uscita',
-            'tessuto':'tessuto',
+            'luogo_destinazione':'luogo destinazione',
+            'entrata':'fattura'
         }
 
+        
+        
         #si usa un dizionario per iterare tutti i campi dell'inserimento e popolazione del campo
-        self.body = {
-            'codice_merce': self.chiamata['codice_merce'],
-            'numero_commessa':None,
-            'tessuto':None,
-            'Qta':None,
-            'nddt_cliente':None,
+        if(self.contabile != None):
+            self.listAttr = [
+                {'nome':'data','width':80},
+                {'nome':'luogo_destinazione','width':100},
+            ]
+            self.chiamata = self.controller.ContabileKey(self.key)
+            self.body = {
+            'ddt': self.chiamata['ddt'],
             'data':None,
-            'cliente': None,
-            'listino_prezzi_modello': None,
-            'contabile': None,
-        }
-        self.AllClienti = self.controller.GetAllCliente()
-        self.ClientiDict = {k['nome_azienda']:k['PIVA'] for k in self.AllClienti}
+            'luogo_destinazione':None,
+            'entrata':None
+            }
+        else:
+            self.listAttr = [
+                {'nome':'data','width':80},
+                {'nome':'luogo_destinazione','width':100},
+                {'nome':'entrata','width':50}
+            ]
+            self.chiamata = self.controller.NonContabileKey(self.key)
+            self.body = {
+            'ddt': self.chiamata['ddt'],
+            'data':None,
+            'luogo_destinazione':None,
+            }
+            
+
+        
         #esclude elemento non desiderato per visualizzazione
         self.viewList = copy.deepcopy(self.body)
-        self.exclude = ['codice_merce']
+        self.exclude = ['ddt']
         for elem in self.exclude:
             self.viewList.pop(elem)
         
@@ -77,13 +88,9 @@ class Ui_VistaModificaDDT(QWidget):
             
             #Crea il label del campo
             self.AddLabel(self.traduzione[a])
-            
             #Crea il campo per la modifica
-            if(a == 'cliente'):
-                self.listaInput[a] = self.AddDropDown(self.chiamata[a]['nome_azienda'])
-            else:
-                self.listaInput[a] = self.AddField(self.chiamata[a])
-
+            self.listaInput[a] = self.AddField(self.chiamata[a])
+            
         #Aggiunge il pulsante per la modifica
         self.pushButton = self.AddSubmitButton("Modifica")
         self.pushButton.clicked.connect(self.Modify)
@@ -147,13 +154,17 @@ class Ui_VistaModificaDDT(QWidget):
         for a in self.listaInput:
             
             print(type(self.listaInput[a]))
-            if(isinstance(self.listaInput[a],QComboBox)):
-                input = self.ClientiDict[self.listaInput[a].currentText()]
-            else:
-                input = self.listaInput[a].toPlainText().replace('  ', '')
+            input = self.listaInput[a].toPlainText().replace('  ', '')   
             if(input != '' and input != 'None'):
                 self.body[a] = input
-        self.risultato = self.controller.Update(self.body)
+        
+        if(self.contabile != None):
+            print('contabile')
+            self.risultato = self.controller.ContaBileUpdate(self.body)
+        else:
+            print('Non contabile')
+            self.risultato = self.controller.NonContabileUpdate(self.body)
+        
         self.messaggio = ""
         if('message' in self.risultato):
             if('errors' in self.risultato):
@@ -164,7 +175,7 @@ class Ui_VistaModificaDDT(QWidget):
             QMessageBox.about(self, "Errore nella compilazione dei campi",self.messaggio)
         else:
             QMessageBox.about(self, "Esito operazione","Operazione completata con successo")
-            self.OpenLista = ListView.Ui_ListaCommesse()
+            self.OpenLista = ListView.Ui_ListaDDT()
             self.OpenLista.show()
             self.close()
 

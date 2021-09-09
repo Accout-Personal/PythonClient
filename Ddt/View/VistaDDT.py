@@ -20,7 +20,6 @@ class Ui_VistaDDT(QWidget):
         VisualizzaWindow = self
         self.controller = DdtC()
         
-        
         VisualizzaWindow.setObjectName("VisualizzaWindow")
         VisualizzaWindow.resize(800, 600)
         VisualizzaWindow.setWindowTitle(self._translate("VisualizzaWindow", "VisualizzaCliente"))
@@ -53,15 +52,13 @@ class Ui_VistaDDT(QWidget):
             ]
             self.chiamata = self.controller.NonContabileKey(self.key)
 
-          
-        print(self.chiamata)
+
         #esclude elemento non desiderato per visualizzazione
         
         self.viewList = copy.deepcopy(self.chiamata)
         self.exclude = ['commessa']
         for elem in self.exclude:
             self.viewList.pop(elem,None)
-
 
         self.count = 0
 
@@ -104,7 +101,6 @@ class Ui_VistaDDT(QWidget):
 
     #Questa funzione aggiunge un label al GridLayout nella posizione x(colonna) e y(riga)
     def AddElement(self,gridLayout,text,x,y,heightMin = 30,HeightMax=30):
-        gridLayout
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)

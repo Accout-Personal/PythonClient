@@ -18,14 +18,6 @@ class DdtC:
             return response.json()
             raise Exception("Errore. ",response.status_code)
                         
-    def GetKey(self,key):
-        response = requests.get(env.host + env.Url+self.url+'key/'+key,headers=self.credenziali)
-        if response.ok:
-            print("va bene")
-            return response.json()
-        else:
-            raise Exception("Errore. ",response.status_code)
-
     def ContabileKey(self,key):
         response = requests.get(
             env.host + env.Url+self.contabileUrl+'key/'+key, headers=self.credenziali)

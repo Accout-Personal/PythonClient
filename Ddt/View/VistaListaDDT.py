@@ -151,6 +151,7 @@ class Ui_ListaDDT(QWidget):
         print (elem[self.key])
         self.modificaview = Ui_VistaModificaDDT(elem[self.key],contabile=tipo)
         self.modificaview.show()
+        self.close()
 
     #Viene settata l'intestazione della finestra
     def AddTableHeader(self,text,pos,width):
