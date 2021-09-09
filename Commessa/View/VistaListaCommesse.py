@@ -124,7 +124,7 @@ class Ui_ListaCommesse(QWidget):
 
         msg = QMessageBox()
         msg.setWindowTitle('Conferma')
-        msg.setText('sei sicuro di voler cancellare il Cliente '+cliente['nome_azienda'] + '?')
+        msg.setText('sei sicuro di voler cancellare la commessa '+cliente['numero_commessa'] + '?')
         msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         okButton = msg.button(QMessageBox.Yes)
         noButton = msg.button(QMessageBox.No)

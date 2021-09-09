@@ -3,6 +3,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 
 from Commessa.View.VistaListaCommesse import Ui_ListaCommesse
+from Commessa.View.VistaInsertCommessa import Ui_InsertCommessa
+
 from Ddt.View.VistaListaDDT import Ui_ListaDDT
 from Ddt.View.VistaInserisciDDT import Ui_InsertDDT
 
@@ -119,6 +121,9 @@ class VistaLavorazione(QWidget):
 
     def Go_NewCommesse(self):
         print('Go New Commesse')
+        self.NewCommessa = Ui_InsertCommessa()
+        self.NewCommessa.show()
+        
 
     def Go_ListaDDT(self):
         print('go lista DDT')
