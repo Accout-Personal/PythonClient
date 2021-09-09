@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMessageBox, QWidget
 
 from Commessa.View.VistaListaCommesse import Ui_ListaCommesse
 from Ddt.View.VistaListaDDT import Ui_ListaDDT
+from Ddt.View.VistaInserisciDDT import Ui_InsertDDT
 
 class VistaLavorazione(QWidget):
     def __init__(self, parent=None,fakeparent=None):
@@ -125,7 +126,8 @@ class VistaLavorazione(QWidget):
         self.Ui_ListaDDT.show()
 
     def Go_NewDDT(self):
-        print('go new ddt')
+        self.NewDDT = Ui_InsertDDT()
+        self.NewDDT.show()
 
     def Go_ListaLavorazione(self):
         print('go lista lavorazione')

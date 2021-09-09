@@ -29,15 +29,11 @@ class Ui_ListaDDT(QWidget):
         self.verticalLayout = QtWidgets.QVBoxLayout(ListaView)
         self.verticalLayout.setObjectName("verticalLayout")
 
-
-
         self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         self.sizePolicy.setHorizontalStretch(0)
         self.sizePolicy.setVerticalStretch(0)
 
         self.AddLabelTitolo("Lista delle commesse")
-
-
 
         self.AddScrollArea()
 
@@ -60,9 +56,7 @@ class Ui_ListaDDT(QWidget):
         listcontabile = [x['contabile'] for x in self.chiamata] 
 
         total = sum(sizes)+500
-        print(total)
         height = total*0.75-100 if((total*0.75)>GetSystemMetrics(1)-100) else GetSystemMetrics(1)-100
-        print(height)
         ListaView.resize(total,height)
         
         #DDT
@@ -101,14 +95,14 @@ class Ui_ListaDDT(QWidget):
                 "function":self.Modify
             }
         ]
+
         #TODO add different button in base of type
         X_offset = len(self.listAttr)
         for i in range(0,len(self.OperationButtons)):
             for a in range(0,len(self.chiamata)):
                 #print(i)
                 self.AddOperationButton(X_offset+i,a,self.OperationButtons[i],lambda state,b=a,c=i: self.OperationButtons[c]["function"](self.chiamata[b],listcontabile[b]))
-                            
-
+    
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
 
@@ -119,7 +113,7 @@ class Ui_ListaDDT(QWidget):
 
         msg = QMessageBox()
         msg.setWindowTitle('Conferma')
-        msg.setText('sei sicuro di voler cancellare il DDT numero'+elem['Numero_ddt_aziendale'] + '?')
+        msg.setText('sei sicuro di voler cancellare il DDT numero'+str(elem['Numero_ddt_aziendale']) + '?')
         msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         okButton = msg.button(QMessageBox.Yes)
         noButton = msg.button(QMessageBox.No)
@@ -127,19 +121,19 @@ class Ui_ListaDDT(QWidget):
         retval = msg.exec_()
         if(msg.clickedButton() == okButton):
             print('cancellazione confermata')
-            postbody = {self.key:elem[self.key]}
+            postbody = {'ddt':elem[self.key]}
             if(contabile != None):
                 res = self.controller.ContaBileDelete(postbody)
-                print(res)
             else:
                 res = self.controller.NonContabileDelete(postbody)
-                print(res)
 
+            print(res)
             self.RefreshLista = Ui_ListaDDT()
             self.RefreshLista.show()
             self.close()
         else:
-            print('cancellazione annullata')   
+            print('cancellazione annullata')
+
     #Viene chiamata la funzione per visualizzare i dettagli di quell'elemento
     def Visualizza(self,elem,tipo):
         print(elem)
