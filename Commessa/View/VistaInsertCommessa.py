@@ -72,6 +72,8 @@ class Ui_InsertCommessa(QWidget):
                 self.listaInput[a] = self.AddDropDown(contentList = list(self.ClientiDict.keys()),name = 'cliente')
             elif(a == 'listino_prezzi_modello'):
                 self.listaInput[a] = self.AddDropDown(contentList = self.ModelliList,name = 'modello')
+            elif(a == 'data'):
+                self.listaInput[a] = self.AddCalendar(name = 'data')
             else:
                 self.listaInput[a] = self.AddEdit()
 
@@ -136,6 +138,26 @@ class Ui_InsertCommessa(QWidget):
 
         return textEdit_2
 
+    #aggiunge il calendario
+    def AddCalendar(self,name=None):
+        CalendarSelect = QtWidgets.QDateEdit(self.scrollAreaWidgetContents,calendarPopup=True)
+        self.sizePolicy.setHeightForWidth(CalendarSelect.sizePolicy().hasHeightForWidth())
+        CalendarSelect.setSizePolicy(self.sizePolicy)
+        CalendarSelect.setMinimumSize(QtCore.QSize(300, 30))
+        CalendarSelect.setMaximumSize(QtCore.QSize(500, 30))
+        CalendarSelect.setFont(self.font)
+        CalendarSelect.setStyleSheet("QDateEdit{background-color: white;}"
+                                     "QCalendarWidget QWidget{ alternate-background-color: rgb(128, 128, 128); }"
+                                     "QCalendarWidget QAbstractItemView:enabled{ color:black; }"
+                                     "QCalendarWidget QAbstractItemView:disabled{ color:rgb(50, 50, 50); }"
+                                    )
+        CalendarSelect.calendarWidget().setLocale(QtCore.QLocale(QtCore.QLocale.English))
+        CalendarSelect.setObjectName(name)
+        self.horizontalLayout.addWidget(CalendarSelect)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        CalendarSelect.setDate(QtCore.QDate.currentDate())
+        return CalendarSelect
+    
     #Aggiunge un etichetta descrittiva del campo
     def AddLabelCampo(self,text):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -195,8 +217,9 @@ class Ui_InsertCommessa(QWidget):
             if(self.listaInput[a].objectName() == 'cliente'):
                 input = self.ClientiDict[self.listaInput[a].currentText()]
             elif(self.listaInput[a].objectName() == 'modello'):
-
                 input = self.ModelliList[self.listaInput[a].currentIndex()]
+            elif(self.listaInput[a].objectName() == 'data'):
+                input = self.listaInput[a].date().toString('yyyy-MM-dd')
             else:
                 input = self.listaInput[a].toPlainText()
             if(input != ''):

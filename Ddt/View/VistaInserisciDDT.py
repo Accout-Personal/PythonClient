@@ -1,5 +1,6 @@
 from Ddt.Controller.DdtC import DdtC
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QLocale
 from PyQt5.QtWidgets import QMessageBox, QWidget
 import copy
 
@@ -126,7 +127,12 @@ class Ui_InsertDDT(QWidget):
         CalendarSelect.setMinimumSize(QtCore.QSize(300, 30))
         CalendarSelect.setMaximumSize(QtCore.QSize(500, 30))
         CalendarSelect.setFont(self.font)
-        CalendarSelect.setStyleSheet("background-color: rgb(255, 255, 255);")
+        CalendarSelect.setStyleSheet("QDateEdit{background-color: white;}"
+                                     "QCalendarWidget QWidget{ alternate-background-color: rgb(128, 128, 128); }"
+                                     "QCalendarWidget QAbstractItemView:enabled{ color:black; }"
+                                     "QCalendarWidget QAbstractItemView:disabled{ color:rgb(50, 50, 50); }"
+                                    )
+        CalendarSelect.calendarWidget().setLocale(QLocale(QLocale.English))
         CalendarSelect.setObjectName("textEdit")
         self.horizontalLayout.addWidget(CalendarSelect)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
