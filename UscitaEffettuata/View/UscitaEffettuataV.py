@@ -1,3 +1,4 @@
+from UscitaEffettuata.View.VisualizzaUscita import Ui_VistaUscita
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from UscitaEffettuata.Controller.UscitaEffettuataC import UscitaEffettuataC
@@ -84,7 +85,7 @@ class Ui_ListaUscita(QWidget):
 
         msg = QMessageBox()
         msg.setWindowTitle('Conferma')
-        msg.setText('sei sicuro di voler cancellare l\' uscita '+str(uscita['numero_fattura']) + '?')
+        msg.setText('sei sicuro di voler cancellare l\' uscita '+str(uscita['id_transazione']) + '?')
         msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         okButton = msg.button(QMessageBox.Yes)
         noButton = msg.button(QMessageBox.No)
@@ -103,7 +104,7 @@ class Ui_ListaUscita(QWidget):
     #Viene chiamata la funzione per visualizzare i dettagli di quell'elemento
     def Visualizza(self,elem):
         print(elem)
-        self.Dettaglio = Ui_VistaEntrata(str(elem[self.key]))
+        self.Dettaglio = Ui_VistaUscita(str(elem[self.key]))
         self.Dettaglio.show()
 
     #Viene settata l'intestazione della finestra
