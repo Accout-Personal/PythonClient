@@ -11,6 +11,8 @@ from Ddt.View.VistaInserisciDDT import Ui_InsertDDT
 from SuddivisioneLavoro.View.VistaListaLavoro import Ui_ListaLavoro
 from SuddivisioneLavoro.View.VistaInsertLavoro import Ui_InsertLavoro
 
+from TrasferimentoLavoro.View.VistaListaLavoro import Ui_ListaTrasf
+
 class VistaLavorazione(QWidget):
     def __init__(self, parent=None,fakeparent=None):
         super(VistaLavorazione, self).__init__(parent)
@@ -43,6 +45,9 @@ class VistaLavorazione(QWidget):
         self.AddButtonInLayout(self.horizontalLayout_3,"Lista lavoro",self.Go_ListaLavoro)     
         self.AddButtonInLayout(self.horizontalLayout_3,"Assegna un lavoro",self.Go_NewLavoro)     
 
+        self.AddSectionLabel(7,"Trasferimento Lavoro")
+        self.horizontalLayout_3 = self.AddHorizontalLayout(0,8)
+        self.AddButtonInLayout(self.horizontalLayout_3,"Lista Transferimento",self.Go_ListaTrasferimento)     
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
@@ -145,3 +150,7 @@ class VistaLavorazione(QWidget):
     def Go_NewLavoro(self):
         self.NewLavoro = Ui_InsertLavoro()
         self.NewLavoro.show()
+    
+    def Go_ListaTrasferimento(self):
+        self.ListTrasf = Ui_ListaTrasf()
+        self.ListTrasf.show()
