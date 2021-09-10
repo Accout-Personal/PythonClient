@@ -1,3 +1,4 @@
+from Entrata.View.VistaModificaEntrata import Ui_ModificaEntrata
 from Entrata.View.VisualizzaEntrata import Ui_VistaEntrata
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
@@ -142,7 +143,7 @@ class Ui_ListaEntrata(QWidget):
 
     def Modify(self,elem):
         print (elem[self.key])
-        self.modificaview = Ui_ModificaCliente(elem[self.key])
+        self.modificaview = Ui_ModificaEntrata(elem[self.key])
         self.modificaview.show()
     
     #Questa funzione aggiunge una scroll area
