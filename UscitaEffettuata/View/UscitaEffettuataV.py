@@ -1,5 +1,3 @@
-from Entrata.View.VistaModificaEntrata import Ui_ModificaEntrata
-from Entrata.View.VisualizzaEntrata import Ui_VistaEntrata
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from UscitaEffettuata.Controller.UscitaEffettuataC import UscitaEffettuataC

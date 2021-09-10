@@ -6,6 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+from UscitaEffettuata.View.UscitaEffettuataV import Ui_ListaUscita
 from Entrata.View.InserisciEntrata import Ui_InserisciEntrata
 from Entrata.View.EntrataV import Ui_ListaEntrata
 from AltraSpesa.View.InserisciAltraSpesa import Ui_InserisciAltraSpesa
@@ -154,7 +155,8 @@ class VistaFinanziari(QWidget):
         print("Go_NewUscitaEffettuata")
 
     def Go_ListaUsciteEffettuate(self):
-        print("Go_ListaUsciteEffettuate")
+        self.ListaUscita = Ui_ListaUscita()
+        self.ListaUscita.show()
 
     def Go_ListaContabile(self):
         print('Go listaContabile')

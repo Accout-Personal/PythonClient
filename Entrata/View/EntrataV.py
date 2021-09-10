@@ -25,7 +25,7 @@ class Ui_ListaEntrata(QWidget):
         self.sizePolicy.setHorizontalStretch(0)
         self.sizePolicy.setVerticalStretch(0)
 
-        self.AddLabelTitolo("Lista dei Clienti")
+        self.AddLabelTitolo("Lista delle Entrate")
 
 
 
@@ -145,6 +145,7 @@ class Ui_ListaEntrata(QWidget):
         print (elem[self.key])
         self.modificaview = Ui_ModificaEntrata(elem[self.key])
         self.modificaview.show()
+        self.close()
     
     #Questa funzione aggiunge una scroll area
     def AddScrollArea(self):

@@ -1,15 +1,15 @@
-from AltraSpesa.Controller.AltraSpesaC import AltraSpesaC
+from Entrata.Controller.EntrataC import EntrataC
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 import copy
-import AltraSpesa.View.AltraSpesaV as Altra
+import Entrata.View.EntrataV as Vista
 
 class Ui_ModificaEntrata(QWidget):
     def __init__(self,key, parent=None):
         super(Ui_ModificaEntrata, self).__init__(parent)
         self._translate = QtCore.QCoreApplication.translate
         self.key = str(key)
-        self.controller = AltraSpesaC()
+        self.controller = EntrataC()
         self.chiamata = self.controller.GetKey(self.key)
         ModificaWindow = self
         ModificaWindow.setObjectName("ModificaWindow")
@@ -111,7 +111,7 @@ class Ui_ModificaEntrata(QWidget):
             QMessageBox.about(self, "Errore nella compilazione dei campi",self.messaggio)
         else:
             QMessageBox.about(self, "Esito operazione","Operazione completata con successo")
-            self.OpenLista = Altra.Ui_listaAltraSpesa()
+            self.OpenLista = Vista.Ui_ListaEntrata()
             self.OpenLista.show()
             self.close()
 
