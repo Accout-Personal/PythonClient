@@ -2,7 +2,7 @@ from Entrata.View.VistaModificaEntrata import Ui_ModificaEntrata
 from Entrata.View.VisualizzaEntrata import Ui_VistaEntrata
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
-from UscitaEffettuata.Controller.UscitaEffettuataC import UscitaEffettuataC
+from Stipendio.Controller.StipendioC import StipendioC
 
 
 class Ui_ListaStipendio(QWidget):
@@ -10,7 +10,7 @@ class Ui_ListaStipendio(QWidget):
         super(Ui_ListaStipendio, self).__init__(parent)
         self._translate = QtCore.QCoreApplication.translate
         ListaStipendio = self
-        self.controller = UscitaEffettuataC()
+        self.controller = StipendioC()
         self.key = ['CF','data']
         self.chiamata = self.controller.GetAll()
         ListaStipendio.setObjectName("ListaStipendio")
