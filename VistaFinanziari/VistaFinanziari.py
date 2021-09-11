@@ -6,6 +6,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+from Stipendio.View.StipendioV import Ui_ListaStipendio
+from UscitaEffettuata.View.VistaInserisciUscita import Ui_InserisciUscita
 from UscitaEffettuata.View.UscitaEffettuataV import Ui_ListaUscita
 from Entrata.View.InserisciEntrata import Ui_InserisciEntrata
 from Entrata.View.EntrataV import Ui_ListaEntrata
@@ -150,9 +152,14 @@ class VistaFinanziari(QWidget):
 
     def Go_ListaStipendio(self):
         print("Go_ListaStipendio")
+        self.ListaStipendi = Ui_ListaStipendio()
+        self.ListaStipendi.show()
+        
 
     def Go_NewUscitaEffettuata(self):
         print("Go_NewUscitaEffettuata")
+        self.InserisciUscita = Ui_InserisciUscita()
+        self.InserisciUscita.show()
 
     def Go_ListaUsciteEffettuate(self):
         self.ListaUscita = Ui_ListaUscita()
@@ -160,8 +167,8 @@ class VistaFinanziari(QWidget):
 
     def Go_ListaContabile(self):
         print('Go listaContabile')
-        self.ListaDipendeti = Ui_listaContabile()
-        self.ListaDipendeti.show()
+        self.ListaContabile = Ui_listaContabile()
+        self.ListaContabile.show()
     
     def Go_ListaEntrate(self):
         print("Go_ListaEntrate")
@@ -175,8 +182,8 @@ class VistaFinanziari(QWidget):
 
     def Go_ListaSpese(self):
         print('Go_ListaSpese')
-        self.ListinoPrezzi = Ui_listaAltraSpesa()
-        self.ListinoPrezzi.show()
+        self.ListaAltraSpesa = Ui_listaAltraSpesa()
+        self.ListaAltraSpesa.show()
 
     def Go_NewEntrata(self):
         self.EntrataIns = Ui_InserisciEntrata()

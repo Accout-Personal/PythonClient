@@ -1,3 +1,4 @@
+from UscitaEffettuata.View.VistaModificaUscita import Ui_ModificaUscita
 from UscitaEffettuata.View.VisualizzaUscita import Ui_VistaUscita
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
@@ -141,8 +142,9 @@ class Ui_ListaUscita(QWidget):
 
     def Modify(self,elem):
         print (elem[self.key])
-        self.modificaview = Ui_ModificaEntrata(elem[self.key])
+        self.modificaview = Ui_ModificaUscita(elem[self.key])
         self.modificaview.show()
+        self.close()
     
     #Questa funzione aggiunge una scroll area
     def AddScrollArea(self):

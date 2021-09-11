@@ -1,5 +1,5 @@
-from Entrata.View.VistaModificaEntrata import Ui_ModificaEntrata
-from Entrata.View.VisualizzaEntrata import Ui_VistaEntrata
+
+from typing import KeysView
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from Stipendio.Controller.StipendioC import StipendioC
@@ -14,7 +14,7 @@ class Ui_ListaStipendio(QWidget):
         self.key = ['CF','data']
         self.chiamata = self.controller.GetAll()
         ListaStipendio.setObjectName("ListaStipendio")
-        ListaStipendio.resize(800, 600)
+        ListaStipendio.resize(900, 700)
         ListaStipendio.setWindowTitle(self._translate("ListaStipendio", "ListaStipendio"))
         self.verticalLayout = QtWidgets.QVBoxLayout(ListaStipendio)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -34,24 +34,27 @@ class Ui_ListaStipendio(QWidget):
         self.traduzione = {
         'data':'data',
         'dipendente_stip':'Dipendente',
-        'giorni_ferie':'giorni ferie',
-        'importo_stipendio':'importo stipendio',
-        'ore_straordinario':'ore straordinario',
+        'giorni_ferie':'ferie',
+        'importo_stipendio':'imp. \nstipendio',
+        'ore_straordinario':'ore \nstraordinario',
         'ore_lavoro':'ore lavoro',
         'nome_cognome':'Nome cognome'
         }
 
         self.listAttr = ['data','dipendente_stip','giorni_ferie','importo_stipendio','ore_straordinario','ore_lavoro','nome_cognome']
         #le dimensioni delle colonne
-        sizes = [80,100,50,50,50,50,100]
+        sizes = [70,120,30,50,50,50,140]
         for attr in range(len(self.listAttr)):
             
-            #Aggiunge l'intestazione della tabella
-            self.AddTableHeader(self.traduzione[self.listAttr[attr]],attr,sizes[attr])
+                #Aggiunge l'intestazione della tabella
+                self.AddTableHeader(self.traduzione[self.listAttr[attr]],attr,sizes[attr])
 
-            #aggiunge elemento nella tabella
-            for a in range(0,len(self.chiamata)):
-                self.AddTableContent(attr,a+1,self.chiamata[a][self.listAttr[attr]],sizes[attr])
+                #aggiunge elemento nella tabella
+                for a in range(0,len(self.chiamata)):
+                    if(self.listAttr[attr] != "nome_cognome"):
+                        self.AddTableContent(attr,a+1,self.chiamata[a][self.listAttr[attr]],sizes[attr])
+                    else:
+                        self.AddTableContent(attr,a+1,self.chiamata[a]['dipendente']['nome_cognome'],sizes[attr])
 
         #Aggiunge pulsante delle operazioni
         self.OperationButtons=[
@@ -109,7 +112,7 @@ class Ui_ListaStipendio(QWidget):
     #Viene chiamata la funzione per visualizzare i dettagli di quell'elemento
     def Visualizza(self,elem):
         print(elem)
-        self.Dettaglio = Ui_VistaEntrata(str(elem[self.key]))
+        #self.Dettaglio = Ui_VistaEntrata(str(elem[self.key]))
         self.Dettaglio.show()
 
     #Viene settata l'intestazione della finestra
@@ -146,7 +149,7 @@ class Ui_ListaStipendio(QWidget):
 
     def Modify(self,elem):
         print (elem[self.key])
-        self.modificaview = Ui_ModificaEntrata(elem[self.key])
+        #self.modificaview = Ui_ModificaEntrata(elem[self.key])
         self.modificaview.show()
     
     #Questa funzione aggiunge una scroll area
