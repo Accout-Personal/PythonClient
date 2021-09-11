@@ -66,6 +66,10 @@ class VistaFinanziari(QWidget):
         self.AddButtonInLayout(self.horizontalLayout_3,"Lista retribuzione",self.Go_ListaRetribuzioni)     
         self.AddButtonInLayout(self.horizontalLayout_3,"Inserisci un retribuzione",self.Go_NewRetribuzione) 
 
+        self.AddSectionLabel(13,"Flussi di cassa")
+        self.horizontalLayout_3 = self.AddHorizontalLayout(0,14)
+        self.AddButtonInLayout(self.horizontalLayout_3,"Lista dei Flussi",self.Go_ListaFlussi)     
+
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
         QtCore.QMetaObject.connectSlotsByName(HomeClass)
@@ -182,12 +186,6 @@ class VistaFinanziari(QWidget):
         self.EntrataIns = Ui_InserisciEntrata()
         self.EntrataIns.show()
 
-    def Go_NewCliente(self):
-        print('Go new clienti')
-    
-    def Go_NewMacchinario(self):
-        print('Go new macchinario')
-    
-    def Go_ListaMacchinari(self):
-        print('Go lista macchinari')
+    def Go_ListaFlussi(self):
+        print('Go Lista Flussi')
     
