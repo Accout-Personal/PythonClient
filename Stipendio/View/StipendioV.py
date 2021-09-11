@@ -1,4 +1,5 @@
 
+from Stipendio.View.VistaModificaStipendio import Ui_ModificaStipendio
 from Stipendio.View.VistaVisualizzaStipendio import Ui_VistaStipendio
 from typing import KeysView
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -150,9 +151,9 @@ class Ui_ListaStipendio(QWidget):
         return OperationButton
 
     def Modify(self,elem):
-        print (str(elem[self.key]))
-        """self.modificaview = (elem[self.key])
-        self.modificaview.show()"""
+        self.Modificastipendio = Ui_ModificaStipendio(elem)
+        self.Modificastipendio.show()
+        self.close()
     
     #Questa funzione aggiunge una scroll area
     def AddScrollArea(self):
