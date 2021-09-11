@@ -33,7 +33,6 @@ class Ui_ModificaContabile(QWidget):
         #si usa un dizionario per iterare tutti i campi dell'inserimento e popolazione del campo
         self.body = {
             'ddt': self.chiamata['ddt'],
-            'data':self.chiamata['data'],
             'luogo_destinazione': self.chiamata['luogo_destinazione'],
             'entrata': self.chiamata['entrata'],
         }

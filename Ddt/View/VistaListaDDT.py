@@ -52,7 +52,6 @@ class Ui_ListaDDT(QWidget):
 
         sizes = [x['width'] for x in self.listAttr]
         # se contabile o non contabile
-        print(self.chiamata)
         listcontabile = [x['contabile'] for x in self.chiamata] 
 
         total = sum(sizes)+500

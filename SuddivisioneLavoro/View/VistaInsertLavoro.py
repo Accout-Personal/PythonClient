@@ -11,13 +11,13 @@ class Ui_InsertLavoro(QWidget):
         
         self.controller = SuddivisioneLavoroC()
         InsertWindow = self
-        InsertWindow.setWindowTitle(self._translate("InserisciCliente", "Inserisci un nuovo suddivisione lavoro"))
+        InsertWindow.setWindowTitle(self._translate("InserisciLavoro", "Inserisci un nuovo suddivisione lavoro"))
         InsertWindow.setObjectName("Inserisci un nuovo lavoro")
         InsertWindow.resize(800, 600)
         self.verticalLayout = QtWidgets.QVBoxLayout(InsertWindow)
         self.verticalLayout.setObjectName("verticalLayout")
 
-        self.AddLabelTitolo("Inserisci una nuova commessa")
+        self.AddLabelTitolo("Inserisci un nuovo lavoro")
         
         #Aggiunge un scrollArea e un Vertical Layout
         self.AddScrollAreaLayout()
