@@ -184,7 +184,7 @@ class Ui_VistaModificaDDT(QWidget):
             
             if(input != '' and input != 'None'):
                 self.body[a] = input
-        
+        print(self.body)
         if(self.contabile != None):
             print('contabile')
             self.risultato = self.controller.ContaBileUpdate(self.body)
