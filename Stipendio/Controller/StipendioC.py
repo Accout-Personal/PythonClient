@@ -22,8 +22,8 @@ class StipendioC:
         else:
             raise Exception("Errore. ",response.status_code)
             
-    def GetKey(self,key):
-        response = requests.get(env.host + env.Url+self.url+'key/'+key,headers=self.credenziali)
+    def GetKey(self,keys):
+        response = requests.get(env.host + env.Url+self.url+'key',headers=self.credenziali,params=keys)
         if response.ok:
             return response.json()
         else:

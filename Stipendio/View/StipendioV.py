@@ -1,4 +1,5 @@
 
+from Stipendio.View.VistaVisualizzaStipendio import Ui_VistaStipendio
 from typing import KeysView
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
@@ -14,7 +15,7 @@ class Ui_ListaStipendio(QWidget):
         self.key = ['CF','data']
         self.chiamata = self.controller.GetAll()
         ListaStipendio.setObjectName("ListaStipendio")
-        ListaStipendio.resize(900, 700)
+        ListaStipendio.resize(900,700)
         ListaStipendio.setWindowTitle(self._translate("ListaStipendio", "ListaStipendio"))
         self.verticalLayout = QtWidgets.QVBoxLayout(ListaStipendio)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -111,8 +112,8 @@ class Ui_ListaStipendio(QWidget):
             print('cancellazione annullata')   
     #Viene chiamata la funzione per visualizzare i dettagli di quell'elemento
     def Visualizza(self,elem):
-        print(elem)
-        #self.Dettaglio = Ui_VistaEntrata(str(elem[self.key]))
+        #print(str(elem))
+        self.Dettaglio = Ui_VistaStipendio(elem)
         self.Dettaglio.show()
 
     #Viene settata l'intestazione della finestra
@@ -148,9 +149,9 @@ class Ui_ListaStipendio(QWidget):
         return OperationButton
 
     def Modify(self,elem):
-        print (elem[self.key])
-        #self.modificaview = Ui_ModificaEntrata(elem[self.key])
-        self.modificaview.show()
+        print (str(elem[self.key]))
+        """self.modificaview = (elem[self.key])
+        self.modificaview.show()"""
     
     #Questa funzione aggiunge una scroll area
     def AddScrollArea(self):
