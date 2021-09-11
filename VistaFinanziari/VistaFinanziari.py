@@ -17,10 +17,7 @@ from Contabile.View.ContabileV import Ui_listaContabile
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 
-from Dipendente.View.VistaListaDipendenti import Ui_ListaDipendenti
-from ListinoPrezzi.View.VistaListaListinoPrezzi import Ui_ListaListinoPrezzi
-from Cliente.View.VistaListaCliente import Ui_ListaCliente
-from Dipendente.View.VistaInserisciDipendente import Ui_InserisciDip
+from FlussoCassa.View.VistaListaFlussi import Ui_ListaFlussi
 
 
 class VistaFinanziari(QWidget):
@@ -194,5 +191,6 @@ class VistaFinanziari(QWidget):
         self.EntrataIns.show()
 
     def Go_ListaFlussi(self):
-        print('Go Lista Flussi')
+        self.ListaFlussi = Ui_ListaFlussi()
+        self.ListaFlussi.show()
     
