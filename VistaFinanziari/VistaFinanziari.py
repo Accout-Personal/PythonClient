@@ -6,6 +6,7 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+from Stipendio.View.VistaInserisciStipendio import Ui_InserisciStipendio
 from Stipendio.View.StipendioV import Ui_ListaStipendio
 from UscitaEffettuata.View.VistaInserisciUscita import Ui_InserisciUscita
 from UscitaEffettuata.View.UscitaEffettuataV import Ui_ListaUscita
@@ -150,6 +151,8 @@ class VistaFinanziari(QWidget):
 
     def Go_NewStipendio(self):
         print("Go_NewStipendio")
+        self.InserisciStipendio = Ui_InserisciStipendio()
+        self.InserisciStipendio.show()
 
     def Go_ListaStipendio(self):
         print("Go_ListaStipendio")

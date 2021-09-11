@@ -90,7 +90,7 @@ class Ui_ListaStipendio(QWidget):
         QtCore.QMetaObject.connectSlotsByName(ListaStipendio)
 
     #chiamata alla funzione per la cancellazione di un elemento
-    def deleteConfirm(self,stipendio):
+    def deleteConfirm(self,elemento):
 
         msg = QMessageBox()
         msg.setWindowTitle('Conferma')
@@ -102,7 +102,8 @@ class Ui_ListaStipendio(QWidget):
         retval = msg.exec_()
         if(msg.clickedButton() == okButton):
             print('cancellazione confermata')
-            postbody = {self.key:stipendio[self.key]}
+            postbody = {'dipendente_stip':elemento['dipendente_stip'],
+                        'data':elemento['data']}
             res = self.controller.Delete(postbody)
             print(res)
             self.RefreshLista = Ui_ListaStipendio()
