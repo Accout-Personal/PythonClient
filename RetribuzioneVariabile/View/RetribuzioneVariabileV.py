@@ -1,22 +1,23 @@
-from Entrata.View.VistaModificaEntrata import Ui_ModificaEntrata
-from Entrata.View.VisualizzaEntrata import Ui_VistaEntrata
+from RetribuzioneVariabile.View.VistaModificaRetribuzione import Ui_Modificaretribuzione
+from RetribuzioneVariabile.View.VistaRetribuzione import Ui_VistaRetribuzione
+from typing import KeysView
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 from RetribuzioneVariabile.Controller.RetribuzioneVariabileC import RetribuzioneVariabileC
 
 
-class Ui_ListaRetribuzione(QWidget):
+class Ui_ListaRetribuzioniVariabili(QWidget):
     def __init__(self, parent=None):
-        super(Ui_ListaRetribuzione, self).__init__(parent)
+        super(Ui_ListaRetribuzioniVariabili, self).__init__(parent)
         self._translate = QtCore.QCoreApplication.translate
-        ListaRetribuzione = self
+        ListaRetribuzioniVariabili = self
         self.controller = RetribuzioneVariabileC()
-        self.key = ['data','dipendente_retr']
+        self.key = ['CF','data']
         self.chiamata = self.controller.GetAll()
-        ListaRetribuzione.setObjectName("ListaRetribuzione")
-        ListaRetribuzione.resize(800, 600)
-        ListaRetribuzione.setWindowTitle(self._translate("ListaRetribuzione", "ListaRetribuzione"))
-        self.verticalLayout = QtWidgets.QVBoxLayout(ListaRetribuzione)
+        ListaRetribuzioniVariabili.setObjectName("ListaRetribuzioniVariabili")
+        ListaRetribuzioniVariabili.resize(900,700)
+        ListaRetribuzioniVariabili.setWindowTitle(self._translate("ListaRetribuzioniVariabili", "ListaRetribuzioniVariabili"))
+        self.verticalLayout = QtWidgets.QVBoxLayout(ListaRetribuzioniVariabili)
         self.verticalLayout.setObjectName("verticalLayout")
 
 
@@ -33,22 +34,25 @@ class Ui_ListaRetribuzione(QWidget):
 
         self.traduzione = {
         'data':'data',
-        'dipendente_retr':'dipendente',
-        'importo_retribuzione':'importo retribuzione',
+        'dipendente_retr':'Dipendente',
+        'importo_retribuzione':'importo \nretribuzione',
         'nome_cognome':'Nome cognome'
         }
 
         self.listAttr = ['data','dipendente_retr','importo_retribuzione','nome_cognome']
         #le dimensioni delle colonne
-        sizes = [50,120,50,100]
+        sizes = [80,120,80,140]
         for attr in range(len(self.listAttr)):
             
-            #Aggiunge l'intestazione della tabella
-            self.AddTableHeader(self.traduzione[self.listAttr[attr]],attr,sizes[attr])
+                #Aggiunge l'intestazione della tabella
+                self.AddTableHeader(self.traduzione[self.listAttr[attr]],attr,sizes[attr])
 
-            #aggiunge elemento nella tabella
-            for a in range(0,len(self.chiamata)):
-                self.AddTableContent(attr,a+1,self.chiamata[a][self.listAttr[attr]],sizes[attr])
+                #aggiunge elemento nella tabella
+                for a in range(0,len(self.chiamata)):
+                    if(self.listAttr[attr] != "nome_cognome"):
+                        self.AddTableContent(attr,a+1,self.chiamata[a][self.listAttr[attr]],sizes[attr])
+                    else:
+                        self.AddTableContent(attr,a+1,self.chiamata[a]['dipendente']['nome_cognome'],sizes[attr])
 
         #Aggiunge pulsante delle operazioni
         self.OperationButtons=[
@@ -80,14 +84,14 @@ class Ui_ListaRetribuzione(QWidget):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
 
-        QtCore.QMetaObject.connectSlotsByName(ListaRetribuzione)
+        QtCore.QMetaObject.connectSlotsByName(ListaRetribuzioniVariabili)
 
     #chiamata alla funzione per la cancellazione di un elemento
-    def deleteConfirm(self,retribuzione):
+    def deleteConfirm(self,elemento):
 
         msg = QMessageBox()
         msg.setWindowTitle('Conferma')
-        msg.setText('sei sicuro di voler cancellare questa retribuzione variabile ?')
+        msg.setText('sei sicuro di voler cancellare questa retribuzione ?')
         msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         okButton = msg.button(QMessageBox.Yes)
         noButton = msg.button(QMessageBox.No)
@@ -95,18 +99,19 @@ class Ui_ListaRetribuzione(QWidget):
         retval = msg.exec_()
         if(msg.clickedButton() == okButton):
             print('cancellazione confermata')
-            postbody = {self.key:retribuzione[self.key]}
+            postbody = {'dipendente_retr':elemento['dipendente_retr'],
+                        'data':elemento['data']}
             res = self.controller.Delete(postbody)
             print(res)
-            self.RefreshLista = Ui_ListaRetribuzione()
+            self.RefreshLista = Ui_ListaRetribuzioniVariabili()
             self.RefreshLista.show()
             self.close()
         else:
             print('cancellazione annullata')   
     #Viene chiamata la funzione per visualizzare i dettagli di quell'elemento
     def Visualizza(self,elem):
-        print(elem)
-        self.Dettaglio = Ui_VistaEntrata(str(elem[self.key]))
+        #print(str(elem))
+        self.Dettaglio = Ui_VistaRetribuzione(elem)
         self.Dettaglio.show()
 
     #Viene settata l'intestazione della finestra
@@ -116,7 +121,7 @@ class Ui_ListaRetribuzione(QWidget):
         self.header1.setSizePolicy(self.sizePolicy)
         self.header1.setMinimumSize(QtCore.QSize(width, 30))
         self.header1.setObjectName("header1")
-        self.header1.setText(self._translate("ListaRetribuzione",text))
+        self.header1.setText(self._translate("ListaRetribuzioniVariabili",text))
         self.gridLayout.addWidget(self.header1, 0, pos, 1, 1)
     
     #Questa funzione aggiunge le label alla finestra
@@ -127,7 +132,7 @@ class Ui_ListaRetribuzione(QWidget):
         self.label_3.setMinimumSize(QtCore.QSize(width, 30))
         self.label_3.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label_3.setObjectName("label_3")
-        self.label_3.setText(self._translate("ListaRetribuzione","   "+ str(content)))
+        self.label_3.setText(self._translate("ListaRetribuzioniVariabili","   "+ str(content)))
         self.gridLayout.addWidget(self.label_3, y, x, 1, 1)
 
     #Questa funzione aggiunge un bottone a cui viene collegata una particolare funzione, da attivare quando 
@@ -136,15 +141,15 @@ class Ui_ListaRetribuzione(QWidget):
         OperationButton = QtWidgets.QPushButton(self.scrollAreaWidgetContents)
         OperationButton.setStyleSheet(buttonDict["StyleSheet"])
         OperationButton.setObjectName("OperationButton")
-        OperationButton.setText(self._translate("ListaRetribuzione", buttonDict["name"]))        
+        OperationButton.setText(self._translate("ListaRetribuzioniVariabili", buttonDict["name"]))        
         OperationButton.clicked.connect(function)
         self.gridLayout.addWidget(OperationButton, y+1, x, 1, 1)
         return OperationButton
 
     def Modify(self,elem):
-        print (elem[self.key])
-        self.modificaview = Ui_ModificaEntrata(elem[self.key])
-        self.modificaview.show()
+        self.ModificaRetribuzione = Ui_Modificaretribuzione(elem)
+        self.ModificaRetribuzione.show()
+        self.close()
     
     #Questa funzione aggiunge una scroll area
     def AddScrollArea(self):
@@ -172,4 +177,4 @@ class Ui_ListaRetribuzione(QWidget):
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
-        self.label.setText(self._translate("ModificaDipAng", text))
+        self.label.setText(self._translate("ListaRetribuzioniVariabili", text))

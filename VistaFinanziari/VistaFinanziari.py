@@ -6,6 +6,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+from RetribuzioneVariabile.View.VistaInserisciRetribuzione import Ui_InserisciRetribuzionevariabile
+from RetribuzioneVariabile.View.RetribuzioneVariabileV import Ui_ListaRetribuzioniVariabili
 from Stipendio.View.VistaInserisciStipendio import Ui_InserisciStipendio
 from Stipendio.View.StipendioV import Ui_ListaStipendio
 from UscitaEffettuata.View.VistaInserisciUscita import Ui_InserisciUscita
@@ -145,9 +147,13 @@ class VistaFinanziari(QWidget):
 
     def Go_NewRetribuzione(self):
         print("Go_NewRetribuzione")
+        self.InserisciRetribuzione = Ui_InserisciRetribuzionevariabile()
+        self.InserisciRetribuzione.show()
 
     def Go_ListaRetribuzioni(self):
         print("Go_ListaRetribuzioni")
+        self.ListaRetribuzioni = Ui_ListaRetribuzioniVariabili()
+        self.ListaRetribuzioni.show()
 
     def Go_NewStipendio(self):
         print("Go_NewStipendio")
