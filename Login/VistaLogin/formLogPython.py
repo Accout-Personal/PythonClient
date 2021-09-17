@@ -9,6 +9,7 @@
 
 
 from Home.VistaHomePython import Ui_HomeClass
+from Home.VistaHomePythonCont import Ui_HomeContabile
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 import requests,env
@@ -117,18 +118,24 @@ class Ui_VistaLog(QWidget):
         self.pushButton.setText(_translate("VistaLog", "Invio"))
 
     def login(self):
-        #auth = {"username": self.lineEdit.text(),"password": self.lineEdit_2.text()}
-        auth = {"username": "user4","password": "password"}
+        auth = {"username": self.lineEdit.text(),"password": self.lineEdit_2.text()}
+        #auth = {"username": "user4","password": "password"}
         self.credenziali = {"Accept": env.impostazione}
         response = requests.post(env.host + "/progettolaurea/public/api/login", data=auth, headers=self.credenziali)
         if response.ok:
             print("va bene")
             print(response.json())
             self.HomeVista = Ui_HomeClass()
+            self.HomeVistaCont = Ui_HomeContabile()
             print(response.json()['token'])
             env.token = response.json()['token']
-            self.HomeVista.show()
-            self.close()
+            env.ruolo = response.json()['user']['tipo_dipendente']
+            if(env.ruolo == "contabile"):
+                self.HomeVistaCont.show()
+                self.close()
+            else:
+                self.HomeVista.show()
+                self.close()
         else:
             print(response.json())
             QMessageBox.about(self, "Credenziali errate", "Hai inserito delle credenziali sbagliate, controlla i campi e ripeti l'operazione")
