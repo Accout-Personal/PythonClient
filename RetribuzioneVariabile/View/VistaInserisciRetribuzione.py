@@ -44,6 +44,8 @@ class Ui_InserisciRetribuzionevariabile(QWidget):
             'dipendente_retr':None,
         }
 
+        self.AllDipendenti = self.controller.GetAllDip()
+        self.DipendentiDict = {k['nome_cognome']:k['CF'] for k in self.AllDipendenti}
         self.sizePolicyTextEdit = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.sizePolicyTextEdit.setHorizontalStretch(0)
         self.sizePolicyTextEdit.setVerticalStretch(0)
@@ -52,8 +54,12 @@ class Ui_InserisciRetribuzionevariabile(QWidget):
         for a in self.traduzione:
             
             self.AddLabelCampo(self.traduzione[a])
-
-            self.listaInput[a] = self.AddEdit()
+            if(a=='data'):
+                self.listaInput[a] = self.AddCalendar('data')
+            elif(a == 'dipendente_retr'):
+                self.listaInput[a] = self.AddDropDown(name='dipendente_retr',contentList=list(self.DipendentiDict.keys()))
+            else:
+                self.listaInput[a] = self.AddEdit()
 
 
         self.AddButton("Inserisci",self.Insert)
@@ -79,6 +85,51 @@ class Ui_InserisciRetribuzionevariabile(QWidget):
         self.pushButton.setText(self._translate("InsRetribuzione", text))
         self.verticalLayout_2.addWidget(self.pushButton, 0, QtCore.Qt.AlignHCenter)
 
+    
+    #aggiunge la lista della scelta dei dipendeti
+    def AddDropDown(self,text=None,contentList=[],name=None):
+        
+        DropDownSelect = QtWidgets.QComboBox(self.scrollAreaWidgetContents)
+        self.sizePolicy.setHeightForWidth(DropDownSelect.sizePolicy().hasHeightForWidth())
+        DropDownSelect.setSizePolicy(self.sizePolicy)
+        DropDownSelect.setMinimumSize(QtCore.QSize(300, 30))
+        DropDownSelect.setMaximumSize(QtCore.QSize(500, 30))
+        DropDownSelect.setFont(self.font)
+        DropDownSelect.setStyleSheet("background-color: rgb(255, 255, 255);")
+        DropDownSelect.setObjectName(name)
+        self.horizontalLayout.addWidget(DropDownSelect)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        self._translate = QtCore.QCoreApplication.translate
+        
+        for i in range(len(contentList)):
+
+            DropDownSelect.addItem(contentList[i])
+            if(text == contentList[i]):
+                DropDownSelect.setCurrentIndex(i)
+        
+        return DropDownSelect
+
+    
+    #Aggiunge un calendario widget
+    def AddCalendar(self,name=None):
+        CalendarSelect = QtWidgets.QDateEdit(self.scrollAreaWidgetContents,calendarPopup=True)
+        self.sizePolicy.setHeightForWidth(CalendarSelect.sizePolicy().hasHeightForWidth())
+        CalendarSelect.setSizePolicy(self.sizePolicy)
+        CalendarSelect.setMinimumSize(QtCore.QSize(300, 30))
+        CalendarSelect.setMaximumSize(QtCore.QSize(500, 30))
+        CalendarSelect.setFont(self.font)
+        CalendarSelect.setStyleSheet("QDateEdit{background-color: white;}"
+                                     "QCalendarWidget QWidget{ alternate-background-color: rgb(128, 128, 128); }"
+                                     "QCalendarWidget QAbstractItemView:enabled{ color:black; }"
+                                     "QCalendarWidget QAbstractItemView:disabled{ color:rgb(50, 50, 50); }"
+                                    )
+        CalendarSelect.calendarWidget().setLocale(QtCore.QLocale(QtCore.QLocale.English))
+        CalendarSelect.setObjectName(name)
+        self.horizontalLayout.addWidget(CalendarSelect)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        CalendarSelect.setDate(QtCore.QDate.currentDate())
+        return CalendarSelect
+
     #Aggiunge un campo di campo inseribile all'utente
     def AddEdit(self):
         textEdit_2 = QtWidgets.QTextEdit(self.scrollAreaWidgetContents)
@@ -93,6 +144,8 @@ class Ui_InserisciRetribuzionevariabile(QWidget):
         self.verticalLayout_2.addLayout(self.horizontalLayout)
 
         return textEdit_2
+
+
 
     #Aggiunge un etichetta descrittiva del campo
     def AddLabelCampo(self,text):
@@ -149,7 +202,12 @@ class Ui_InserisciRetribuzionevariabile(QWidget):
     #Funzione dell'inserimento
     def Insert(self):
         for a in self.listaInput:
-            input = self.listaInput[a].toPlainText()
+            if(self.listaInput[a].objectName() == 'data'):
+                input = self.listaInput[a].date().toString('yyyy-MM-dd')
+            elif(self.listaInput[a].objectName() == 'dipendente_retr'):
+                input = self.DipendentiDict[self.listaInput[a].currentText()]
+            else:
+                input = self.listaInput[a].toPlainText()
             if(input != ''):
                 self.body[a] = input            
         

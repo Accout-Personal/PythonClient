@@ -48,4 +48,11 @@ class RetribuzioneVariabileC:
             return response.json()
         else:
             return response.json()
-    
+            
+    def GetAllDip(self):
+        dip_url = "gen/pro/resp/dipendente/type/pro"
+        response = requests.get(env.host + env.Url+dip_url,headers=self.credenziali)
+        if response.ok:
+            return response.json()
+        else:
+            Exception("Errore. ",response.json())

@@ -37,8 +37,8 @@ class Ui_ModificaStipendio(QWidget):
 
         #si usa un dizionario per iterare tutti i campi dell'inserimento e popolazione del campo
         self.body = {
-            'data': None,
-            'dipendente_stip':None,
+            'data': self.chiamata[0]['data'],
+            'dipendente_stip':self.chiamata[0]['dipendente_stip'],
             'giorni_ferie':None,
             'ore_straordinario':None,
             'ore_lavoro':None
@@ -46,10 +46,11 @@ class Ui_ModificaStipendio(QWidget):
 
         #esclude elemento non desiderato per visualizzazione
         self.viewList = copy.deepcopy(self.chiamata)
-        self.exclude = ['importo_stipendio','dipendente','transazione_stipendio']
+        self.exclude = ['importo_stipendio','dipendente','transazione_stipendio','dipendente_stip','data']
         for elem in self.exclude:
             self.viewList[0].pop(elem)
         
+
         #settare size policy per tutti elementi
         self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.sizePolicy.setHorizontalStretch(0)
@@ -105,6 +106,7 @@ class Ui_ModificaStipendio(QWidget):
             input = self.listaInput[a].toPlainText().replace('  ', '')
             if(input != '' and input != 'None'):
                 self.body[a] = input
+            
         self.risultato = self.controller.Update(self.body)
         self.messaggio = ""
         if('message' in self.risultato):
@@ -119,6 +121,51 @@ class Ui_ModificaStipendio(QWidget):
             self.OpenLista = Vista.Ui_ListaStipendio()
             self.OpenLista.show()
             self.close()
+
+
+    #aggiunge il calendario
+    def AddCalendar(self,name=None,value=None):
+        CalendarSelect = QtWidgets.QDateEdit(self.scrollAreaWidgetContents,calendarPopup=True)
+        self.sizePolicy.setHeightForWidth(CalendarSelect.sizePolicy().hasHeightForWidth())
+        CalendarSelect.setSizePolicy(self.sizePolicy)
+        CalendarSelect.setMinimumSize(QtCore.QSize(300, 30))
+        CalendarSelect.setMaximumSize(QtCore.QSize(500, 30))
+        CalendarSelect.setFont(self.font)
+        CalendarSelect.setStyleSheet("QDateEdit{background-color: white;}"
+                                     "QCalendarWidget QWidget{ alternate-background-color: rgb(128, 128, 128); }"
+                                     "QCalendarWidget QAbstractItemView:enabled{ color:black; }"
+                                     "QCalendarWidget QAbstractItemView:disabled{ color:rgb(50, 50, 50); }"
+                                    )
+        CalendarSelect.calendarWidget().setLocale(QtCore.QLocale(QtCore.QLocale.English))
+        CalendarSelect.setObjectName(name)
+        self.horizontalLayout.addWidget(CalendarSelect)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        CalendarSelect.setDate(QtCore.QDate.fromString(value,"yyyy-MM-dd"))
+        return CalendarSelect
+
+    #aggiunge la lista della scelta dei dipendeti
+    def AddDropDown(self,text=None,contentList=[],name=None):
+        
+        DropDownSelect = QtWidgets.QComboBox(self.scrollAreaWidgetContents)
+        self.sizePolicy.setHeightForWidth(DropDownSelect.sizePolicy().hasHeightForWidth())
+        DropDownSelect.setSizePolicy(self.sizePolicy)
+        DropDownSelect.setMinimumSize(QtCore.QSize(300, 30))
+        DropDownSelect.setMaximumSize(QtCore.QSize(500, 30))
+        DropDownSelect.setFont(self.font)
+        DropDownSelect.setStyleSheet("background-color: rgb(255, 255, 255);")
+        DropDownSelect.setObjectName(name)
+        self.horizontalLayout.addWidget(DropDownSelect)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        self._translate = QtCore.QCoreApplication.translate
+        
+        for i in range(len(contentList)):
+
+            DropDownSelect.addItem(contentList[i])
+            if(text == contentList[i]):
+                DropDownSelect.setCurrentIndex(i)
+        
+        return DropDownSelect
+
 
     #Aggiunge il label titolo della finestra
     def AddLabelTitolo(self,text):
@@ -136,6 +183,25 @@ class Ui_ModificaStipendio(QWidget):
         self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
         self.label.setText(self._translate("ModificaWindow", text))
 
+    #aggiunge il calendario
+    def AddCalendar(self,name=None,value=None):
+        CalendarSelect = QtWidgets.QDateEdit(self.scrollAreaWidgetContents,calendarPopup=True)
+        self.sizePolicy.setHeightForWidth(CalendarSelect.sizePolicy().hasHeightForWidth())
+        CalendarSelect.setSizePolicy(self.sizePolicy)
+        CalendarSelect.setMinimumSize(QtCore.QSize(300, 30))
+        CalendarSelect.setMaximumSize(QtCore.QSize(500, 30))
+        CalendarSelect.setFont(self.font)
+        CalendarSelect.setStyleSheet("QDateEdit{background-color: white;}"
+                                     "QCalendarWidget QWidget{ alternate-background-color: rgb(128, 128, 128); }"
+                                     "QCalendarWidget QAbstractItemView:enabled{ color:black; }"
+                                     "QCalendarWidget QAbstractItemView:disabled{ color:rgb(50, 50, 50); }"
+                                    )
+        CalendarSelect.calendarWidget().setLocale(QtCore.QLocale(QtCore.QLocale.English))
+        CalendarSelect.setObjectName(name)
+        self.horizontalLayout.addWidget(CalendarSelect)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        CalendarSelect.setDate(QtCore.QDate.fromString(value,"yyyy-MM-dd"))
+        return CalendarSelect
 
     #aggiunge un scroll area alla finestra
     def AddScrollArea(self):

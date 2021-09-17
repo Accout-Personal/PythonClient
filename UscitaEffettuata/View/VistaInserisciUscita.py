@@ -52,8 +52,10 @@ class Ui_InserisciUscita(QWidget):
         for a in self.traduzione:
             
             self.AddLabelCampo(self.traduzione[a])
-
-            self.listaInput[a] = self.AddEdit()
+            if (a == 'data_esecuzione'):
+                self.listaInput[a] = self.AddCalendar('data_esecuzione')
+            else:
+                self.listaInput[a] = self.AddEdit()
 
 
         self.AddButton("Inserisci",self.Insert)
@@ -93,6 +95,26 @@ class Ui_InserisciUscita(QWidget):
         self.verticalLayout_2.addLayout(self.horizontalLayout)
 
         return textEdit_2
+
+    #aggiunge il calendario
+    def AddCalendar(self,name=None):
+        CalendarSelect = QtWidgets.QDateEdit(self.scrollAreaWidgetContents,calendarPopup=True)
+        self.sizePolicy.setHeightForWidth(CalendarSelect.sizePolicy().hasHeightForWidth())
+        CalendarSelect.setSizePolicy(self.sizePolicy)
+        CalendarSelect.setMinimumSize(QtCore.QSize(300, 30))
+        CalendarSelect.setMaximumSize(QtCore.QSize(500, 30))
+        CalendarSelect.setFont(self.font)
+        CalendarSelect.setStyleSheet("QDateEdit{background-color: white;}"
+                                     "QCalendarWidget QWidget{ alternate-background-color: rgb(128, 128, 128); }"
+                                     "QCalendarWidget QAbstractItemView:enabled{ color:black; }"
+                                     "QCalendarWidget QAbstractItemView:disabled{ color:rgb(50, 50, 50); }"
+                                    )
+        CalendarSelect.calendarWidget().setLocale(QtCore.QLocale(QtCore.QLocale.English))
+        CalendarSelect.setObjectName(name)
+        self.horizontalLayout.addWidget(CalendarSelect)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        CalendarSelect.setDate(QtCore.QDate.currentDate())
+        return CalendarSelect
 
     #Aggiunge un etichetta descrittiva del campo
     def AddLabelCampo(self,text):
@@ -149,7 +171,10 @@ class Ui_InserisciUscita(QWidget):
     #Funzione dell'inserimento
     def Insert(self):
         for a in self.listaInput:
-            input = self.listaInput[a].toPlainText()
+            if(self.listaInput[a].objectName() == 'data_esecuzione'):
+                input = self.listaInput[a].date().toString('yyyy-MM-dd')
+            else:
+                input = self.listaInput[a].toPlainText()
             if(input != ''):
                 self.body[a] = input            
         

@@ -57,11 +57,36 @@ class Ui_ModificaEntrata(QWidget):
             self.AddLabel(self.traduzione[a])
             
             #Crea il campo per la modifica
-            self.listaInput[a] = self.AddField(self.chiamata[a])
-
+            if(a == 'data_versamento'):
+                self.listaInput[a] = self.AddCalendar(name = 'data_versamento',value=self.chiamata[a])
+            elif(a == 'data'):
+                self.listaInput[a] = self.AddCalendar(name = 'data',value=self.chiamata[a])
+            else:
+                self.listaInput[a] = self.AddField(self.chiamata[a])
         #Aggiunge il pulsante per la modifica
         self.pushButton = self.AddSubmitButton("Modifica")
         self.pushButton.clicked.connect(self.Modify)
+
+
+    #aggiunge il calendario
+    def AddCalendar(self,name=None,value=None):
+        CalendarSelect = QtWidgets.QDateEdit(self.scrollAreaWidgetContents,calendarPopup=True)
+        self.sizePolicy.setHeightForWidth(CalendarSelect.sizePolicy().hasHeightForWidth())
+        CalendarSelect.setSizePolicy(self.sizePolicy)
+        CalendarSelect.setMinimumSize(QtCore.QSize(300, 30))
+        CalendarSelect.setMaximumSize(QtCore.QSize(500, 30))
+        CalendarSelect.setFont(self.font)
+        CalendarSelect.setStyleSheet("QDateEdit{background-color: white;}"
+                                     "QCalendarWidget QWidget{ alternate-background-color: rgb(128, 128, 128); }"
+                                     "QCalendarWidget QAbstractItemView:enabled{ color:black; }"
+                                     "QCalendarWidget QAbstractItemView:disabled{ color:rgb(50, 50, 50); }"
+                                    )
+        CalendarSelect.calendarWidget().setLocale(QtCore.QLocale(QtCore.QLocale.English))
+        CalendarSelect.setObjectName(name)
+        self.horizontalLayout.addWidget(CalendarSelect)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        CalendarSelect.setDate(QtCore.QDate.fromString(value,"yyyy-MM-dd"))
+        return CalendarSelect
 
     #Aggiunge il campo di inserimento e ritona i suoi valori
     def AddField(self,text):
@@ -97,7 +122,14 @@ class Ui_ModificaEntrata(QWidget):
     #Operazione di modifica in seguito alla conferma
     def Modify(self):
         for a in self.listaInput:
-            input = self.listaInput[a].toPlainText().replace('  ', '')
+            if(self.listaInput[a].objectName() == 'data'):
+                input = self.listaInput[a].date().toString('yyyy-MM-dd')
+            elif(self.listaInput[a].objectName() == 'data_versamento'):
+                input = self.listaInput[a].date().toString('yyyy-MM-dd')
+                if(input == '2000-01-01'):
+                    input = None
+            else:
+                input = self.listaInput[a].toPlainText()
             if(input != '' and input != 'None'):
                 self.body[a] = input
         self.risultato = self.controller.Update(self.body)

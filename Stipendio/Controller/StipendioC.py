@@ -47,6 +47,15 @@ class StipendioC:
     def Update(self,body):
         response = requests.post(env.host + env.Url+self.url+'update',data=body,headers=self.credenziali)
         if response.ok:
+            return response.json() 
+        else:
+            return response.json()
+    
+    def GetAllDip(self):
+        dipurl = "gen/pro/resp/dipendente/"
+        response = requests.get(env.host + env.Url+dipurl,headers=self.credenziali)
+        if response.ok:
+            print("va bene")
             return response.json()
         else:
             return response.json()

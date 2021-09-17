@@ -56,8 +56,12 @@ class Ui_InserisciAltraSpesa(QWidget):
         for a in self.traduzione:
             
             self.AddLabelCampo(self.traduzione[a])
-
-            self.listaInput[a] = self.AddEdit()
+            if(a == 'data'):
+                self.listaInput[a] = self.AddCalendar('data')
+            elif(a == 'scadenza'):
+                self.listaInput[a] = self.AddCalendar('scadenza')
+            else:
+                self.listaInput[a] = self.AddEdit()
 
 
         self.AddButton("Inserisci",self.Insert)
@@ -82,7 +86,28 @@ class Ui_InserisciAltraSpesa(QWidget):
         self.pushButton.clicked.connect(function)
         self.pushButton.setText(self._translate("InsAltraSpesa", text))
         self.verticalLayout_2.addWidget(self.pushButton, 0, QtCore.Qt.AlignHCenter)
-
+    
+    #aggiunge il calendario
+    def AddCalendar(self,name=None):
+        CalendarSelect = QtWidgets.QDateEdit(self.scrollAreaWidgetContents,calendarPopup=True)
+        self.sizePolicy.setHeightForWidth(CalendarSelect.sizePolicy().hasHeightForWidth())
+        CalendarSelect.setSizePolicy(self.sizePolicy)
+        CalendarSelect.setMinimumSize(QtCore.QSize(300, 30))
+        CalendarSelect.setMaximumSize(QtCore.QSize(500, 30))
+        CalendarSelect.setFont(self.font)
+        CalendarSelect.setStyleSheet("QDateEdit{background-color: white;}"
+                                     "QCalendarWidget QWidget{ alternate-background-color: rgb(128, 128, 128); }"
+                                     "QCalendarWidget QAbstractItemView:enabled{ color:black; }"
+                                     "QCalendarWidget QAbstractItemView:disabled{ color:rgb(50, 50, 50); }"
+                                    )
+        CalendarSelect.calendarWidget().setLocale(QtCore.QLocale(QtCore.QLocale.English))
+        CalendarSelect.setObjectName(name)
+        self.horizontalLayout.addWidget(CalendarSelect)
+        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        CalendarSelect.setDate(QtCore.QDate.currentDate())
+        return CalendarSelect
+    
+    
     #Aggiunge un campo di campo inseribile all'utente
     def AddEdit(self):
         textEdit_2 = QtWidgets.QTextEdit(self.scrollAreaWidgetContents)
@@ -153,8 +178,16 @@ class Ui_InserisciAltraSpesa(QWidget):
     #Funzione dell'inserimento
     def Insert(self):
         for a in self.listaInput:
-            input = self.listaInput[a].toPlainText()
-            if(input != ''):
+            if(self.listaInput[a].objectName() == 'data'):
+                input = self.listaInput[a].date().toString('yyyy-MM-dd')
+            elif(self.listaInput[a].objectName() == 'scadenza'):
+                input = self.listaInput[a].date().toString('yyyy-MM-dd')
+                if(input == '2000-01-01'):
+                    input = None
+            else:
+                input = self.listaInput[a].toPlainText()
+
+            if(input != '' and input != 'None'):
                 self.body[a] = input            
         
         self.risultato = self.controller.Insert(self.body)
