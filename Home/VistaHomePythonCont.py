@@ -47,7 +47,7 @@ class Ui_HomeContabile(QWidget):
         self.verticalLayout.addWidget(self.scrollArea)
         QtCore.QMetaObject.connectSlotsByName(HomeContabile)    
         HomeContabile.setWindowTitle(_translate("HomeContabile", "HomeContabile"))
-        self.label.setText(_translate("HomeContabile", "Welcome Home"))     
+        self.label.setText(_translate("HomeContabile", "Welcome Home contabile"))     
 
     def GoVistaStrategiche(self):
         self.Anagrafica = VistaFinanziari(fakeparent=self)
