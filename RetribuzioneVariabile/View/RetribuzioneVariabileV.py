@@ -66,11 +66,6 @@ class Ui_ListaRetribuzioniVariabili(QWidget):
                 "StyleSheet":"background-color: rgb(255, 0, 0);\n color: rgb(255, 255, 255);",
                 "function":self.deleteConfirm
             },
-            {
-                "name":"Modifica Elemento",
-                "StyleSheet":"background-color: rgb(0, 0, 255);\n color: rgb(255, 255, 255);",
-                "function":self.Modify
-            }
         ]
 
         X_offset = len(self.listAttr)
@@ -145,11 +140,6 @@ class Ui_ListaRetribuzioniVariabili(QWidget):
         OperationButton.clicked.connect(function)
         self.gridLayout.addWidget(OperationButton, y+1, x, 1, 1)
         return OperationButton
-
-    def Modify(self,elem):
-        self.ModificaRetribuzione = Ui_Modificaretribuzione(elem)
-        self.ModificaRetribuzione.show()
-        self.close()
     
     #Questa funzione aggiunge una scroll area
     def AddScrollArea(self):
