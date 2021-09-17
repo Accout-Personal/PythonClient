@@ -9,7 +9,6 @@
 
 
 from Home.VistaHomePython import Ui_HomeClass
-from formpythonsimo3 import Ui_UIwindow
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
 import requests,env
