@@ -1,4 +1,3 @@
-from RetribuzioneVariabile.View.VistaModificaRetribuzione import Ui_Modificaretribuzione
 from RetribuzioneVariabile.View.VistaRetribuzione import Ui_VistaRetribuzione
 from typing import KeysView
 from PyQt5 import QtCore, QtGui, QtWidgets
