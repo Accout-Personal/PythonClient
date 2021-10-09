@@ -109,6 +109,12 @@ class Ui_ListaEntrata(QWidget):
         self.Dettaglio = Ui_VistaEntrata(str(elem[self.key]))
         self.Dettaglio.show()
 
+    def Modify(self,elem):
+        print (elem[self.key])
+        self.modificaview = Ui_ModificaEntrata(elem[self.key])
+        self.modificaview.show()
+        self.close()
+
     #Viene settata l'intestazione della finestra
     def AddTableHeader(self,text,pos,width):
         self.header1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
@@ -140,12 +146,6 @@ class Ui_ListaEntrata(QWidget):
         OperationButton.clicked.connect(function)
         self.gridLayout.addWidget(OperationButton, y+1, x, 1, 1)
         return OperationButton
-
-    def Modify(self,elem):
-        print (elem[self.key])
-        self.modificaview = Ui_ModificaEntrata(elem[self.key])
-        self.modificaview.show()
-        self.close()
     
     #Questa funzione aggiunge una scroll area
     def AddScrollArea(self):

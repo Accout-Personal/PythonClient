@@ -1,7 +1,6 @@
 from Cliente.Controller.ClienteC import ClienteC
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox, QWidget
-import copy
 
 class Ui_InserisciCliente(QWidget):
     def __init__(self, parent=None):
@@ -72,6 +71,26 @@ class Ui_InserisciCliente(QWidget):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.scrollArea)
         QtCore.QMetaObject.connectSlotsByName(InsDipendente)
+
+    #Funzione dell'inserimento
+    def Insert(self):
+        for a in self.listaInput:
+            input = self.listaInput[a].toPlainText()
+            if(input != ''):
+                self.body[a] = input            
+        
+        self.risultato = self.controller.Insert(self.body)
+        self.messaggio = ""
+        if('message' in self.risultato):
+            if('errors' in self.risultato):
+                for a in self.risultato['errors']:
+                    self.messaggio += self.risultato['errors'][a][0]+'\n'
+            else:
+                QMessageBox.about(self, "Errore del server ",str(self.risultato['message']))
+            QMessageBox.about(self, "Errore nella compilazione dei campi",self.messaggio)
+        else:
+            QMessageBox.about(self, "Esito operazione","Operazione completata con successo")
+            self.close()
 
     #Aggiunge un pulsante con dato testo e funzione
     def AddButton(self,text,function):
@@ -157,26 +176,6 @@ class Ui_InserisciCliente(QWidget):
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
         self.label.setText(self._translate("ModificaDipAng", text))
-
-    #Funzione dell'inserimento
-    def Insert(self):
-        for a in self.listaInput:
-            input = self.listaInput[a].toPlainText()
-            if(input != ''):
-                self.body[a] = input            
-        
-        self.risultato = self.controller.Insert(self.body)
-        self.messaggio = ""
-        if('message' in self.risultato):
-            if('errors' in self.risultato):
-                for a in self.risultato['errors']:
-                    self.messaggio += self.risultato['errors'][a][0]+'\n'
-            else:
-                QMessageBox.about(self, "Errore del server ",str(self.risultato['message']))
-            QMessageBox.about(self, "Errore nella compilazione dei campi",self.messaggio)
-        else:
-            QMessageBox.about(self, "Esito operazione","Operazione completata con successo")
-            self.close()
 
     #Aggiunge un area scroll
     def AddScrollAreaLayout(self):
