@@ -14,12 +14,12 @@ class Ui_ModificaAltraSpesa(QWidget):
         ModificaWindow = self
         ModificaWindow.setObjectName("ModificaWindow")
         ModificaWindow.resize(800, 600)
-        ModificaWindow.setWindowTitle(self._translate("ModificaWindow", "ModificaCliente"))
+        ModificaWindow.setWindowTitle(self._translate("ModificaWindow", "ModificaSpesa"))
         self.verticalLayout = QtWidgets.QVBoxLayout(ModificaWindow)
         self.verticalLayout.setObjectName("verticalLayout")
 
         #Aggiunge il "titolo" della finestra
-        self.AddLabelTitolo("Modifica Cliente")
+        self.AddLabelTitolo("Modifica Una Spesa")
 
         #Aggiunge un scroll area per i campi
         self.scrollArea,self.scrollAreaWidgetContents,self.verticalLayout_2 = self.AddScrollArea()
